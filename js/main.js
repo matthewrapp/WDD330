@@ -1,3 +1,5 @@
+print(Hello);
+
 const weeks = [
     "Week 1",
     "Week 2",
