@@ -1,4 +1,4 @@
-print("Hello");
+console.log('Hello');
 
 const weeks = [
     "Week 1",
