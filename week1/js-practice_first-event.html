@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>First Event</title>
+
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Click Me Button! </h2>
+        <div class="container_90">
+            <button type="change" onclick="showCongratulations()">Click Me!</button>
+            <section id="showMessage"></section>
+        </div>
+
+    </main>
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+    <script src="../js/main.js"></script>
+    <script>
+        var x = 0;
+        
+        function showCongratulations() {
+            document.getElementById("showMessage").innerHTML = "Congratulations, you did it!<p>You got the page to update!</p>"
+            theButtonClicked.innerHTML = "Click Me Again!"
+        }
+        
+    </script>
+    
+</body>
+</html>

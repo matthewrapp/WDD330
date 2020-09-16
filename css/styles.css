@@ -4,11 +4,20 @@ body {
 }
 
 header {
-    background-color: rgb(218, 159, 159);
+    background-color: #eee;
     padding: 20px;
     text-align: center;
 }
 
 main {
     padding: 20px;
+}
+
+.container_90 {
+    width: 90%;
+    margin: 0px auto;
+}
+
+.notes_container li {
+    font-size: 12px;
 }
