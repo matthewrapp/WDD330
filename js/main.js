@@ -3,7 +3,7 @@ var weekNum = document.getElementById("orderedList");
 let weekLinks = [
     {
         label: "Week 1 Notes",
-        url: "week1/index.html",
+        url: "facebook.com",
     },
 ];
 
