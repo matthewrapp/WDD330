@@ -1,8 +1,10 @@
-console.log("Hello This is Matthew");
+var weekNum = document.getElementById("orderedList");
 
-const weeks = [
-    "Week 1",
-    "Week 2",
+let weekLinks = [
+    {
+        label: "Week 1 Notes",
+        url: "week1/index.html",
+    },
 ];
 
-document.getElementById("orderedList").innerHTML = weeks[0];
+weekNum.innerHTML = weekLinks[0]['label'];
