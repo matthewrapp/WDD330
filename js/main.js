@@ -1,10 +1,20 @@
-var weekNum = document.getElementById("orderedList");
-
-let weekLinks = [
+// Create an Array
+let links = [
     {
         label: "Week 1 Notes",
-        url: "facebook.com",
+        url: "week1/index.html",
+    },
+    {
+        label: "Week 2 Notes",
+        url: "week1/index.html",
     },
 ];
 
-weekNum.innerHTML = weekLinks[0]['label'];
+var orderedList = document.getElementById("orderedList");
+var listItems = [];
+
+links.forEach( function(i) {
+    listItems.push("<li><a href=" + i.url + ">" + i.label + "</a></li>");
+});
+
+orderedList.innerHTML = listItems.join('');
