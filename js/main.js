@@ -6,11 +6,15 @@ let links = [
     },
 ];
 
-var orderedList = document.getElementById("orderedList");
-var listItems = [];
+function generateTOC(list, id) {
+    var orderedList = document.getElementById(id);
+    var listItems = [];
 
-links.forEach( function(i) {
-    listItems.push("<li><a href=" + i.url + ">" + i.label + "</a></li>");
-});
+    list.forEach( function(i) {
+        listItems.push("<li><a href=" + i.url + ">" + i.label + "</a></li>");
+    });
 
-orderedList.innerHTML = listItems.join('');
+    orderedList.innerHTML = listItems.join('');
+}
+
+generateTOC(links, "orderedList");

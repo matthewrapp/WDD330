@@ -64,8 +64,8 @@
                 </div>
                 <div class="form-body">
                     <div class="input-box input-box-1">
-                        <label>Name:</label>
-                        <input />
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" required id="nameField" />
                     </div>
                     <div class="input-box input-box-2">
                         <label>Email:</label>
@@ -86,6 +86,9 @@
     <footer>
     </footer>
     <link rel="stylesheet" href="../../css/styles.css"></link>
-    <script src="../js/main.js"></script>
+    <script>
+        let nameField = document.getElementById("nameField");
+        console.log(nameField);
+    </script>
 </body>
 </html>
