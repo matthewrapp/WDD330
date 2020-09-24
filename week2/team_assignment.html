@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Week 2 - Team Assignment</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1>WDD 330 Portfolio</h1>
+        </div>
+    </header>
+    <main>
+        <h2>Week 2 - Team Assignment</h2>
+        <div class="container_90">
+            
+            <!-- Problem #1 -->  
+            <label for="data">Enter Text</label>
+            <input type="text" id="data" name="data">
+            <button type="button" onclick="display()">Enter</button>
+ 
+            <div id="sect">
+            </div>
+
+            <br>
+            <br>
+
+            <!-- Problem #2 -->
+            <label for="number">Enter number</label>
+            <input type="number" id="number">
+            <button onclick="compute()">Enter</button>
+        
+            <div id="sect_2">
+            </div>
+
+            <br>
+            <br>
+
+            <!-- Problem #3 -->
+            <label for="number1">Enter number</label>
+            <input type="number" id="number1">
+            <label for="number2">Enter number</label>
+            <input type="number" id="number2">
+            <br>
+            <button type="button" onclick="math('add')">Add Numbers</button>
+            <button type="button" onclick="math('subtr')">Substract Numbers</button>
+            <button type="button" onclick="math('times')">Multiply Numbers</button>
+            <button type="button" onclick="math('divide')">Divide Numbers</button>
+ 
+            <div id="sect_3">
+            </div>
+
+            <br>
+            <br>
+
+        </div>
+
+        <script>
+
+            // Problem #1
+            function display() {
+                const data = document.getElementById("data").value;
+                document.getElementById("sect").innerHTML = data;  
+            }   
+
+            // Problem #2
+            function compute() {
+                const number = parseInt(document.getElementById("number").value);
+                let sum = 0;
+        
+                for (i = 0; i < number; i++)
+                {
+                    sum += i;
+                }
+        
+                sum += number;
+                document.getElementById("sect_2").innerHTML = sum;  
+            }
+
+            // Problem #3
+
+            /* function add() {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+        
+                document.getElementById("sect_3").innerHTML = num_1 + num_2;
+            } */
+
+            // Stretch Goals
+            // Problem #1
+
+            function add() {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+        
+                document.getElementById("sect_3").innerHTML = num_1 + num_2;
+            }
+
+            function subtr() {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+        
+                document.getElementById("sect_3").innerHTML = num_1 - num_2;
+            }
+
+            function times() {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+        
+                document.getElementById("sect_3").innerHTML = num_1 * num_2;
+            }
+
+            function divide() {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+        
+                document.getElementById("sect_3").innerHTML = num_1 / num_2;
+            }
+
+            function math(opp) {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+
+                switch(opp) {
+                    case "add":
+                        add();
+                    break;
+                    case "subtr":
+                        subtr();
+                    break;
+                    case "times":
+                        times();
+                    break;
+                    case "divide":
+                        divide();
+                    break;
+                    default:
+                }
+            }
+
+            /* const buttons = document.getElementsByTagName('button');
+            Array.from(buttons).forEach(item => {
+                item.addEventListener('click', event => {
+                    let name = event.target.innerText.split(' ');
+                    switch(name[0]) {
+                    case "Add":
+                        add();
+                    break;
+                    case "Substract":
+                        subtr();
+                    break;
+                    case "Multiply":
+                        times();
+                    break;
+                    case "Divide":
+                        divide();
+                    break;
+                    default:
+
+                    }
+                })
+            }) */
+
+            /* function math(opp) {
+                const num_1 = parseInt(document.getElementById("number1").value);
+                const num_2 = parseInt(document.getElementById("number2").value);
+
+                switch(opp) {
+                    case "add":
+                        document.getElementById("sect_3").innerHTML = num_1 + num_2;
+                    break;
+                    case "subtr":
+                        document.getElementById("sect_3").innerHTML = num_1 - num_2;
+                    break;
+                    case "times":
+                        document.getElementById("sect_3").innerHTML = num_1 * num_2;
+                    break;
+                    case "divide":
+                        document.getElementById("sect_3").innerHTML = num_1 / num_2;
+                    break;
+                    default:
+                }
+            } */
+
+        </script>
+
+    </main>
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>
