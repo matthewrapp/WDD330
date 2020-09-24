@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Novice To Ninja Notes</h2>
+
+        <!-- Chapter 2 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 2 Notes</h4>
+            <ul>
+                <li>Comments:</li>
+                <ul>
+                    <li>Comments are made starting with "//" on a single line.</li>
+                    <li>Longer comments are made starting with "/*" & ending with "*/". Multi-line comment.</li>
+                </ul>
+                <li>Syntax used by JavaScript is known as a C-style syntax because of its similarities with the "C" programming language.</li>
+                <li>Statement:</li>
+                <ul>
+                    <li>JavaScript is made up of a series of statements. Each statement ends with a new line or semicolon.</li>
+                    <li>Example of a statement: </li>
+                    <ul>
+                        <li>const message = 'Hello World!' <br> alert(message)</li>  
+                    </ul>
+                </ul>
+                <li>Block:</li>
+                <ul>
+                    <li>A block is series of statements that are collected together inside curly braces.</li>
+                    <li>Example of a block:</li>
+                    <ul>
+                        <li>
+                            { <br>
+                                const message = 'Hello!'; <br>alert(message); <br>
+                            }
+                        </li>
+                    </ul>
+                    <li>Do NOT need to be terminated by a semicolon.</li>
+                </ul>
+                <li>Reserved Words:</li>
+                <ul>
+                    <li>Words reserved for use by the JavaScript language and CANNOT be used to name variables, functions, & object properties.</li>
+                </ul>
+                <li>Primitive Data Types:</li>
+                <ul>
+                    <li>JS has seven different data types. Six of them are primitive data types:</li>
+                    <ul>
+                        <li>String</li>
+                        <li>Symbol (only introduced in ES6</li>
+                        <li>Number</li>
+                        <li>Boolean</li>
+                        <li>Undefined</li>
+                        <li>Null</li>
+                    </ul>
+                    <li>Any value that isn't one of the primitve data types listed above is an object. These include arrays, functions, and object literals.</li>
+                    <li>JS has a special operator called "typeof" for finding out the type of a value.</li>
+                </ul>
+                <li>Declaring & Assigning Variables:</li>
+                <ul>
+                    <li>Keywords: "const", "let", & "var" declare variables.</li>
+                    <li>You can declare multiple varibales at the same time by seperating them with commas. For Example:</li>
+                    <ul>
+                        <li>"let x = 3, y = 5, z = 5"</li>
+                    </ul>
+                    <li>Variables declared by "let" can be reassigned to another value at some point later in the program. For Example:</li>
+                    <ul>
+                        <li> "let name = 'Matthew'; " <br> " name = 'Jack'; "</li>
+                    </ul>
+                    <li>Variables declared by "const" can NOT be reassigned to another value. For Example:</li>
+                    <ul>
+                        <li> "const name = 'Matthew'; " <br> " name = 'Jack'; " (This will bring up an error.</li>
+                    </ul>
+                    <li>"var" isn't used much anymore due to the similarity of "let"</li>
+                </ul>
+                <li>Scope</li>
+                <ul>
+                    <li>Scope:</li>
+                    <ul>
+                        <li>Using "const" & "let" to declare variables means they are block scoped, so their value only exists inside the block they are declared in.</li>
+                        <li>Scope referes to where a constant or variable is accessible by the program.</li>
+                        <li>Two types of Scope, Global & Local.</li>
+                    </ul>
+                    <li>Global Scope:</li>
+                    <ul>
+                        <li>Any variable declared outside of a block is said to have a global scope. Meaning it is accessible everywhere in the program.</li>
+                        <li>Might sound nice, but isn't considered good practice. Programmers try to keep the number of global variables to a minimum. Why?</li>
+                        <ul>
+                            <li>Variables that share the same name will clash and potentially overwrite each other's values.</li>
+                            <li>Very common to clash/overwrite other variables written.</li>
+                        </ul>
+                    </ul>
+                    <li>Local Scope:</li>
+                    <ul>
+                        <li>In ES6, blcoks can be used to create a local scope. Meaning that any variables defined inside a block using "let" or "const" will only be available inside that block.</li>
+                    </ul>
+                </ul>
+                <li>Naming Constants and Variables</li>
+                <ul>
+                    <li>When naming constants and variables, you should try to give them sensible names that describe what the variable represents; hence, "answer" is a better variable name than "x".</li>
+                    <li>Can start with any upper or lower-case letter, an underscore, or dollar character. They can also contain numbers, but can NOT start with them.</li>
+                    <li>Examples:</li>
+                    <ul>
+                        <li>$name</li>
+                        <li>_answer</li>
+                        <li>firstName</li>
+                        <li>last_name</li>
+                    </ul>
+                    <li>Variable Naming:</li>
+                    <ul>
+                        <li>Variables that start with an underscore generally refer to private properties and methods, so it's best to not follow this convention for your own variable names.</li>
+                        <li>The dollar character is also used bt the popular jQuery library, so using this in your variable names may also cause problems.</li>
+                        <li>Constant and variable names ARE case sensitive.</li>
+                        <li>When using multiple words for constant and variable names there are two conventions:</li>
+                        <ul>
+                            <li>Camel Case (Probably the best convention to use), Example:</li>
+                            <ul>
+                                <li>" firstNameAndLastName "</li>
+                            </ul>
+                            <li>Underscore, Example:</li>
+                            <ul>
+                                <li>" first_name_and_last_name "</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Direct Assignement & Assignment by Reference</li>
+                <ul>
+                    <li>Direct Assignment</li>
+                    <ul>
+                        <li> Example: <br> const a = 1; <br> let b = a; // a = 1, b = 1 <br> b = 2; // a = 1, b = 2 </li>
+                        <li>a references the primitive number 1 . We then assign b to the same value as a . At this point a and b both have the same value of 1 . Then we reassign the value of 2 to b , but the a still has a value of 1 .</li>
+                    </ul>
+                    <li>Assignment by Reference</li>
+                    <ul>
+                        <li> Example: <br> const c = { value: 1 }; <br> let d = c; // c.value = 1, d.value = 1 <br> d.value = 2; // c.value = 2, d.value = 2 </li>
+                        <li>the change to the value property of d also results in the value property of c changing as well. This is because the variables c and d are both referencing thesameobject, so any changes to one of them will also affect the other.</li>
+                    </ul>
+                </ul>
+                <li>Backslashes</li>
+                <ul>
+                    <li>Used to escape special characters in strings, such as:</li>
+                    <ul>
+                        <li>Single quote marks: \'</li>
+                        <li>Double quote marks: \"</li>
+                        <li>End of the line \n</li>
+                        <li>Carriage return \r</li>
+                        <li>Tab \t</li>
+                        <li>If you want to actually write a back slash:</li>
+                        <ul>
+                            <li>"This is a blackslash \\"</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Template Literals</li>
+                <ul>
+                    <li>Special types of string that were introduced in ES6.</li>
+                    <li>Thought of as super-powered strings.</li>
+                    <li>Use " ` " to deliminate the string</li>
+                    <li>Used for this type of example, for a string:</li>
+                    <ul>
+                        <li>`She said, "It's Me!"`</li>
+                    </ul>
+                    <li>They also allow interpolation of JS code. Meaning that a JS expression can be inserted inside a string.</li>
+                    <ul>
+                        <li>Example: <br> const name = `Siri`; <br> `Hello ${ name }!`;</li>
+                    </ul>
+                </ul>
+                <li>Symbols</li>
+                <ul>
+                    <li>Introduced as a new primitive value in ES6.</li>
+                    <li>Can be used to create unique values, which helps to avoid any naming collisions.</li>
+                    <li>Only way to create them is to use the "Symbol()" function.</li>
+                    <ul>
+                        <li>Example: <br> const uniqueID = Symbol();</li>
+                    </ul>
+                    <li>Recommended to add a description of the symbol inside perenthesis.</li>
+                    <ul>
+                        <li>Example: <br> const uniqueID = Symbol('this is a unique ID');</li>
+                    </ul>
+                    <li>Can manually access the description using the String() function:</li>
+                    <ul>
+                        <li>Example: <br> String(uniqueID) = Symbol('this is a unique ID');</li>
+                    </ul>
+                </ul>
+                <li>Octal & Hexadecimal Numbers</li>
+                <ul>
+                    <li>If a number starts with "0x", it is considered to be in hexademical (base 16) notation:</li>
+                    <ul>
+                        <li>Example: <br> 0xAF; // A represents 10, F represents 15 <br> Output: 175</li>
+                    </ul>
+                    <li>Hexademical or "hex" numbers are used used for color codes on the Web.</li>
+                    <li>ES6 now supports octal literals: If a number starts with a zero, followed by the letter o, then it is considered to be in octal (base 8) notation:</li>
+                    <ul>
+                        <li>Example: <br> 0o47; // 4 eights & 7 units <br> Output: 39</li>
+                    </ul>
+                    <li>ES6 also supports binary literals: If a number starts with a zero, followed by the letter b, then it is considered to be in binary (base 2) notation:</li>
+                    <ul>
+                        <li>Example: <br> 0b1010; // 1 eight, 0 fours, 1 two, and 0 units <br> Output: 10</li>
+                    </ul>
+                </ul>
+                <li>Exponential Notation</li>
+                <ul>
+                    <li>Numbers can also be represented in exponential notation, which is shorthand for "multiply by 10 to the power of" (you may have heard this referred to as "scientific notation" or "standard form").</li>
+                    <ul>
+                        <li>Examples: <br> 1e6; // means 1 multiplied by 10 to the power 6 (a million) <br> Output: 1,000,000 <br> <br> 2E3; // 2 multiplied by 10^3 (two thousand) <br> Output: 2,000</li>
+                    </ul>
+                    <li>Decimal values can be created by using a negative index value:</li>
+                    <ul>
+                        <li>Example: <br> 1.5e-3; // means 2.5 multiplied by 10 to the power -3 (0.001) <br> Output: 0.0025</li>
+                    </ul>
+                </ul>
+                <li>NaN</li>
+                <ul>
+                    <li>NaN is an error value that is short for "Not A Number."</li>
+                </ul>
+            </ul>
+        </div>
+
+         <!-- Chapter 3 Notes -->
+         <div class="container_90 notes_container">
+            <h4>Chapter 3 Notes</h4>
+            <ul>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Array literals</li>
+                    <li>Adding and removing values</li>
+                    <li>Array methods</li>
+                    <li>Sets</li>
+                    <li>Maps</li>
+                    <li>if & else statements</li>
+                    <li>switch statments</li>
+                    <li>while loops</li>
+                    <li>do ... while loops</li>
+                    <li>for loops</li>
+                    <li>Iterating over a collection</li>
+                    <li>Project - we'll use arrays, loops, and logic to ask multiple questions in quiz</li>
+                </ul>
+                <li>Arrays</li>
+                <ul>
+                    <li>An ordered list of values</li>
+                    <li>To create an array literal, write a pair of square brackets</li>
+                    <ul>
+                        <li>Example: <br> const myArray = []; <br> Output: []</li>
+                    </ul>
+                    <li>Can also use an array constructor function:</li>
+                    <ul>
+                        <li>Example: <br> const myArray = new Array(); <br> Output: []</li>
+                    </ul>
+                </ul>
+                <li>Deleting Values from Arrays</li>
+                <ul>
+                    <li>the "delete" operator will remove any item from an array</li>
+                    <ul>
+                        <li>Example: <br> const myArray = ["Cap America", "Iron Man", "Thor", "Hulk"] <br> delete avengers[3]; <br> Output: true <br> const myArray = ["Cap America", "Iron Man", "Thor", undefined]</li>
+                    </ul>
+                </ul>
+                <li>Sets</li>
+                <ul>
+                    <li>Introduced to the specification in ES6. A set of data structure that represents a collection of unique values, so it cannot include any duplicate values.</li>
+                    <li>Sets offer a useful way to keep track of data without having to check if any values have been duplicated.</li>
+                    <li>Creating Sets:</li>
+                    <ul>
+                        <li>An empty set is created by using the new operator and Set() constructor:</li>
+                        <ul>
+                            <li>Example: <br> const list = new Set();</li>
+                        </ul>
+                    </ul>
+                    <li>Adding Values to Sets:</li>
+                    <ul>
+                        <li>Values can be placed into a set using the add method:</li>
+                        <ul>
+                            <li>Example: <br> list.add(1); <br> Output: Set {1}</li>
+                        </ul>
+                        <li>Multiple items can be added to the set by repeating the add() method:</li>
+                        <ul>
+                            <li>Example: <br> list.add(2).add(3).add(4); <br> Output: Set {1, 2, 3, 4}</li>
+                            <li>Example: <br> const numbers = new Set([1,2,3]) <br> Output: Set {1, 2, 3}</li>
+                        </ul>
+                        <li>If a string is used as the argument then each character will be added as a separate element, with any repeated characters ignored:</li>
+                        <ul>
+                            <li>Example: <br> const letters = new Set(['hello']) <br> Output: Set {'h', 'e', 'l', 'l', 'o'}</li>
+                        </ul>
+                        <li>If you want to add separate words, you need to use the add() method:</li>
+                        <ul>
+                            <li>Example: <br> const letters = new Set().add('the').add('quick').add('brown'); <br> Output: Set {'the', 'quick', 'brown'}</li>
+                        </ul>
+                    </ul>
+                    <li>Weak Sets</li>
+                    <ul>
+                        <li>When objects are added to sets, they will be stored there as long as the set exists, even if the original reference to the object is removed. The technical term for this is the object is prevented from beinggarbage-collected, which can cause amemory leak.</li>
+                        <ul>
+                            <li>Example: <br> let array = [1,2,3]; <br> const strong = new set().add(array); <br> array - null; <br> strong; // call the set <br> Output: Set { [1, 2, 3]} </li>
+                        </ul>
+                    </ul>
+                    <li>Maps</li>
+                    <ul>
+                        <li>Mapswere another data structure introduced in the ES6 specification. They are a convenient way of keeping a list of key and value pairs, and are similar to 'hashes', or 'hash tables' or 'dictionaries' in other programming languages.</li>
+                    </ul>
+                    <li>Creating Maps</li>
+                    <ul>
+                        <li>An empty map object can be created using the new operator and Map() constructor:</li>
+                        <ul>
+                            <li>Example: <br> const romanNumerials = new Map();</li>
+                        </ul>
+                    </ul>
+                    <li>Adding Entries to Maps</li>
+                    <ul>
+                        <li>The set() method can be used to add a key and value pair to a map. The first value is the key and the second is the value:</li>
+                        <ul>
+                            <li>Example: <br> romanNumerials.set(1, 'I'); <br> Output: Map { 1 => 'I'}</li>
+                        </ul>
+                    </ul>
+                    <li>Switch Statements</li>
+                    <ul>
+                        <li>Example of If, Else Statement: <br> if (number === 4) { <br> console.log('You rolled a 4'); <br> } else if (number === 5) { <br> console.log('You rolled a 5'); <br> } else { <br> console.log('You rolled a number less than 4'); <br> } </li>
+                        <li>Example of Switch statement (easier to write): <br> switch (number) { <br> case 4: <br> console.log('You rolled a 4'); <br> break; <br> case 5: <br> console.log('You rolled a 5'); <br> break; <br> default: <br> console.log('You rolled a number less than 4'); <br> break; <br> }
+                    </ul>
+                </ul>
+            </ul>
+        </div>
+
+        <!-- Chapter 4 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 4 Notes</h4>
+            <ul>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Defining functions (function declarations, function expressions, Function() constructors and the new arrow syntax)</li>
+                    <li>Invoking a function</li>
+                    <li>Return values</li>
+                    <li>Parameters and arguments</li>
+                    <li>Hoisting (variables and functions)</li>
+                    <li>Callbacks (functions as a parameter)</li>
+                    <li>Project (we'll be using function to make the quick ninja code easier to follow</li>
+                </ul>
+                <li>In JavaScript, functions are considered to be first-class objects. This means they behave in the same way as all the other primitive data types and objects in the language. They can be be assigned to variables, stored in arrays and can even be returned by another functions.</li>
+                <li>Function Declarations</li>
+                <ul>
+                    <li>Function Declation: (most common way)</li>
+                    <ul>
+                        <li>Example: <br> function hello() { <br> console.log('Hello World'); <br> }</li>
+                    </ul>
+                    <li>Function Expression: (assigns an anonymous functon to a variable):</li>
+                    <ul>
+                        <li>Example: <br> const goodbye = function() { <br> console.log('Goodbye World'); <br> }</li>
+                    </ul>
+                    <li>Function Contructors (It's not recommended to declare functions in this way as there are numerous problems associated with placing the function body inside a string):</li>
+                    <ul>
+                        <li>Example: <br> const hi = new Function('console.log("Hi World!");');</li>
+                    </ul>
+                    <li>Arrow Functions (ES6 introduced a new syntax for declaring functions called thearrowsyntax. These make declaring functions much more succinct by using less verbose syntax):</li>
+                    <ul>
+                        <li>Example: <br> const square = x => x * x; </li>
+                        <li>Example: <br> const add = (x,y) => x + y; </li>
+                        <li>Example: <br> const hello = () => alert('Hello World!'); (If the function doesn't require any parameters, a pair of empty parentheses must go before the arrow) </li>
+                        <li>Arrow functions have a number of advantages over other ways of declaring functions:</li>
+                        <ul>
+                            <li>They are much less verbose than normal function declarations.</li>
+                            <li>Single parameters don't need putting into parentheses.</li>
+                            <li>The body of the function doesn't need placing inside a block if it's only one line.</li>
+                            <li>The return keyword isn't required if the return statement is the only statement in the body of the function.</li>
+                            <li>They don't bind their own value of this to the function (we'll see why this is a particularly useful property when we cover objects later in the book).</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Callbacks</li>
+                <ul>
+                    <li>A function that is passed as an argument to another is known as acallback.</li>
+                    <ul>
+                        <li>Example: <br> function sing(song) { <br> console.log('`I'm singing along to ${song}`'); <br> } <br> <br> sing ('Let It Go'); <br> Output: I'm singing along to Let It Go</li>
+                        <li>Another Example: <br> function sing(song, callback) { <br> console.log(`I'm singing along to ${song}.`); <br> callback();</li>
+                    </ul>
+                </ul>
+            </ul>
+        </div>
+    </main>
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>
