@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Practice - Tip Calculator</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Tip Calculator</h2>
+        <div class="container_90">
+            <label for="mealCost">What was the cost of your meal?</label>
+            <input type="text" id="mealCost" name="mealCost">
+            <br><br>
+            <label for="tipPercent">What percentage tip would you like to give?</label>
+            <input type="text" id="tipPercent" name="tipPercent">
+            <br><br>
+            <button type="button" onclick="getResults()">Get Your Results</button>
+            <br><br>
+            <div id="showResults">
+
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+
+    <script>
+        
+        function getResults() {
+            let mealCost = parseInt(document.getElementById("mealCost").value);
+            let tipPercent = parseInt(document.getElementById("tipPercent").value);
+            let tipTotal = 0;
+            let total = 0;
+
+            tipTotal = mealCost * tipPercent/100;
+            total = tipTotal + mealCost;
+
+            document.getElementById("showResults").innerHTML = total;
+        }
+2
+
+    </script>
+
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>
