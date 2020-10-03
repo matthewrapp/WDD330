@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Novice To Ninja Notes</h2>
+
+        <!-- Chapter 5 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 5 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Object literals</li>
+                    <li>Adding properties to objects</li>
+                    <li>Object methods</li>
+                    <li>JSON</li>
+                    <li>The Math object</li>
+                    <li>The Date object</li>
+                    <li>The RegExp object</li>
+                    <li>Project - we'll create quick and question objects and ask random questions</li>
+                </ul>
+                <li>Object Literals</li>
+                <ul>
+                    <li>A self-contained set of related values and functions</li>
+                    <li>Act as a collection of named properties that map to any JavaScript value such as:</li>
+                    <ul>
+                        <li>Strings</li>
+                        <li>Numbers</li>
+                        <li>Booleans</li>
+                        <li>Arrays</li>
+                        <li>Functions</li>
+                    </ul>
+                    <li>If a properties value is a function, it is known as a method</li>
+                    <li>A database of values</li>
+                    <li>Objects are often used to keep any related information and functionality together in the same place. For Example:</li>
+                    <ul>
+                        <li>If you wrote functions that found the perimeter and area of a square, you might want to group them together as methods of the same object that also included a length property.</li>
+                    </ul>
+                    <li>Super Example:</li>
+                    <ul>
+                        <li><br>
+                        const superman = { <br>
+                            name: 'Superman', <br>
+                            'real name': 'Clark Kent',<br>
+                            height: 75,<br>
+                            weight: 235,<br>
+                            hero: true,<br>
+                            villain: false,<br>
+                            allies: ['Batman', 'Supergirl', 'Superboy'],<br>
+                            fly() { <br>
+                                return 'Up, up and away!'; <br>
+                            } <br>
+                        }
+                        </li>
+                        <li>Each property is a key-value pair.</li>
+                        <li>'fly()' property is a method</li>
+                        <li>If property names doesn't follow the rules for naming variables described in ch. 2, it needs to be quoted.</li>
+                    </ul>
+                    <li>Creating Objects</li>
+                    <ul>
+                        <li>To creeate an object literal, simple enter a paid of curly braces. Example: '{}'</li>
+                        <li>I'ts also possible to create an object using a constructor function. This example will also create an empty object.</li>
+                        <ul>
+                            <li>const spiderman = new Object();</li>
+                            <li>This method is not recommended, however, and the object literal notation is the preferred way of creating objects.</li>
+                        </ul>
+                        <li><br>
+                            const name = 'Iron Man'; <br>
+                            const realName = 'Tony Stark'; <br>
+                            <br>
+                            // long way <br>
+                            const ironMan = { name: name, realName: realName};
+                            <br>
+                            <br>
+                            // ES6 way <br>
+                            const ironMan = {name, realName};
+                        </li>
+                    </ul>
+                    <li>Accessing Properties</li>
+                    <ul>
+                        <li>Using dot notation:</li>
+                        <ul>
+                            <li>superman.name <br> Output: 'Superman'</li>
+                        </ul>
+                        <li>Using bracket notation:</li>
+                        <ul>
+                            <li>superman['name'] <br> Output: 'Superman'</li>
+                        </ul>
+                        <li>Dot notation is more common, but bracket notation is the only way to access nonstandard property and method names that don't follow variable naming rules.</li>
+                        <li>Example:</li>
+                        <ul>
+                            <li>superman["real" + " " + "name"] <br> Output: "Clark Kent"</li>
+                        </ul>
+                    </ul>
+                    <li>Computed Properties</li>
+                    <ul>
+                        <li>The ability to create objects with computed property keys was introduced in ES6. This means the Javascript code can be placed inside square brackets and the property key will return the value of that code.</li>
+                        <li>Example:</li>
+                        <ul>
+                            <li><br>
+                                const hulk = { <br>
+                                name: 'Hulk', <br>
+                                ['catch' + 'Phrase']: 'Hulk Smash!'
+                                <br> }
+                            </li>
+                        </ul>
+                    </ul>
+                    <li>Calling Methods:</li>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </ul>
+        </div>
+
+        <!-- Chapter 6 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 6 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Introduction to the DOM</li>
+                    <li>Getting elements ― getElementById , getElementsByClassName , getElementsByTagName , querySelector and querySelectorAll</li>
+                    <li>Navigating the DOM</li>
+                    <li>Getting and setting an element’s attributes</li>
+                    <li>Updating the DOM by creating dynamic markup</li>
+                    <li>Changing the CSS of an element</li>
+                    <li>Our project ― we'll dynamically insert each question into the HTML</li>
+                </ul>
+                <li>What is the DOM?</li>
+                <ul>
+                    <li>Document Object Model</li>
+                    <li>Represents an HTML document as a network of connected nodes the form to a tree-like structure.</li>
+                    <li>The DOM treats everything on a web page as a node.</li>
+                    <li>The HTML tag is the root node, and every other part of the document is a child node of this.</li>
+                </ul>
+                <li>Getting elements</li>
+                <ul>
+                    <li>The DOM provides several methods that allow us to access any element on a page. These methods will return a node object or a node list, which is like an array-like object. These objects can then be assigned to a variabel and be inspected or modified.</li>
+                    <li>Example: Accessing the body element of a webpage</li>
+                    <ul>
+                        <li>const body = document.body;</li>
+                    </ul>
+                    <li>We can use the nodeType property to find out what type of node it is. Example:</li>
+                    <ul>
+                        <li>body.nodeType;<br>Outputs: 1</li>
+                    </ul>
+                    <li>All nodes have a numerical code to signify what type they are.</li>
+                    <ul>
+                        <li>Code | Type</li>
+                        <li>1 | element</li>
+                        <li>2 | attribute</li>
+                        <li>3 | text</li>
+                        <li>8 | comment</li>
+                        <li>9 | body</li>
+                    </ul>
+                    <li>We can use the nodeName property to find the name of the elemen. Example:</li>
+                    <ul>
+                        <li>body.nodeName; <br> Outputs: "BODY"</li>
+                    </ul>
+                </ul>
+                <li>Legacy DOM Shortcut Methods:</li>
+                <ul>
+                    <li>document.body</li>
+                    <li>document.images</li>
+                    <li>document.links</li>
+                    <ul>
+                        <li>Returns a node list of all the "a" elements and "area" elements that hafe an "href" attribute</li>
+                    </ul>
+                    <li>document.anchors</li>
+                    <ul>
+                        <li>returns a node list of all the "a" elements that have a "name" attribute</li>
+                    </ul>
+                    <li>document.forms</li>
+                </ul>
+                <li>Getting An Element By It's ID</li>
+                <ul>
+                    <li>document.getElementById('title');</li>
+                </ul>
+                <li>Getting An Element By Their Tag Name</li>
+                <ul>
+                    <li>document.getElementByTagName('li');</li>
+                </ul>
+                <li>Getting An Element By Their Class Name</li>
+                <ul>
+                    <li>document.getElementByClassName('hero');</li>
+                </ul>
+                <li>querySelectors</li>
+                <ul>
+                    <li>document.querySelector(); method alls you to use CSS notation to find the first element in the doucment that matches a CSS selector provided as an argument.</li>
+                    <li>document.querySelectorAll(); method also uses CSS notation but returns a node list of all the elements in the document that match the CSS query select</li>
+                    <li>Powerful way of specifying very precise items on a page. Example:</li>
+                    <ul>
+                        <li>const wonderWoman = document.querySelector('li:last-child');</li>
+                    </ul>
+                    <li>jQuery</li>
+                    <ul>
+                        <li>A popular JavaScript framework that makes it very easy to find elements on a page ussing a CSS-style syntax.</li>
+                        <li>It uses document.querySelectorAll() in the background whenever it can.</li>
+                        <li>Example:</li>
+                        <ul>
+                            <li>$('ul#roster').find('li#bats');</li>
+                        </ul>
+                        <li>Same as doing:</li>
+                        <ul>
+                            <li>const ul = document.querySelector('ul#roster');
+                                <br>ul.querySelector('li#bats')</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Navigating the DOM</li>
+                <ul>
+                    <li>The childNodes property is a list of all the nodes that are children of the node concerned.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            <br>
+                            const heros = document.getElementById('roster'); <br>
+                            <br>
+                            heros.childNodes <br>
+                            >> NodeList[#text " <br>
+                            ", li class="hero", #text " <br>
+                            ", li id="bats", #text " <br>
+                            ", li class="hero", #text " <br>
+                            ", li class="hero", #text "
+                            <br>]
+                        </li>
+                    </ul>
+                </ul>
+                <li>Finding the Value of the Node</li>
+                <ul>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            <br>
+                            li class = 'hero' | Wonder Woman | li <br>
+                            <br>
+                            const textNode = wonderWoman.firstChild; <br>
+                            >> "Wonder Woman"
+                        </li>
+                        <li>
+                            <br>
+                            textNode.nodeValue; <br>
+                            >> "Wonder Woman"
+                        </li>
+                    </ul>
+                </ul>
+                <li>Getting an Element's Attributes</li>
+                <ul>
+                    <li>getAttribute()</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            <br>
+                            wonderWoman.getAttribute('class'); <br>
+                            >> "hero"
+                        </li>
+                    </ul>
+                </ul>
+                <li>Setting an Element's Attributes</li>
+                <ul>
+                    <li>setAttribute</li>
+                    <li>Example: If we wanted to change the class of an element</li>
+                    <ul>
+                        <li>
+                            <br>
+                            wonderWoman.setAttribute('class', 'villain');<br>
+                            >> undefined <br>
+                            wonderWoman.getAttribute('class'); <br>
+                            >> "villain"
+                        </li>
+                    </ul>
+                </ul>
+                <li>The className Property</li>
+                <ul>
+                    <li>className</li>
+                    <li>Example: 1) Find 2) Change</li>
+                    <ul>
+                        <li>
+                            <br>
+                            wonderWoman.className; <br>
+                            >> "villian"
+                            <br>
+                            <br>
+                            wonderWoman.className = 'hero' <br>
+                            >> "hero"
+                        </li>
+                    </ul>
+                </ul>
+                <li>The classList Property</li>
+                <ul>
+                    <li>classList</li>
+                    <li>Example: 1) Add 2) Remove</li>
+                    <ul>
+                        <li>
+                            <br>
+                            wonderWoman.classList.add('warrior') <br>
+                            >> "hero warrior"
+                            <br>
+                            <br>
+                            wonderWoman.classList.remove('warrior') <br>
+                            >> "hero"
+                        </li>
+                    </ul>
+                </ul>
+                <li>Creating Dynamic Markup</li>
+                <ul>
+                    <li>Creating An Element</li>
+                    <ul>
+                        <li>const flash = document.createElement('li');</li>
+                    </ul>
+                    <li>Creating A Text Node</li>
+                    <ul>
+                        <li>const flashText = document.createTextNode('Flash');</li>
+                    </ul>
+                    <li>Appending Nodes</li>
+                    <ul>
+                        <li>Every node object has an appendChild() method that will add anohter node as a child node. We want the newly created text node to be a child node of the list element node.</li>
+                        <ul>
+                            <li> flash.appendChild(flashText);</li>
+                        </ul>
+                    </ul>
+                    <li>All of this could've been made simpler.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            const flash = document.createElement('li'); <br>
+                            flash.textContent = 'Flash';
+                        </li>
+                    </ul>
+                    <li>A Function to Create Elements</li>
+                    <ul>
+                        <li><br>
+                            function createElement(tag, text) { <br>
+                                const el = document.createElement(tag); <br>
+                                el.textContent = text; <br>
+                                return el
+                            <br> }
+                            <br>
+                            <br>
+                            // Creating another new list element with function <br>
+                            const aquaman = createElement('li', 'Aquaman');
+                        </li>
+                    </ul>
+                    <li>Remove Elements from a Page</li>
+                    <ul>
+                        <li><br>
+                        heros.removeChild(aquaman); <br>
+                        >> Aquaman <br>
+                        // This will remove aquaman out of the HTML list
+                        </li>
+                    </ul>
+                    <li>Replacing Elements on a Page</li>
+                    <li>
+                        <br>
+                        const h1 = document.getElementById('title'); <br>
+                        const oldText = h1.firstChild;
+                        const newText = document.createTextNode('Justice League'); <br>
+                        h1.replaceChild(newText, oldText);
+                    </li>
+                </ul>
+            </div>
+
+                <!-- Chapter 6 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 7 Notes</h4>
+            <li>This chapter covers:</li>
+                <ul>
+                    <li>Introduction to events</li>
+                    <li>Adding event listeners</li>
+                    <li>The event object</li>
+                    <li>Mouse, keyboard and touch events</li>
+                    <li>Removing event listeners</li>
+                    <li>Event propagation</li>
+                    <li>Project – we'll add a 'start' button that can be clicked on to start the game</li>
+                </ul>
+                <li>Event Listeners</li>
+                <ul>
+                    <li>Click Event</li>
+                    <ul>
+                        <li>Occurs when a user clicks with the mouse, presses the Enter key, or taps the screen, making it a very useful all-around event covering many types of interaction.</li>
+                    </ul>
+                    <li>The following code can be used to attach an event listener to the document the fires when the user clicks anywhere on the page:</li>
+                    <ul>
+                        <li>document.body.addEventListener("click", doSomething);</li>
+                    </ul>
+                </ul>
+                <li>In-line Event Handlers</li>
+                <ul>
+                    <li>The original way of dealing with events in the browswer was to use inline attributes that were added directly into the markup.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>p onclick = "console.log('You clicked me')" | Click Me | p</li>
+                    </ul>
+                    <li>For these reasons, avoid inline event handlers:</li>
+                    <ul>
+                        <li>The JavaScript code is mixed up with the HTML markup, breaking the concept of unobtrusive JavaScript, which advocates that JavaScript code should be kept out of the HTML.</li>
+                        <li>Only one event handler for each event-type can be attached to an element.</li>
+                        <li>The code for the event handlers is hidden away in the markup, making it difficult to find where these events have been declared.</li>
+                        <li>The JavaScript code has to be entered in a string, so you need to be careful when using apostrophes and quote marks.</li>
+                    </ul>
+                </ul>
+                <li>Using Event Listeners</li>
+                <ul>
+                    <li>The recommended way of dealing with events, and the current standard, is to use event listeners.</li>
+                    <li>These were outlined in DOM level 2 and allow multiple functions to be attached independently to different events.</li>
+                    <li>The addEventListener() method is called on a node object, the node to which the event listener is being applied.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>document.body.addEventListener('click', doSomething);</li>
+                    </ul>
+                    <li>The addEventListener() method can also be called without a node, in which case it is applied to the global object, usually the whole browser window.</li>
+                    <li>Its first parameter is the type of event, and the second is a callback function that is invoked when the event occurs.</li>
+                    <li>Now, we are adding a click event listeer to the whole page. Two ways to write it, anonymous function adn declartion function:</li>
+                    <ul>
+                        <li>addEventListener('click', () => alert('You Clicked!'));</li>
+                        <li>function doSomething() <br>{
+                            alert('You Clicked!'); <br>
+                            } <br>
+                            addEventListener('click',doSomething);</li>
+                    </ul>
+                </ul>
+                <li>The Event Object</li>
+                <ul>
+                    <li>Whenever an event handler is triggered by an event, the callback function is called.</li>
+                    <li>This function is automatically passed an event object as a parameter that contain information about the event.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            function doSomething(event) { <br>
+                            console.log(event.type);
+                            <br> } 
+                            <br>
+                            <br>
+                            >> click
+                        </li>
+                    </ul>
+                </ul>
+                <li>Coordinates of an Event</li>
+                <ul>
+                    <li>There are a variety of ways to find the position of where a mouse event occurs.</li>
+                    <li>The screenX and screenY properties show the number of pixels from the left and top of the screen respectively where the event took place.</li>
+                    <li>The clientX and clientY properties show the number of pixels from the left and top of the client that is being used (usually the browswer window).</li>
+                    <li>The pageX and pageY properties show the number of pixels from the left and top, respectively, where the event took place in the document.</li>
+                    <ul>
+                        <li>This property takes account of whether the page has been scrolled.</li>
+                    </ul>
+                    <li>All these properties are similar, but subtly different.</li>
+                    <li>They are useful for finding out the place where a click happened or the position of the mouse cursor.</li>
+                </ul>
+                <li>Coordinates of an Event</li>
+                <ul>
+                    <li>Here's a link to all the types:</li>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Events</a></a></li>
+                    </ul>
+                </ul>
+                <li>Mouse Events</li>
+                <ul>
+                    <li>click</li>
+                    <li>mousedown</li>
+                    <ul>
+                        <li>Occur before the mouse event 'click' is fired.</li>
+                    </ul>
+                    <li>mouseup</li>
+                    <ul>
+                        <li>Occur before the mouse event 'click' is fired.</li>
+                    </ul>
+                    <li>dblclick</li>
+                    <ul>
+                        <li>Occurs when the user doubleclicks on the element</li>
+                    </ul>
+                </ul>
+                <li>Keyboard Events</li>
+                <ul>
+                    <li>keydown</li>
+                    <ul>
+                        <li>Occurs when a key is pressed and will continue to occur if the key is held down.</li>
+                    </ul>
+                    <li>keypress</li>
+                    <ul>
+                        <li>Occurs after a keydown event but before a keyup event.</li>
+                    </ul>
+                    <li>keyup</li>
+                    <ul>
+                        <li>Occurs when a key is released.</li>
+                    </ul>
+                </ul>
+                <li>Touch Events</li>
+                <ul>
+                    <li>touchstart</li>
+                    <ul>
+                        <li>Occurs when a user initially touches the surface.</li>
+                    </ul>
+                    <li>touchend</li>
+                    <ul>
+                        <li>Occurs when a user stops touching the surface.</li>
+                    </ul>
+                    <li>touchmove</li>
+                    <ul>
+                        <li>Occurs after a user has touched the screen then moves around without leaving.</li>
+                    </ul>
+                    <li>touchenter</li>
+                    <ul>
+                        <li>Occurs when a user has already starting touching the surface, but then passes over the element to which the event listener is attached.</li>
+                    </ul>
+                    <li>touchleave</li>
+                    <ul>
+                        <li>Occurs when the user is still touching the surface, but leave the element to which the event listener is attached.</li>
+                    </ul>
+                    <li>touchcancel</li>
+                    <ul>
+                        <li>Occurs when a touch event is interupted, such as a user's finger moving outside the document window, or too many fingers being used at once.</li>
+                    </ul>
+                    <Li>Has a length property that tells you how many touch points (usually the user's fingers) are in contact with the surface.</Li>
+                </ul>
+                <li>Removing Event Listeners</li>
+                <ul>
+                    <li>removeEventListener()</li>
+                </ul>
+                <li>Stopping Default Behavior</li>
+                <ul>
+                    <li>preventDefault()</li>
+                </ul>
+                <li>Event Propagation</li>
+                <ul>
+                    <li>The order that the events fire on each element</li>
+                    <li>Two forms of propagation:</li>
+                    <ul>
+                        <li>bubbling</li>
+                        <ul>
+                            <li>When the event fires on the element click on first, then bubbles up the document tree, firing an event on each parent element until it reaches the root node.</li>
+                            <li>Default behavior</li>
+                            <li>Stopping the bubbling phase</li>
+                            <ul>
+                                <li>Add the event.stopPropagation() method into the callback function.</li>
+                                <li>Example:</li>
+                                <ul>
+                                    <li>liElement.addEventListener('click', (event) => { <br>
+                                        concole.log('clicked on li'); <br>
+                                        event.stopPropagation(); <br>
+                                    <br> }, false);
+                                    </li>
+                                </ul>
+                            </ul>
+                        </ul>
+                        <li>capturing</li>
+                        <ul>
+                            <li>Starts by firing an event on the root element, then propagates downwards, firing an event on each child element until it reaches the target element that was clicked on.</li>
+                            <li>The addEventListener() method has a third parameter, which is a boolean value taht specifies whether captuing should be used or not. It defaults to false, which is why bubbling happens by default.</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Event Delegation</li>
+                <ul>
+                    <li>Can be used to attach an event listener to a parent element in order to capture events that are triggered by it's child elements.</li>
+                </ul>
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>
