@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Novice To Ninja Notes</h2>
+
+        <!-- Chapter 8 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 8 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Form controls</li>
+                    <li>Accessing form elements</li>
+                    <li>Form properties and methods</li>
+                    <li>Form events</li>
+                    <li>Submitting a form</li>
+                    <li>Retrieving and changing values from a form</li>
+                    <li>Form validation</li>
+                    <li><a href="Search_BookExample/search_bookexample.html" target="_blank">Example Problem #1 | Search Field</a></li>
+                    <li><a href="Search_BookExample/heros_bookexample.html" target="_blank">Example Problem #2 | Heros</a></li>
+                </ul>
+                <li>Forms</li>
+                <ul>
+                    <li>Made up of a form element</li>
+                    <li>Contains form controls such as:</li>
+                    <ul>
+                        <li>input fields</li>
+                        <li>select menus</li>
+                        <li>buttons</li>
+                    </ul>
+                    <li>Traditionally, a form use to send the information to the back end server where it would be processed using a backend language like PHP or Ruby.</li>
+                    <li>It's now possible to process the information in a form on the front end before it is sent to the server using JavaScript.</li>
+                    <li>Each form contorl has an initial value, specified by HTML. Value can change by entering information or using a slider to increase/decrease. The value can also be changed dynamically using JS.</li>
+                    <li>Notes on <a href="Search_BookExample/search_bookexample.html" target="_blank">example problem</a></li>
+                    <ul>
+                        <li>This form has a name attribute of search, & contains two controls, an input feild and a button.</li>
+                        <li>The action attribute is the URL that the form will be submitted to so it can be processed on the server side.</li>
+                        <li>The input feild has a name attribute of searchInput that is used to access the information inside it.</li>
+                    </ul>
+                </ul>
+                <li>Accessing Form Elements</li>
+                <ul>
+                    <li>The legacy DOM had a useful property called document.forms that returns an HTML collection of all the forms on the document in the order they appear in the markup.</li>
+                    <li>Even though there is only one form in our example, a collection will still return.</li>
+                    <li>To return a specific form, use index notation to return the first and only form object. Check example main.js on how to do that. Lines: 1 - </li>
+                    <li>A form object also has a method called elements that returns an HTML collection of elemenets contained in the form.</li>
+                    <li>In the <a href="Search_BookExample/search_bookexample.html" target="_blank">example problem</a>, the form contails two controls, input element and button element.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>const [input, button] = form.elements;</li>
+                    </ul>
+                    <li>Can also access the form controls using their 'name' attributes as if it was a property of the form object.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>const input = form.searchInput; </li>
+                    </ul>
+                </ul>
+                <li>Form Properties and Methods</li>
+                <ul>
+                    <li>Form objects have a bunch of useful properties and methods to help interact with the form.</li>
+                    <li>form.submit()</li>
+                    <ul>
+                        <li>This method will submit the form automatically.</li>
+                    </ul>
+                    <li>A form can be submitted manually by user employing a button or input element with a type attribute of 'submit' or an input element with a type attribute of 'image'</li>
+                    <li<li>form.reset()</li>
+                    <ul>
+                        <li>This method will reset all the form controls back to their initial values.</li>
+                    </ul>
+                    <li>A button with a type attribute of 'reset' can also be used to reset without the need for additional scripting</li>
+                    <ul>
+                        <li>button type='reset' | Reset | button</li>
+                    </ul>
+                    <li>form.action</li>
+                    <ul>
+                        <li>This method can be used to set the action attribute of a form, so it's sent a different URL to be processed on the server</li>
+                        <li>form.action = '/an/other.url'</li>
+                    </ul>
+                </ul>
+                <li>Form Events</li>
+                <ul>
+                    <li>Forms trigger a number of events. Some events are exclusive to forms.</li>
+                    <li>Focus event:</li>
+                    <ul>
+                        <li>This event occus when an element is focues on</li>
+                        <li>
+                            const input = form.elements.searchInput <br>
+                            input.addEventListener('focus', () => alert('focused'), false);
+                        </li>
+                    </ul>
+                    <li>Blur event:</li>
+                    <ul>
+                        <li>Occurs when the user moves the focus away from the form element.</li>
+                        <li>
+                            input.addEventListener('blur', () => alert('blurred'), false);
+                        </li>
+                    </ul>
+                    <li>Submit event:</li>
+                    <ul>
+                        <li>Occurs when the form is submitted</li>
+                        <li>
+                            const form = document.forms['search']; <br>
+                            form.addEventListener ('submit', search, false); <br>
+                            function search() { <br>
+                                alert(' Form Submitted'); <br>
+                            }
+                        </li>
+                    </ul>
+                    <li>Trevent Default event:</li>
+                    <ul>
+                        <li>Occurs when you want to stop the form from being submitted to the url</li>
+                        <li>
+                            function search(event) { <br>
+                                alert('Form Submitted'); <br>
+                                event.preventDefault(); <br>
+                            }
+                        </li>
+                    </ul>
+                </ul>
+                <li>Retrieving and Changing Values From a Form</li>
+                <ul>
+                    <li>Text input element objects have a value property that can be used to retrieve the text inside the field.</li>
+                    <li>function search(event) { <br>
+                        alert(`You Searched for: ${input.value}`); <br> // input is the variable that stores the input box
+                        event.preventDefault();<br>
+                        }
+                    </li>
+                    <li>Using JavaScript, set the default value of the input</li>
+                    <li>inputBox.value = 'Search Here';</li>
+                    <li>Check the main.js for more functionality using the focus and blur event. Showing the default placeholder text on blur, but on focus, getting rid of it. Line 47 - 57</li>
+                    <li>Placeholder Attribute:</li>
+                    <ul>
+                        <li>Similar, but a litte different.</li>
+                        <li>Placeholder text is not actually a value of the input field, so it won't be submitted as the fields value if the user fails to fill it in.</li>
+                    </ul>
+                </ul>
+                <li>Form Contols</li>
+                <ul>
+                    <li>Types:</li>
+                    <ul>
+                        <li>input</li>
+                        <li>select</li>
+                        <li>textarea</li>
+                        <li>button</li>
+                    </ul>
+                    <li><a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a></li>
+                    <li>Refer to the heros_bookexample.js files for notes on example</li>
+                    <ul>
+                        <li>Using the event.preventDefault() method, we stop the form from being submitted</li>
+                        <li>Create a local variable called 'hero' and assign it to an empty object literal</li>
+                        <li>Then augmment this object with properties from the form. We only have the 'name' property at the moment</li>
+                        <li>Once the hero object is created, it would probably be returned by the function then used somewhere else in the program.</li>
+                        <li>We then use JSON.stringify() method to convert hero object into a JSON string and display it in an alert dialog.</li>
+                    </ul>
+                    <li>Text Input Fields</li>
+                    <ul>
+                        <li>Default type of input field</li>
+                        <li>Used for entering short piece of text, such as username, name, etc.</li>
+                    </ul>
+                    <li>Password Input Fields</li>
+                    <ul>
+                        <li>input type="password"</li>
+                        <li>Used to enter passwords or secret information</li>
+                        <li>To see this in action, we will add a realName property to our hero object.</li>
+                        <li>Check the <a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a> to see in action.</li>
+                    </ul>
+                    <li>Checkbox Input Fields</li>
+                    <ul>
+                        <li>input type="checkbox"</li>
+                        <li>Used to select different options that can be checked true or false</li>
+                        <li>User can select more than one</li>
+                        <li>Add a list of power that the superhero can have</li>
+                        <li>Check the <a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a> to see in action.</li>
+                    </ul>
+                    <li>Radio Input Fields</li>
+                    <ul>
+                        <li>type = 'radio'</li>
+                        <li>Work like checkboxes, but only can selection one</li>
+                        <li>Check the <a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a> to see in action.</li>
+                    </ul>
+                    <li>File Input Fields</li>
+                    <ul>
+                        <li>type = 'file'</li>
+                    </ul>
+                    <li>Other Input Types</li>
+                    <ul>
+                        <li>type = 'number'</li>
+                        <li>type = 'tel'</li>
+                        <li>type = 'color'</li>
+                    </ul>
+                    <li>Select Dropdown List</li>
+                    <ul>
+                        <li>Check the <a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a> to see in action.</li></li>
+                    </ul>
+                    <li>Text Areas</li>
+                    <ul>
+                        <li>Element used to enter long pieces of text over multiple lines such as a comment or blog post</li>
+                        <li>Access them using the 'name' attribute and use the 'value' property to see what text was entered</li>
+                        <li>Check the <a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a> to see in action.</li>
+                    </ul>
+                </ul>
+                <li>Form Validation</li>
+                <ul>
+                    <li>Examples:</li>
+                    <ul>
+                        <li>Required field</li>
+                        <li>An email address is valid</li>
+                        <li>A number is enter when numerical data is required</li>
+                        <li>A password is at least a minimum number of characters</li>
+                    </ul>
+                    <li>All you need to do is add a required attribute to the input tag in the form.</li>
+                    <li>What if we wanted to exclude any superhero names that begin with an 'X'. That's not standard validation so you'd have to write your own.</li>
+                    <li>Check the <a href="Search_BookExample/heros_bookexample.html" target="_blank">New Example | Heros</a> to see in action.</li>
+                </ul>
+        </div>
+
+        <!-- Chapter 12 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 12 Notes</h4>
+            <li>This chapter covers:</li>
+            <ul>
+                <li>An intro to Object Oriented Programming (OOP)</li>
+                <li>Constructor functions</li>
+                <li>Using classes in JavaScript</li>
+                <li>Prototypes</li>
+                <li>Public and private methods</li>
+                <li>Inheritance</li>
+                <li>Creating objects from objects</li>
+                <li>Adding methods to built-in objects</li>
+                <li>Mixins</li>
+                <li>Chaining functions</li>
+                <li>This and that</li>
+                <li>Borrowing methods from prototypes</li>
+                <li>Quiz</li>
+            </ul>
+            <li>OOP</li>
+            <ul>
+                <li>Often used to model representations of objects in the real world.</li>
+                <li>Three main components in OOP:</li>
+                <ul>
+                    <li>encapsulation</li>
+                    <li>polymorphism</li>
+                    <li>inheritance</li>
+                </ul>
+                <li>Encapsulation</li>
+                <ul>
+                    <li>The inner workings are kept hidden inside the object and only the essential functionalities are exposed to the end user</li>
+                    <li>Keeping all the programming logic inside an object and making methods available to implement the functionality, without the outside world needing to know how it's done.</li>
+                </ul>
+                <li>Polymorphism</li>
+                <ul>
+                    <li>The same process cna be used for different objects</li>
+                    <li>Various objects can share the same method but also have the ability to override shared methods with more specific implementation</li>
+                </ul>
+                <li>Inheritance</li>
+                <ul>
+                    <li>Taking the features of one object then adding some new features</li>
+                    <li>Taking an object that already exists and inherit all its properties and methods. We can then imporve on its functionality by adding new properties and methods</li>
+                </ul>
+                <li>Classes</li>
+                <ul>
+                    <li>Use a class to define a blueprint for an object.</li>
+                    <li>Objects are then created as an instance of that class, and inherit all the properties and methods of that class.</li>
+                    <li>Classes are new to JavaScript. ES6 update.</li>
+                </ul>
+            </ul>
+            <li>Constructor Functions</li>
+            <ul>
+                <li>An alternative way to create objects</li>
+                <li>Example of creating an object, not using Constructor syntax</li>
+                <ul>
+                    <li>
+                        const dice = { <br>
+                            sides: 6, <br>
+                            roll() { <br>
+                                return Math.floor(this.sides * Math.random() + 1)
+                            <br>}
+                        <br>}
+                    </li>
+                </ul>
+                <li>Example of creating an object, Using Constructor syntax</li>
+                <ul>
+                    <li>
+                        const Dice = function (sides = 6) { <br>
+                            this.sides = sides; <br>
+                            this.roll = function() { <br>
+                                return Math.floor(this.sides * Math.random() + 1); <br>
+                            }
+                        <br>}
+                    </li>
+                </ul>
+                <li>The keyword 'this' is used to represent the object that will be returned by the contructor function.</li>
+                <li>we use it to set the 'sides' property to the argument that is provided to the constructor function, or 6, if no argument is provided</li>
+                <li>The constructor function also adds a method called roll() , which returns a random number from 1 up to the number of sides the dice has.</li>
+                <li>We can now create an instance of the dice constructor function using the new operator</li>
+                <ul>
+                    <li>
+                        const redDice = new Dice(); <br>
+                        >> Dice { sides: 6, roll: [Function] }
+                    </li>
+                    <li>Parenthesis are not required when instantiating a new object using a constructor function.</li>
+                    <li>
+                        const redDice = new Dice; <br>
+                        >> Dice { sides: 6, roll: [Function] }
+                    </li>
+                    <li>Parenthesis are required if any default arguments need to be provided.</li>
+                    <li>If we wanted to create another Dice object with four sides</li>
+                    <li>
+                        const whiteDice = new Dice(4);
+                    </li>
+                </ul>
+            </ul>
+            <li>ES6 Class Declarations</li>
+            <ul>
+                <li>ES6 intoduced the new class declaration syntax that does exactly the same thing as a constructor function, but looks much similar to writing a class in a class-based programming language (Java, Ruby, etc.).</li>
+                <li>Example of the Dice, using a class declaration</li>
+                <ul>
+                    <li>class Dice {<br>
+                        constructor(sides = 6) {<br>
+                            this.sides = sides;
+                        <br>} <br>
+                        roll () { <br>
+                            return Math.floor(this.sides * Math.random() + 1);
+                        <br>}
+                    <br>}
+                    </li>
+                </ul>
+                <li>By conventin, the names of constructor functions or class declarations are capitalized.</li>
+                <li>To create a new instance of the Dice class, the 'new' operator is again used:</li>
+                <ul>
+                    <li> 
+                        const blueDice = new Dice(20); <br>
+                        >> Dice { sides: 20 }
+                    </li>
+                    <li>To check if blueDice is an instance of the Dice class</li>
+                    <ul>
+                        <li>
+                            blueDice instanceOf Dice <br>
+                            >> true
+                        </li>
+                    </ul>
+                </ul>
+            </ul>
+            <li>The Constructor Property</li>
+            <ul>
+                <li>All objects have a contructor property that returns the constructor function that created it:</li>
+                <ul>
+                    <li>
+                        blueDice.constuctor <br>
+                        >> [function: Dice]
+                    </li>
+                </ul>
+                <li>Can use the contructor property to instantiate a copy of an object, without having to reference the actual contructor function or class declaration directly.</li>
+                <li>Example, if we wanted to make another copy of the redDice object, but if the name of the constructor was unknown, we could use this:</li>
+                <ul>
+                    <li> const greenDice = new redDice.constructor(10)</li>
+                </ul>
+            </ul>
+            <li>Static Methods</li>
+            <ul>
+                <li>The static keyword can be used in class declarations to create a static method.</li>
+                <li>A static method is called by the class directly rather than by instances of the class</li>
+                <li>Example:</li>
+                <ul>
+                    <li>
+                        class Dice {<br>
+                            constructor(sides = 6) {<br>
+                                this.sides = sides;
+                            <br>} <br>
+                            roll() {<br>
+                                return Math.floor(this.sides * Math.random() + 1);
+                            <br>} <br>
+                            static description() {<br>
+                                return 'A way of choosing random numbers';
+                            <br>}
+                        <br>}
+                    </li>
+                </ul>
+                <li>This method is called from the Dice class</li>
+                <ul>
+                    <li>Dice.description() <br>
+                    >> 'A way of choosing random numbers'</li>
+                </ul>
+                <li>Static numbers are not available to instances of the class</li>
+            </ul>
+            <li>Prototypal Inheritance</li>
+            <ul>
+                <li>JavaScript uses a prototypal inheritance model, meaning that every class has a prototype property that is shared by every instance of of the class.</li>
+                <li>So any properties or methods of a class's prototype can be accessed by every object instantiated by that class.</li>
+                <li>See example of <a href="NinjaTurtles_BookExample/ninjaturtle_bookexample.html" target="_blank">creating a class for creating ninja turtles.</a></li>
+            </ul>
+            <li>The Prototype Property</li>
+            <ul>
+                <li>When creating a class, you would normally add any default properties and methods to this class declaration.</li>
+                <li>What if you want to augment the class with extrea methods and properties after the class has been created?</li>
+                <li>You do this by using the prototype property of the class. This is very useful when you don't have access to the class declation, but still want to add properties and methods to the class.</li>
+            </ul>
+            <li>OOP</li>
+            <ul>
+                <li></li>
+            </ul>
+            <li>Own Properties and Prototype Properties</li>
+            <ul>
+                <li>Every object has a hasOwnProperty() method that can be used to check if a method is its own property, or is inherited from the prototype</li>
+                <li>Testing this in console here: <a href="NinjaTurtles_BookExample/ninjaturtle_bookexample.html" target="_blank">Here</a></li>
+                <li>What's the difference between an object's own properties and prototype properties?</li>
+                <ul>
+                    <li>Prototype properties are shared by every instance of the Class.</li>
+                    <li>The value added to Turtle class (color: "green") will be the same for all instances.</li>
+                    <li>Effecient for a lot of properties that are going to be the same.</li>
+                </ul>
+            </ul>
+            <li>Overwriting Prototype Properties</li>
+            <ul>
+                <li>Can be overwritten if inheritted from it's prototype.</li>
+                <li>Do it by simply assigning a new value to them.</li>
+            </ul>
+            <li>What Should the Prototype Be Used For?</li>
+            <ul>
+                <li>The prototype can be used to add any new properties and methods after the class has been declared</li>
+                <li>It should be used to define any properties that will remain the same for every instance of the class.</li>
+                <li>'weapon' would be bad because every Turtle has a different weapon. 'food' would be good because they all love pizza.</li>
+            </ul>
+            <li>The following points should be considered when using classes and prototypes to create instances:</li>
+            <ul>
+                <li>Create a class declaration that deals with any initialization, shared properties and methods.</li>
+                <li>Any extra methods and properties that need to be augmented to the class declaration after it’s been defined can be added to the prototype. These will be added toallinstances, even those that have already been created.</li>
+                <li>Add any properties or methods that are individual to a particular instance can be augmented using assignment to that object (a mixin could be used to add multiple properties at once, as we’ll see later).</li>
+                <li>Be careful when overwriting the prototype completely ― the constructor class needs to be reset.</li>
+            </ul>
+            <li>Public and Private Methods</li>
+            <ul>
+                <li>By default, an objects methods are public in JavaScript.</li>
+                <li>Methods and properties are said to be public because they can be queried directly and changed by assignment.</li>
+                <li>If your objects are public facing, giving users or external services too much access to properties and methods could be a recipe for disaster.</li>
+                <li>We can use the concept of varable scope to keep some properties and methods private inside of a class declaration.</li>
+                <li>Example:</li>
+                <ul>
+                    <li>
+                        class Turtle {<br>
+                            constructor(name, color) {<br>
+                                this.name = name; <br>
+                                let _color = color; <br>
+                                this.setColor = color => { <br>
+                                    return _color = color;
+                                <br>} <br>
+                                this.getColor = () => _color;
+                            <br>}
+                        <br>}
+                    </li>
+                    <li>In the example that follows, the Turtle() class has been modified to include a private _color property</li>
+                    <li>The _color property is created as a variable inside the scope of the constructor function inside the class declaration</li>
+                    <li>This makes it impossible to access outside of this scope</li>
+                    <li>The getColor() and setColor() methods are known asgetter and setter methodsand they form a closure over this variable and provide controlled access to the property</li>
+                </ul>
+            </ul>
+            <li>The Prototype Chain</li>
+            <ul>
+                <li>Can go deeper than just Object.getPrototypeOf()</li>
+                <li>If we do the Turtle example:</li>
+                <ul>
+                    <li>Object.getPrototypeOf(leo) <br> >> Turtle | Class Name</li>
+                    <li>Object.getPrototypeOf(Object.getPrototypeOf(leo)) <br> >> {} | Brackets</li>
+                    <li>Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(leo))) <br> >> Null | Null, anything after this is null as well. Just keeps going backwords everytime you layer a Object.getPrototypeOf().</li>
+                </ul>
+                <li>It's a chain backwards or upwards. That's why it's called the prototype chain</li>
+            </ul>
+            <li>Enumerable Properties</li>
+            <ul>
+                <li>Properties of objects in JavaScript are said to be enumerable or non-enumerable.</li>
+                <li>If they are non-enumerable, this means they will not show up when a for-in loop is used to loop through an objects properties and methods.</li>
+                <li>propertyIsEnumerable() can be used to check if a property is enumerable.</li>
+                <li>Testing this in console here: <a href="NinjaTurtles_BookExample/ninjaturtle_bookexample.html" target="_blank">Here</a></li>
+            </ul>
+            <li>Inheritance Using extends</li>
+            <ul>
+                <li>A class can inherit from another class using the extends keyword in a class declaration</li>
+                <li>The keyword 'super' used in the constructor, refers to the parent class and can be used to access any properties and call any methods of the parent class.</li>
+                <li>Testing this in console here: <a href="NinjaTurtles_BookExample/ninjaturtle_bookexample.html" target="_blank">Here</a></li>
+            </ul>
+            <li>Polymorphism</li>
+            <ul>
+                <li>Means that different objects can have the same method, but implement it in different ways.</li>
+                <li>The Object.prototype object has a toString() method that is shared by all objects.</li>
+                <li>Polymorphism means that objects are able to override this method with a more specific implementation.</li>
+                <li>Example:</li>
+                <ul>
+                    <li>[1,2,3].toString() <br> >> '1,2,3'</li>
+                    <li>2..toString() <br> >> '2' // Remember 2 dot operators for integers!</li> 
+                    <li>2..toExponential(); <br> >> '2e+0' </li>
+                </ul>
+            </ul>
+            <li>Adding Methods to Built-In Objects</li>
+            <ul>
+                <li>Monkey-Patching</li>
+                <ul>
+                    <li>Adding more methods to the prototype of JavaScript's built-in objects – such as Number, String, Array – to add more functionality.</li>
+                    <li>Example</li>
+                    <ul>
+                        <li>isEven()</li>
+                        <li>isOdd()</li>
+                    </ul>
+                </ul>
+            </ul>
+            <li>Property Attributes and Descriptors</li>
+            <ul>
+                <li>All object properties have the following attributes stored in a property descriptor:</li>
+                <li>Value: This is the value of the property and is undefined by default</li>
+                <li>Writable: This boolean value shows whether a property can be changed or not, and is false by default</li>
+                <li>Enumerable: this boolean value shows whether a property will show up when the object is displayed in a for in loop, and is false by default</li>
+                <li>Configurable: this boolean value shows whether you can delete a property or change any of its attributes, and is false by default.</li>
+            </ul>
+            <li>Getting and Setting Property Descriptors:</li>
+            <ul>
+                <li>Object.getOwnPropertyDescriptor()</li>
+                <li>Object.setOwnPropertyDescriptor()</li>
+            </ul>
+            <li>Getter & Setter :</li>
+            <ul>
+                <li>
+                    me.age = 21; <br>
+                    me.retirementAge = 65; <br>
+                    <br>
+                    Object.defineProperty(me, 'yearsToRetirement', {<br>
+                        get)() {<br>
+                            if (this.age > this.retirementAge) {<br>
+                                return 0;
+                            <br>} else {<br>
+                                return this.retirementAge - this.age;
+                            <br>}
+                        <br>} <br>
+                        set(value) {<br>
+                            this.age = this.retirementAge - value; <br>
+                            return value; <br>
+                        <br>}
+                    <br>})
+                </li>
+                <li>The getter bases the yearsToRetirement property on the age and retirementAge properties</li>
+                <li>The setter also allows the age to be changed by setting the yearsToRetirement property</li>
+            </ul>
+            <li>Mixins</li>
+            <ul>
+                <li>W way of adding properties and methods of some objects to another object without using Inheritance.</li>
+                <li>Allows more complex objects to be created by 'mixing' basic objects together.</li>
+                <li>
+                    const a = {}; <br>
+                    const b = { name: 'JavaScript' }; <br>
+                    Object.assign(a,b); <br> >> { name: 'JavaScript' }; <br>
+                    a.name <br> >> 'JavaScript'
+                </li>
+            </ul>
+        </div>
+
+        <!-- Chapter 15 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 15 Notes</h4>
+            <li>This chapter contains:</li>
+            <ul>
+                <li>Libraires</li>
+                <li>Modular JavaScript</li>
+                <li>MVC frameworks</li>
+                <li>Package managers</li>
+                <li>Optimizing your code with minification</li>
+                <li>Build processes using Webpack</li>
+            </ul>
+            <li>Modular JavaScript</li>
+            <ul>
+                <li>Module: self-container piece of code that provides functions and methods that can then be used in other files and by other modules.</li>
+                <li>Helps keep code organized in seperate, reuseable files, which improves maintainability.</li>
+                <li>The code in the module should have a single purpose, and group together functions with distinct functionality.</li>
+                <li>Example:</li>
+                <ul>
+                    <li>You keep any functions used for Ajax in their own module, then you could use this file for any project where Ajax is required.</li>
+                </ul>
+                <li>Modules also allow public API to be exposes, while keeping the implementation hidden away inside the module</li>
+            </ul>
+            <li>ES6 Modules</li>
+            <ul>
+                <li>First time JavaScript allows modules</li>
+                <li>Things to keep in mind about modules:</li>
+                <ul>
+                    <li>All code in modules is always in strict mode without the need for 'use strict' and there is no way to opt out of this.</li>
+                    <li>A module has its own global scope, so any variables created in the top-level of a module can only be accessed within that module.</li>
+                    <li>The value of this in the top level of a module is undefined , rather than the global object.</li>
+                    <li>You can't use HTML-style comments in modules (although this isn't very common in any JavaScript program these days).</li>
+                </ul>
+                <li>Just a normal JavaScript file, but uses the keyword export to specify any values or functions that are to be made available from the module.</li>
+                <li>Exporting</li>
+                <ul>
+                    <li>export const PI = 3.1415926</li>
+                    <li>
+                        Exporting a function:
+                        <br>
+                        <br>
+                        function variance(array) { <br>
+                            /////// <br>
+                        } <br>
+                        function mean(array) {<br>
+                            /////// <br>
+                        } <br> 
+                        <br>
+                        export { <br>
+                            variance, <br>
+                            mean <br>
+                        }
+                    </li>
+                    <li>Default Exports</li>
+                    <ul>
+                        <li>Refer to a single variable, function or class in a module that can be imported without having to be explicitly named.</li>
+                        <ul>
+                            <li>export default PI;</li>
+                        </ul>
+                        <li>Using more than one default export will result in error</li>
+                    </ul>
+                    
+                </ul>
+                <li>Importing</li>
+                <ul>
+                    <li>import { PI } from './pi.js'</li>
+                </ul>
+            </ul>
+        </div> 
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>

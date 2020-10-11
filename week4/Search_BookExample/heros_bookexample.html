@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search - Book Example</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Search - Book Example</h2>
+        <div class="container_90">
+            <form id='hero'>
+                <label for='heroName'>Name: </label>
+                <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
+
+                <br>
+                <br>
+
+                <label for='realName'>Real Name (Secret): </label>
+                <input type='password' id='realName' name='realName' placeholder="Your Real Name" maxlength="44">
+
+                <br>
+                <br>
+
+                <p>Superpowers</p>
+                <label for='flight'>Flight: </label>
+                <input type="checkbox" id="flight" name="powers" value="Flight">
+                <br>
+                <label for='strength'>Strength: </label>
+                <input type="checkbox" id="strength" name="powers" value="Strength">
+                <br>
+                <label for='speed'>Super Speed: </label>
+                <input type="checkbox" id="speed" name="powers" value="Super Speed">
+                <br>
+                <label for='energy'>Energy Blasts: </label>
+                <input type="checkbox" id="energy" name="powers" value="Energy Blasts">
+                <br>
+                <label for='telekinesis'>Telekinesis: </label>
+                <input type="checkbox" id="telekinesis" name="powers" value="Telekinesis">
+                <!-- Notice how all the checkbox elements have the same 'name' property of 'powers'. This means they can be accessed as an HTML collection like: form.powers;-->
+                <!-- The 'value' property is used to set the name of the power that can be used if the checkbox has been check-->
+
+                <br>
+                <br>
+
+                <p>What type of hero are you?</p>
+                <label for='hero'>Hero: </label>
+                <input type='radio' name='category' value='Hero' id='hero'>
+                <br>
+                <label for='villain'>Villain: </label>
+                <input type='radio' name='category' value='Villain' id='villain'>
+                <br>
+                <label for='anti-hero'>Anti-Hero: </label>
+                <input type='radio' name='category' value='Antihero' id='anti-hero'>
+
+                <br>
+                <br>
+
+                <label for='age'>Age: </label>
+                <input type="number" name="age" value="Age" id="age">
+                
+                <br>
+                <br>
+
+                <label for='city'>Base of Operation: </label>
+                <select name="city" id="city">
+                    <option value="" selected>Choose a City</option>
+                    <option value="Metropolis">Metropolis</option>
+                    <option value="Gotham City">Gotham City</option>
+                    <option value="Keystone City">Keystone City</option>
+                    <option value="Coast City">Coast City</option>
+                    <option value="Star City">Star City</option>
+                </select>
+
+                <br>
+                <br>
+
+                <label for="orgin">Orgin Story: </label>
+                <textarea id="orgin" name="orgin" rows='20' cols='60'></textarea>
+
+                <br>
+                <br>
+
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+
+    </main>
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../../css/styles.css"></link>
+    <script src="heros_bookexample_main.js"></script>
+</body>
+</html>

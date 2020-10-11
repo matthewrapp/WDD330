@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Week 4 - Team Assignment</title>
+<style>
+    .row {
+        height: 100px;
+        width: 300px;
+        display: flex;
+        flex-flow: row nowrap;
+    }
+    .column {
+        border: 1px solid #000;
+        height: 100px;
+        width: 100px;
+    }
+
+    .top-left, .top-right {
+        border: none;
+    }
+
+    .bottom-right, .bottom-left {
+        border: none;
+    }
+
+    .middle-left, .middle-right {
+        border-left: none;
+        border-right: none;
+    }
+
+    .top-middle {
+        border-top: none;
+    }
+
+    .bottom-middle {
+        border-bottom: none;
+        border-top: none;
+    }
+
+
+</style>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Week 4 - Team Assignment</h2>
+        <div class="container_90">
+            <section class="row">
+                <span class="column top-left">
+                </span>
+                <span class="column top-middle">
+                </span>
+                <span class="column top-right">
+                </span>
+            </section>
+            <section class="row">
+                <span class="column middle-left">
+                </span>
+                <span class="column middle-middle">     
+                </span>
+                <span class="column middle-right">
+                </span>             
+            </section>
+            <section class="row">
+                <span class="column bottom-left">
+                </span>
+                <span class="column bottom-middle">                 
+                </span>
+                <span class="column bottom-right">                 
+                </span>
+            </section>
+            <section>
+                <button id="reset">Reset Game</button>
+            </section>
+        </div>
+    </main>
+    <footer>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+    <script>
+
+        let divs = document.getElementsByTagName('span');
+        divs = [...divs];
+
+        const playerOne = 'X';
+        const playerTwo = 'O';
+        let whoClicked = {
+            player: 'X'
+        };
+        
+        const resetBtn = document.getElementById('reset');
+        resetBtn.addEventListener('touchend', function(event) {
+            Array.from(divs).forEach(item => {
+                item.innerText = ' ';
+            })
+            whoClicked.player = playerOne;
+        })
+
+        function eventListener(x) {
+            x.addEventListener('touchend', afterTouch);
+        }
+        function afterTouch(event) {
+            if (event.target.innerText != ' ') {
+                if (whoClicked.player == playerOne) {
+                    event.target.innerText = playerOne;
+                    whoClicked.player = playerTwo;
+                } else {
+                    event.target.innerText = playerTwo;
+                    whoClicked.player = playerOne;
+                }
+            }
+        }
+
+        function reset() {
+            whoClicked = {
+                player: ' '
+            }
+        }
+
+        divs.forEach(eventListener);
+
+       /* document.querySelector(".top-left").addEventListener('touchend', function() {
+            document.querySelector(".top-left").style.backgroundColor = "blue";
+        } ); */
+    </script>
+</body>
+</html>
