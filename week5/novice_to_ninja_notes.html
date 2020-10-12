@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Novice To Ninja Notes</h2>
+
+        <!-- Chapter 10 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 10 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Errors, exceptions, and warnings</li>
+                    <li>The importance of testing and debuggin</li>
+                    <li>Strict Mode</li>
+                    <li>Debugging in the browser</li>
+                    <li>Error Objects</li>
+                    <li>Throwing exceptions</li>
+                    <li>Exception handling</li>
+                    <li>Testing frameworks</li>
+                    <li><a href="#" target="_blank">Example Problem / Project </a></li>
+                </ul>
+                <li>Errors, Exceptions, and Warnings</li>
+                <ul>
+                    <li>Errors: Caused by when something goes wrong in the program</li>
+                    <ul>
+                        <li>System error: There's a problem with the system or external devices with which the program is interacting.</li>
+                        <li>Programmer error: The program contains incorrect syntax or faulty logic</li>
+                        <li>User error: the user has entered data incorrectly</li>
+                    </ul>
+                    <li>Exceptions: An error that produces a return value that can then be used by the program to deal with the error.</li>
+                    <li>Warnings: Can occur if there's an error in the code that isn't enough to cause the program to crash.</li>
+                </ul>
+                <li>Strict Mode</li>
+                <ul>
+                    <li>Strict mode produces more exceptions and warnings and prohibits the use of some deprecated features.</li>
+                    <li>Strict mode considers coding practice that were previously accepted as just being 'poor style' as  actual errors.</li>
+                    <li>Writing in Script mode can help improve its clarity and speed.</li>
+                    <li>Encourages a better quality of JavaScript to be written that befits a ninja programmer.</li>
+                    <li>Recommended.</li>
+                    <li>Simple required the following string to be added to the first line of a JavaScript file:</li>
+                    <ul>
+                        <li>'use strict';</li>
+                    </ul>
+                    <li>If you want to use it only within a function, you can.</li>
+                    <ul>
+                        <li>function strictly() { <br>
+                            'use strict'; <br>
+                            // function code goes here
+                        <br>}</li>
+                    </ul>
+                </ul>
+                <li>Linting Tools</li>
+                <ul>
+                    <li>JS Lint</li>
+                    <li>JS Hint</li>
+                    <li>ES Lint</li>
+                    <li>All can be used to test the quality of JavaScript code</li>
+                    <li>They are designed to highlight any sloppy programming practices or syntax errors, and will complain if certain style conventions are not followed, such as how code is indented.</li>
+                    <li>These are very useful for enforcing a programming style guide.</li>
+                </ul>
+                <li>Debugging in the Browser</li>
+                <ul>
+                    <li>The process of finding out where bugs occur in code.</li>
+                    <li>Lots of options for debugging JavaScript code in browser:</li>
+                    <li>The Trusty Alert:</li>
+                    <ul>
+                        <li>Most used form of debugging</li>
+                        <li>alert()</li>
+                        <li>Alert stops a program from running until OK is clicked, so it allows to effectly put breakpoints in the code that let us check the value of variables at that point to see if it's what is expected.</li>
+                    </ul>
+                    <li>Using the Console:</li>
+                    <ul>
+                        <li>console.log()</li>
+                        <li>Unlike alert(), it won't stop the execution of the program</li>
+                    </ul>
+                    <li>Debugging Tools:</li>
+                    <ul>
+                        <li>Firefox</li>
+                        <li>Edge</li>
+                        <li>Chrome</li>
+                        <li>Safari</li>
+                        <li>Most modern browsers have a debugging tool that allows you to set breakpoints in your code that will pause it at certain points.</li>
+                        <li>Useful command: debugger keyword</li>
+                        <ul>
+                            <li>This will create a breakpoint in your code that will paud the execution of the code and allow you to see where the program is currently up to.</li>
+                            <li>Example:</li>
+                            <ul>
+                                <li>
+                                    function amIOldEnough(age) {<br>
+                                        debugger; <br>
+                                        if (age < 12) {<br>
+                                            debugger; <br>
+                                            return 'No, sorry.';
+                                        <br>} else if (age < 18) { <br>
+                                            debugger; <br>
+                                            return 'Only if you are accompanied by an adult.'; 
+                                        <br>}
+                                    <br>}
+                                </li>
+                            </ul>
+                        </ul>
+                    </ul>
+                    <li>Error Objects:</li>
+                    <ul>
+                        <li>Can be created to the host environment when an exception occurs, or it can be created in the code using a constructor function, like:</li>
+                        <ul>
+                            <li>const error = new Error();</li>
+                            <li>const error = new Error('Oops, something went wrong');</li>
+                        </ul>
+                        <li>Seven more error objects, used for specific errors: (Thrown automatically by the JavaScript engine when occurs)</li>
+                        <ul>
+                            <li>EvalError: Not used in current ECMAScript specificion, used to identify erorrs when using global eval() function.</li>
+                            <li>RangeError: Thrown when a number is outside an allowable range of values.</li>
+                            <li>ReferenceError: Thrown when a reference is made to an item that doesn't exists.</li>
+                            <li>SyntaxError: Thrown when there's an error in the code's syntax.</li>
+                            <li>TypeError: Thrown when there's an erorr in the type of value used.</li>
+                            <li>URLError: Thrown when there's a problem encoding or decoding the URL.</li>
+                            <li>InternalError: Non-standard error that is thrown when an error occurs in the JavaScript engine.</li>
+                        </ul>
+                        <li>All error objects have a number of properties:</li>
+                        <ul>
+                            <li>name</li>
+                            <li>message</li>
+                            <li>stack</li>
+                        </ul>
+                        <li>Throwing Exceptions:</li>
+                        <ul>
+                            <li>Instead of the JavaScript automatically throwing exceptions, we can throw our own too.</li>
+                            <ul>
+                                <li>throw new Error('Something has gone wrong!');</li>
+                                <li>
+                                    function squareRoot(number) { <br>
+                                        'use strict'; <br>
+                                        if (number < 0) { <br>
+                                            throw new RangeError('You can't find the square root of negative numbers'); <br>
+                                        } <br>
+                                        return Math.sqrt(number); <br>
+                                    }; <br>
+                                    <br>
+                                        squareRoot(121); <br>
+                                        >> 11 <br>
+                                        squareRoot(-1); <br>
+                                        >> RangeError: You can't find the square root of negative numbers
+                                </li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Test-Driven Development</li>
+                <ul>
+                    <li>TDD, the process of writing tests before any actual code.</li>
+                    <li>After those tests fail, write some code to make the tests pass.</li>
+                    <li>After, the code is refactored to make it fast, more readable, and remove and repetition.</li>
+                    <li>Process: (The red-green-refactore cycle of TDD)</li>
+                    <ul>
+                        <li>Write tests (that initially fail)</li>
+                        <li>Write code to pass the tests</li>
+                        <li>Refactor the code</li>
+                        <li>Test refactored code</li>
+                        <li>Write more tests more new features</li>
+                    </ul>
+                    <li>Jest, a TDD Framework created by facebook that has gained a lot of popularity. Makes it easy to create and run tests by providing helped methods for common test assertions.</li>
+                    <li>To use:</li>
+                    <ul>
+                        <li>npm install -g jest</li>
+                        <li>Check if it worked okay: jest -v >> returns the version</li>
+                    </ul>
+                </ul>
+                <li>Forms</li>
+                <ul>
+                    <li>Made up of a form element</li>
+                </ul>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>
