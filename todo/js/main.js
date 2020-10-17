@@ -3,8 +3,6 @@ import { qs } from './utilities.js';
 // import default export
 import Todo, { saveTodos } from './todo.js';
 
-
-
 const myTodo = new Todo('#todoList', 'todos');
 
 // qs("#addButton").addEventListener("click", myTodo.addNewTodo);

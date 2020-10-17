@@ -1,3 +1,9 @@
+// create wrapper for querySelector to save typing
+function qs(selector) {
+    return document.querySelector(selector);
+}
+
+// Create the class to setup the template of hike information needed and layout
 export class Hike {
     constructor(name, imgSrc, imgAlt, distance, difficulty, description, directions) {
         this.name = name;
@@ -39,14 +45,20 @@ export class Hike {
 
         return hikeHtml;
     }
+
 }
 
-export function renderHikeList(list) {
-    let hikeList = document.querySelector('#allHikes');
-    hikeList.innerHTML = "";
-    list.forEach(function (object) {
-        const newLi = document.createElement('li');
-        newLi.innerHTML = object.hike.renderHike();
-        hikeList.appendChild(newLi);
-    })
+// Create a class to return the hike created into a list
+export class HikeManager {
+        // this method/function creates the 'li' (HTML) element
+        renderHikeList(list) {
+            const hikeList = qs('#allHikes');
+            hikeList.innerHTML = "";
+            // each list item (li)
+            list.forEach(hike => {
+                const newLi = document.createElement('li');
+                newLi.innerHTML = hike.renderHike();
+                hikeList.appendChild(newLi);
+            })
+        }
 }
