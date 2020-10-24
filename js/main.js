@@ -20,6 +20,10 @@ let links = [
         label: "Week 5 Notes",
         url: "week5/index.html",
     },
+    {
+        label: "Todo App",
+        url: "todo/index.html",
+    },
 ];
 
 function generateTOC(list, id) {
