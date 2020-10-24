@@ -90,7 +90,7 @@ button {
     margin: auto 0;
 }
 
-button i {
+button .fa {
     font-size: 58px;
 }
 
@@ -107,7 +107,7 @@ button.complete {
     color: green;
 }
 
-button.add {
+button.add .fa {
     color: skyblue;
     font-size: 80px;
 }
