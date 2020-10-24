@@ -18,7 +18,7 @@ export function setClick(selector, callback) {
         event.preventDefault();
         callback(event);
     });
-    qs(selector).addEventListener('click', (callback));
+    // qs(selector).addEventListener('click', (callback));
 }
 
 // remove btn
