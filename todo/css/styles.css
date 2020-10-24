@@ -86,6 +86,11 @@ li.task > div.buttons {
 button {
     border: none;
     background: transparent;
+    padding: 0;
+    margin: auto 0;
+}
+
+button i {
     font-size: 58px;
 }
 
