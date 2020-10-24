@@ -68,11 +68,11 @@ li.task {
 }
 
 li.task span.text {
-    width: 70%;
+    width: 60%;
 }
 
 li.task > div.buttons {
-    width: 30%;
+    width: 40%;
 }
 
 .completed-task {
