@@ -73,6 +73,9 @@ li.task span.text {
 
 li.task > div.buttons {
     width: 40%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
 }
 
 .completed-task {
