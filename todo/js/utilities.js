@@ -14,7 +14,7 @@ export function saveToLocalStorage(key, data) {
 }
 // set a listener for click & touchend
 export function setClick(selector, callback) {
-    qs(selector).addEventListener('touchmove', (event) => {
+    qs(selector).addEventListener('touchend', (event) => {
         event.preventDefault();
         callback(event);
     });
