@@ -3,7 +3,7 @@ body {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #f1f1f1;
-    max-width: 80%;
+    max-width: 100%;
     margin: 0px auto;
 }
 
@@ -66,11 +66,11 @@ li.task {
 }
 
 li.task span.text {
-    width: 80%;
+    width: 70%;
 }
 
 li.task > div.buttons {
-    width: 20%;
+    width: 30%;
 }
 
 .completed-task {
@@ -81,7 +81,7 @@ li.task > div.buttons {
 button {
     border: none;
     background: transparent;
-    font-size: 40px;
+    font-size: 50px;
     float: right;
 }
 
@@ -100,5 +100,5 @@ button.complete {
 
 button.add {
     color: skyblue;
-    font-size: 62px;
+    font-size: 72px;
 }
