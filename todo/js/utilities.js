@@ -14,11 +14,16 @@ export function saveToLocalStorage(key, data) {
 }
 // set a listener for click & touchend
 export function setClick(selector, callback) {
-    qs(selector).addEventListener('touchend', (event) => {
-        event.preventDefault();
-        callback(event);
-    });
-    // qs(selector).addEventListener('click', (callback));
+    // I could not get touchend to work properly.
+    // When touchend fires, it won't work on the input box
+    // I changed the selector of the setclick function to button instead of body, it would work, but then all the buttons wouldn't work.
+    // qs(selector).addEventListener('touchend', (event) => {
+    //     event.preventDefault();
+    //     callback(event);
+    //     console.log('This is touchend');
+    // });
+    qs(selector).addEventListener('click', (callback));
+    // console.log('This is click');
 }
 
 // remove btn

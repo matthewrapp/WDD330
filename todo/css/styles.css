@@ -3,6 +3,8 @@ body {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #f1f1f1;
+    max-width: 80%;
+    margin: 0px auto;
 }
 
 header {
@@ -12,30 +14,29 @@ header {
     align-items: center;
 }
 
-h4 {
-    text-align: left;
-    width: 420px;
-    margin: 0px auto;
-    padding-top: 30px;
+h1 {
+    font-size: 52px;
 }
 
-input, input:before, input:after {
-    -webkit-user-select: initial;
-    -khtml-user-select: initial;
-    -moz-user-select: initial;
-    -ms-user-select: initial;
-    user-select: initial;
-} 
+h4 {
+    text-align: left;
+    margin: 0px auto;
+    padding-top: 30px;
+    font-size: 40px;
+}
 
 input {
     border-radius: 50px;
     border-width: .25px;
-    height: 26px;
+    height: 60px;
+    width: 40%;
+    margin-right: 10px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 6px;
     padding-bottom: 6px;
     border: none;
+    font-size:  22px;
 }
 
 input:focus {
@@ -45,8 +46,11 @@ input:focus {
 .task {
     background-color: #fff;
     border-radius: 50px;
-    padding: 12px 30px;
+    padding: 6px 30px;
     box-shadow: 0px 10px 12px rgba(0, 0, 0, .1);
+    font-size: 22px;
+    height: 60px;
+    text-transform: capitalize;
 }
 
 .completed-task {
@@ -61,9 +65,9 @@ ul {
     margin-bottom: 30px;
 }
 
-ul li {
+li {
     list-style: none;
-    width: 340px;
+    width: 80%;
     margin: auto;
     text-align: left;
     padding: 0px;
@@ -73,14 +77,11 @@ ul li {
     align-items: center;
 }
 
-ul li button {
-    float: right;
-}
-
 button {
     border: none;
     background: transparent;
-    font-size: 28px;
+    font-size: 34px;
+    float: right;
 }
 
 /* so the icon doesn't effect the action of the button */
@@ -98,5 +99,5 @@ button.complete {
 
 button.add {
     color: skyblue;
-    font-size: 40px;
+    font-size: 56px;
 }
