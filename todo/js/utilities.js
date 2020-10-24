@@ -14,11 +14,11 @@ export function saveToLocalStorage(key, data) {
 }
 // set a listener for click & touchend
 export function setClick(selector, callback) {
-    qs(selector).addEventListener('touchend', (event) => {
+    qs(selector).addEventListener('touchmove', (event) => {
         event.preventDefault();
         callback(event);
     });
-    qs(selector).addEventListener('click', callback);
+    qs(selector).addEventListener('click', (callback));
 }
 
 // remove btn
