@@ -87,7 +87,6 @@ button {
     border: none;
     background: transparent;
     font-size: 50px;
-    float: right;
 }
 
 /* so the icon doesn't effect the action of the button */
