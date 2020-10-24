@@ -5,17 +5,20 @@
     <title>To Do List</title>
     <script src="js/main.js" type="module"></script>
     <script src="https://use.fontawesome.com/9315eed36f.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <h1>Todo List</h1>
     <header>
-        <input type="text" id="todoInput">
-        <button id="addButton">Add</button>
+        <input type="text" id="todoInput" placeholder="Enter a task: ">
+        <button id="addButton" class="add"><i class="fa fa-plus-circle"></i></button>
     </header>
     <main>
+        <h4>All Tasks:</h4>
         <ul id="todoList">
 
         </ul>
+        <h4>Completed Tasks:</h4>
         <ul id="completedTodos">
 
         </ul>

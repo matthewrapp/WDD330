@@ -19,7 +19,7 @@
 
 // import named export from 'utilities.js'   
 import { qs, saveToLocalStorage, getFromLocalStorage } from './utilities.js';
-// const todos = [];
+
 export function saveTodos(key, data) {
     saveToLocalStorage(key, data);
 }
@@ -42,7 +42,9 @@ class Todo {
     constructor(parentId, key) {
          this.listElement = qs(parentId);
          this.key = key;
+         this.removedKey = key + 'removed';
          this.todoItems = [];
+         this.removedTodoItems = [];
     }
 
     // funciton in a class is a 'method' & you do NOT add function keyword
@@ -51,8 +53,8 @@ class Todo {
         this.todoItems.push(newTodo);
 
         // create variables for within the buttons (icons or text)
-        let removeSVG = "Remove"// `<i class="fa fa-trash"></i>`;
-        let completeSVG = "Check" // `<i class="fa fa-check"></i>`;
+        let removeSVG = `<i class="fa fa-trash"></i>`;
+        let completeSVG = `<i class="fa fa-check"></i>`;
         // create buttons div
         let buttons = document.createElement('div');
         buttons.classList.add("buttons");
@@ -60,18 +62,19 @@ class Todo {
         let removeBtn = document.createElement('button');
         removeBtn.classList.add('remove');
         removeBtn.innerHTML = removeSVG;
-        removeBtn.setAttribute("data-todoItemId", newTodo.id);
+        removeBtn.setAttribute("data-todoItemId", newTodo.id); 
         // create complete task button
         let completeBtn = document.createElement('button');
         completeBtn.classList.add('complete');
         completeBtn.innerHTML = completeSVG;
+        completeBtn.setAttribute("data-todoItemId", newTodo.id);
         // append each button into the buttons div
         buttons.appendChild(completeBtn);
         buttons.appendChild(removeBtn);
 
         // create list item (li)
         let todoList = document.getElementById("todoList");
-        todoList.innerHTML += '<li class="task">' + " " + text + buttons.innerHTML + '</li>';
+        todoList.innerHTML += `<li class="task incompleted-task" id=${newTodo.id} data-id=${newTodo.id}>` + " " + text + '<div class="buttons">' + buttons.innerHTML + '</div>' + '</li>';
 
         // save to local storage
         // todos.push(newTodo);
@@ -85,15 +88,48 @@ class Todo {
 
     // remove todo items and put into another array
     removeTodo(id, elementToDelete) {
-        let deletedItemsList = [];
+        let notDeletedItemsList = [];
         this.todoItems.forEach(item => {
             if (item.id != id) {
-                deletedItemsList.push(item);
+                notDeletedItemsList.push(item);
+            } else {
+                this.removedTodoItems.push(item);
             }
         })
 
         elementToDelete.remove();
-        this.todoItems = deletedItemsList;
+        this.todoItems = notDeletedItemsList;
+
+        // reset local storage
+        saveTodos(this.key, this.todoItems);
+        saveTodos(this.removedKey, this.removedTodoItems);
+    }
+
+    completeTodo(id, elementToComplete) {
+        let changedItem;
+        this.todoItems.forEach(item => {
+            if (item.id == id) {
+                console.log(item.id, item.completed, item.text);
+                item.completed = true;
+                changedItem = item;
+            }
+        })
+    
+        let removeSVG = `<i class="fa fa-trash"></i>`;
+        let removeBtn = document.createElement('button');
+        removeBtn.classList.add('remove');
+        removeBtn.innerHTML = removeSVG;
+        removeBtn.setAttribute("data-todoItemId", id);
+        // create buttons div
+        let buttons = document.createElement('div');
+        buttons.classList.add("buttons");
+        // append each button into the buttons div
+        buttons.appendChild(removeBtn);
+
+        let todoList = document.getElementById("completedTodos");
+        elementToComplete.innerHTML = '<li class="task completed-task" id=${newTodo.id} data-id=${newTodo.id}>' + " " + changedItem.text + '<div class="buttons">' + buttons.innerHTML + '</div>' + '</li>';
+        todoList.innerHTML += elementToComplete.innerHTML;
+        elementToComplete.remove();
 
         // reset local storage
         saveTodos(this.key, this.todoItems);
@@ -106,34 +142,62 @@ class Todo {
         this.listElement.childNodes.forEach(child => child.remove());
         this.todoItems = [];
 
+        jsonList = getFromLocalStorage(this.removedKey);
+        let removedItems = JSON.parse(jsonList || "[]");
+
+        if (removedItems != null) {
+            removedItems.forEach(item => {
+                this.removedTodoItems.push(item);
+            })
+        }
+
         if (items != null) {
             items.forEach(item => {
-            this.todoItems.push(item);
+                this.todoItems.push(item);
+                if (!item.completed) {
+                    // create variables for within the buttons (icons or text)
+                    let removeSVG = `<i class="fa fa-trash"></i>`;
+                    let completeSVG = `<i class="fa fa-check"></i>`;
+                    // create buttons div
+                    let buttons = document.createElement('div');
+                    buttons.classList.add("buttons");
+                    // create remove task button
+                    let removeBtn = document.createElement('button');
+                    removeBtn.classList.add('remove');
+                    removeBtn.innerHTML = removeSVG;
+                    removeBtn.setAttribute("data-todoItemId", item.id);
+                    // create complete task button
+                    let completeBtn = document.createElement('button');
+                    completeBtn.classList.add('complete');
+                    completeBtn.innerHTML = completeSVG;
+                    completeBtn.setAttribute("data-todoItemId", item.id);
+                    // append each button into the buttons div
+                    buttons.appendChild(completeBtn);
+                    buttons.appendChild(removeBtn);
 
-            // create variables for within the buttons (icons or text)
-            let removeSVG = "Remove"// `<i class="fa fa-trash"></i>`;
-            let completeSVG = "Check" // `<i class="fa fa-check"></i>`;
-            // create buttons div
-            let buttons = document.createElement('div');
-            buttons.classList.add("buttons");
-            // create remove task button
-            let removeBtn = document.createElement('button');
-            removeBtn.classList.add('remove');
-            removeBtn.innerHTML = removeSVG;
-            removeBtn.setAttribute("data-todoItemId", item.id);
-            // create complete task button
-            let completeBtn = document.createElement('button');
-            completeBtn.classList.add('complete');
-            completeBtn.innerHTML = completeSVG;
-            // append each button into the buttons div
-            buttons.appendChild(completeBtn);
-            buttons.appendChild(removeBtn);
+                    // create list item (li)
+                    let todoList = document.getElementById("todoList");
+                    todoList.innerHTML += '<li class="task incompleted-task" id=${newTodo.id} data-id=${newTodo.id}>' + " " + item.text + '<div class="buttons">' + buttons.innerHTML + '</div>' + '</li>';
+                } else {
+                    // create variables for within the buttons (icons or text)
+                    let removeSVG = `<i class="fa fa-trash"></i>`;
+                    // create buttons div
+                    let buttons = document.createElement('div');
+                    buttons.classList.add("buttons");
+                    // create remove task button
+                    let removeBtn = document.createElement('button');
+                    removeBtn.classList.add('remove');
+                    removeBtn.innerHTML = removeSVG;
+                    removeBtn.setAttribute("data-todoItemId", item.id);
+                    // append each button into the buttons div
+                    buttons.appendChild(removeBtn);
 
-            // create list item (li)
-            let todoList = document.getElementById("todoList");
-            todoList.innerHTML += '<li class="task">' + " " + item.text + buttons.innerHTML + '</li>';
-
+                    let todoList = document.getElementById("completedTodos");
+                    todoList.innerHTML += '<li class="task completed-task" id=${newTodo.id} data-id=${newTodo.id}>' + " " + item.text + '<div class="buttons">' + buttons.innerHTML + '</div>' + '</li>';
+                }
+                
             }) 
+            
         }
     }
 

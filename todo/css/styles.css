@@ -1,0 +1,94 @@
+/* Completed Task */
+body {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #f1f1f1;
+}
+
+header {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+h4 {
+    text-align: left;
+    width: 420px;
+    margin: 0px auto;
+    padding-top: 30px;
+}
+
+input {
+    border-radius: 50px;
+    border-width: .25px;
+    height: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.task {
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 12px 30px;
+    box-shadow: 0px 10px 12px rgba(0, 0, 0, .1);
+}
+
+.completed-task {
+    color: #777;
+    text-decoration: line-through;
+}
+
+ul {
+    padding-left: 0;
+    padding-top: 20px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+ul li {
+    list-style: none;
+    width: 340px;
+    margin: auto;
+    text-align: left;
+    padding: 0px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul li button {
+    float: right;
+}
+
+button {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+}
+
+/* so the icon doesn't effect the action of the button */
+button > * {
+    pointer-events: none;
+}
+
+button.remove {
+    color: red;
+}
+
+button.complete {
+    color: green;
+}
+
+button.add {
+    color: skyblue;
+    font-size: 40px;
+}
