@@ -94,6 +94,11 @@ button .fa {
     font-size: 58px;
 }
 
+li button {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 /* so the icon doesn't effect the action of the button */
 button > * {
     pointer-events: none;
