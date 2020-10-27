@@ -1,6 +1,5 @@
 // Create an Array
-let links = [
-    {
+let links = [{
         label: "Week 1 Notes",
         url: "week1/index.html",
     },
@@ -24,13 +23,17 @@ let links = [
         label: "Todo App",
         url: "todo/index.html",
     },
+    {
+        label: "Week 7 Notes",
+        url: "week7/index.html",
+    },
 ];
 
 function generateTOC(list, id) {
     var orderedList = document.getElementById(id);
     var listItems = [];
 
-    list.forEach( function(i) {
+    list.forEach(function (i) {
         listItems.push("<li><a href=" + i.url + ">" + i.label + "</a></li>");
     });
 

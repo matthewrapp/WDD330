@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Novice To Ninja Notes</h2>
+
+        <!-- Chapter 11 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 11 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Function properties and methods</li>
+                    <li>Immediately Invoked function expressions</li>
+                    <li>Self-defining functions</li>
+                    <li>Recursive functions</li>
+                    <li>Callbacks</li>
+                    <li>Promises</li>
+                    <li>Async functions</li>
+                    <li>Functions that return functions</li>
+                    <li>Closures</li>
+                    <li>Introduction to functional programming</li>
+                    <li>Currying</li>
+                    <li><a href="#" target="_blank">Example Problem / Project </a></li>
+                </ul>
+                <li>Function Properties and Methods</li>
+                <ul>
+                    <li>All functions have a lenth property that returns the number of parameters the funciton has</li>
+                    <li>Ex) function square(x) {} <br> sqaure.length >> 1</li>
+                    <li>Call and Apply Methdos</li>
+                    <ul>
+                        <li>The call() method can be used to set the value of 'this' inside a function to an object that is provided as the first argument.</li>
+                        <ul>
+                            <li>square.call(bruce, 4);</li>
+                        </ul>
+                        <li>The apply() method works in the same way, except the arguments of the function are provided as an array, even if there is only one argument.</li>
+                        <ul>
+                            <li>square.call(bruce, [4]);</li>
+                        </ul>
+                        <li>Both are powerful methods, as they allow generalized functions to be written that are not tied to specific objects by being methods of that object. This gives flexibility over how the function can be used.</li>
+                    </ul>
+                    <li>Memoization</li>
+                    <ul>
+                        <li>A useful feature of this is that it provides result caching, or memoization.</li>
+                        <li>If the function takes time to compute a return value, we can save the result in a cache property. Then if the same argument is used again later, we can return the value from the cache, rather than having to compute the result again.</li>
+                        <li>Ex)</li>
+                        <ul>
+                            <li>function square(x){ <br>
+                                square.cache = square.cache || {}; <br>
+                                if (!square.cache[x]) { <br>
+                                    square.cache[x] = x*x; <br>
+                                } <br>
+                                return square.cache[x]
+                            }</li>
+                            <li>This function checks to see if the number initialized (ex. square.cache[2];) has already been calculated. If so, it just returns it from the object cache. If it hasn't it calculates the number, stores it in cache, then returns it.</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Immediately Invoked Function Expressions</li>
+                <ul>
+                    <li>IIFE</li>
+                    <li>Is an anonymous function that is invoked as soon as it's defined.</li>
+                    <li>This is achieved by placing parentheses at the end of the function definition.</li>
+                    <li>Using IIFEs are a usefu way of performing a task while keep any variables wrapped up within the scrope of the function.</li>
+                    <li>Temporary Variable</li>
+                    <ul>
+                        <li>No way to remove a variable from the scope once it's been declared. </li>
+                        <li>Placing any code that uses the temporary variable inside an IIFE will ensure its only available while the IIFE is invoked, then it will disappear.</li>
+                        <li>Example below used an IIFE to swap the value of two global variables, a & b.</li>
+                        <ul>
+                            <li>let a = 1; <br>
+                                let b = 2; <br>
+                                (()=>{ <br>
+                                    const temp = a; <br>
+                                    a = b; <br>
+                                    b = temp; <br>
+                                })(); <br>
+                                a; <br>
+                                >> 2 <br>
+                                b; <br>
+                                >> 1 <br>
+                                console.log(temp); <br>
+                                >> Error: "temp is not defined"
+                            </li>
+                            <li>This shows that 'temp' does not exist after the function has been invoked.</li>
+                    </ul>
+                    <li>Creating Self-Contained Code Blocks</li>
+                    <ul>
+                        <li>An IIFE can be used to enclose a block of code inside its own private scope.</li>
+                    </ul>
+                </ul>
+                <li>Functions That Define and Rewrite Themselves</li>
+                <ul>
+                    <li>A function is able to call itself, define itself, and redefine itelf.</li>
+                    <li>This is done by assigning an anonymous function to a variable taht has the same name as the function.</li>
+                    <li>Init-Time Branching</li>
+                    <ul>
+                        <li>Creating functions that rewrite themselves</li>
+                        <li>Enables functions to work more effectively in the browser and avoid checking for features every time they're invoked.</li>
+                        <li>Can be a useful pattern to initialize functions the first time they are called, optimizing them for the browswer being used.</li>
+                    </ul>
+                </ul>
+                <li>Event-Driven Asynchronous Programming</li>
+                <ul>
+                    <li>Callbacks can be used to facilitate event-driven asynchronous programming.</li>
+                    <li>Instead of waiting for an event to occur, a callback can be created that's invoked when the event happens. This means that the code is able to run out of order, or asynchronously.</li>
+                    <li>wait() function</li>
+                    <ul>
+                        <li>
+                            function wait(message, callback, seconds) { <br>
+                            setTimeout(callback,seconds * 1000); <br>
+                            console.log(message); <br>
+                            } <br>
+                            <br>
+                            function selfDestruct() { <br>
+                                console.log('BOOOOM!'); <br>
+                            } <br>
+                            <br>
+                            // Invoking the wait() function <br>
+                            wait('This tape will self-destruct in five seconds ... ', selfDestruct, 5); <br>
+                            console.log('Hmmm, should I accept this mission or not ... ?'); <br>
+                            >> 'This tape will self-destruct in five seconds ... ' <br>
+                            >> 'Hmmm, should I accept this mission or not ... ? ' <br>
+                            >> 'BOOOOM!'
+                        </li>
+                    </ul>
+                </ul>
+                <li>Promise</li>
+                <ul>
+                    <li>Represents the future result of an asynchronous operation.</li>
+                    <li>Simplify the process, and avoid the convoluted code when comparing the differences to 'Callbacks'</li>
+                    <li>Creating a Promise</li>
+                    <ul>
+                        <li>Created using a constructor function.</li>
+                        <li>Takes an executor as an argument.</li>
+                        <li>The executor initializes the promise and starts the asynchronous operation.</li>
+                        <li>Also accepts two functions as arguments:</li>
+                        <ul>
+                            <li>resolve() function is called if the operation is successful</li>
+                            <li>reject() function is called if the operation fals.</li>
+                        </ul>
+                        <li>Ex)</li>
+                        <ul>
+                            <li>const promise = new Promise( (resolve, reject) => { <br>
+                                // initialization code goes here <br>
+                                if (success) { <br>
+                                    resolve(value); <br>
+                                } else { <br>
+                                    reject(error); <br>
+                                } <br>
+                            });
+                            </li>
+                        </ul>
+                    </ul>
+                    <li>A Dicey Example</li>
+                    <ul>
+                        <li>const dice = { <br>
+                            sides: 6,  <br>
+                            roll() {  <br>
+                                return Math.floor(this.sides * Math.random()) + 1;  <br>
+                            } <br>
+                        } <br>
+                        <br>
+                        // create a promise that uses the dice.roll() method as the asynchronous operation and considers rolling a 1 a failure, any other number a success <br>
+                        const promise = new Promise( (resolve, reject) => { <br>
+                            const n = dice.roll(); <br>
+                            setTimeout(() => { <br>
+                                if (n>1) { <br>
+                                    resolve(n); <br>
+                                } else { <br>
+                                    reject(n); <br>
+                                }, n*1000; <br>
+                            }) <br>
+                        }) 
+                    
+                        </li>
+                    </ul>
+                    <li>Dealing With a Settled Promise</li>
+                    <ul>
+                        <li>Once a promise has been settled, the then() method can be used to deal with the outcome.</li>
+                        <li>Accepts two arguments.</li>
+                        <li>Going off our dice example, an argument for success and an argument for reject</li>
+                        <ul>
+                            <li>promise.then(result => console.log('Yes!'), result => console.log('No!'));</li>
+                        </ul>
+                        <li>Alternatively, the catch() method can be used to specify what to do if the operation fails.</li>
+                        <ul>
+                            <li>promise.catch(result => console.log('No!'));</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Async Functions</li>
+                <ul>
+                    <li>Preceded by the keyword 'async', meaning the function will run in an asynchronous fashion.</li>
+                    <li>Ex)</li>
+                    <ul>
+                        <li>
+                            async function loadGame(userName) { <br>
+                                try {<br>
+                                    const user = await login(userName);<br>
+                                    const info = await getPlayerInfo(user.id);<br>
+                                    // load the game using the returned info<br>
+                                }<br>
+                                catch (error){<br>
+                                    throw error;<br>
+                                }<br>
+                            }
+                        </li>
+                    </ul>
+                    <li>Wrap each step of the process in a 'try' block, so any errors are caught.</li>
+                    <ul>
+                        <li>Inside this block, we can write each step in the order it's meant to be processed.</li>
+                    </ul>
+                    <li>'catch' block is used to deal with any errors that may occur.</li>
+                </ul>
+                <li>Function Properties and Methods</li>
+                <ul>
+                    <li></li>
+                </ul>
+                <li>Function Properties and Methods</li>
+                <ul>
+                    <li></li>
+                </ul>
+        </div>
+
+        <!-- Chapter 13 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 11 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>Clients and servers</li>
+                    <li>A brief history of Ajax</li>
+                    <li>Communicating with the server using the Fetch API</li>
+                    <li>Receiving data with Ajax</li>
+                    <li>Sending data with Ajax</li>
+                    <li>Form data</li>
+                    <li><a href="#" target="_blank">Example Problem / Project </a></li>
+                </ul>
+                <li>Clients & Servers</li>
+                <ul>
+                    <li>The internet can be separated into 2 parts, clients & servers.</li>
+                    <ul>
+                        <li>Client</li>
+                        <ul>
+                            <li>A client, such as a web browswer, will request a resource (usually a web page) from a server, which processes the request and sends back a response to the client.</li>
+                            <li>JavaScript was originally designed as a client-side scripting language.</li>
+                            <li>Ajax allows JavaScript to request resources from a server on behalf of the client</li>
+                        </ul>
+                    </ul>
+                </ul>  
+                <li>The Fetch API</li>
+                <ul>
+                    <li>The fetch api superseded XMLHttpRequest.</li>
+                    <li>Currenly a living standard for requesting and sending data</li>
+                </ul>
+                <li>Response Interface</li>
+                <ul>
+                    <li>Deals with the object that's returned when the promise is fulfilled.</li>
+                    <li>Repsonse objects have a number of properties and methods that allow us to process the response effectively.</li>
+                    <li>Each response object has an 'ok' property that checks to see if the response is sucessful.</li>
+                    <ul>
+                        <li>200 = sucessful</li>
+                        <li>201 = if a resource was created</li>
+                        <li>204 = the request is successful but no content returned.</li>
+                    </ul>
+                    <li>The 'ok' property will return treu if between 200 & 299.</li>
+                    <li>Some other properties:</li>
+                    <ul>
+                        <li>headers</li>
+                        <ul>
+                            <li>A Headers object containing any headers associated with the response</li>
+                        </ul>
+                        <li>url</li>
+                        <ul>
+                            <li>A string contail the url of response</li>
+                        </ul>
+                        <li>redirected</li>
+                        <ul>
+                            <li>A boolean value that specifies if the response is the result of a redirect</li>
+                        </ul>
+                        <li>type</li>
+                        <ul>
+                            <li>A string value of 'basic', 'cors', 'error', or 'opaque'.</li>
+                            <ul>
+                                <li>'basic' is used for a response from the same domain</li>
+                                <li>'cors' means the data was received from a valid cross-orgin request from a different domain</li>
+                                <li>'opaque' used for a response received from 'no-cors' request from another domain</li>
+                                <li>'error' is used when a network error occurs</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Redirect Method</li>
+                <ul>
+                    <li>The redirect() method can be used to redirect to another URL.</li>
+                    <li>Creates a new promise that resolves to the response from the redirected URL.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            fetch(url)  <br>
+                                .then( response => response.redirect(newURL)); // redirects to another URL <br>
+                                .then( // do something else ) <br>
+                                .catch( error => console.log('There was an error: ', error))
+                        </li>
+                    </ul>
+                </ul>
+                <li>Text Responses</li>
+                <ul>
+                    <li>The text() method takes a stream of text from the response, reads it to completion and then returns a promise that resolves to a USVSting object that can be treated as a string in JavaScript.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            fetch(url) <br>
+                                .then( response => response.text() ); // transforms the text stream into a JavaScript string <br>
+                                .then( text => console.log(text) )<br>
+                                .catch( error => console.log('There was an error: ', error))
+                        </li>
+                    </ul>
+                </ul>
+                <li>JSON Responses</li>
+                <ul>
+                    <li>Most common format for AJAX Responses</li>
+                    <li>The json() method is used to deal with these by transforming a stream of JSON data into a promise that resolves to a JavaScript object.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>
+                            fetch(url) <br>
+                                .then( response => response.json() ); // transforms the JSON data into a JavaScript object<br>
+                                .then( data => console.log(Object.entries(data)) )<br>
+                                .catch( error => console.log('There was an error: ', error))
+                        </li>
+                    </ul>
+                    <li>The Object.entries() method is used to view the key and value pairs in the returned object.</li>
+                </ul>
+                <li>Request Interface</li>
+                <ul>
+                    <li>We can get more fine-grained control over the request being made by providing a Request object as an argument.</li>
+                    <li>HTTPS methods are what HTTP uses to tell the server what type of request is being made, which then determines the server will deal with the request.</li>
+                    <li>The five most commonly used HTTP methods (verbs):</li>
+                    <ul>
+                        <li>GET requests to retrieve resources</li>
+                        <li>POST requests, usually usedto create a resource but can actually perform any task</li>
+                        <li>PUT requests toupsert, which means insert a resource or update it entirely</li>
+                        <li>PATCH requests to make partial updates to a resource</li>
+                        <li>DELETE requests to delete a resources.</li>
+                    </ul>
+                    <li>By default, a link in a web page will make a GET request.</li>
+                    <li>Example of using a construcotr function to create a new Request object and then be used as the parameter of the fetch() method:</li>
+                    <ul>
+                        <li>
+                            // constructor method used to create a new Request object
+                            // the url property is the first argument and is required. The second argument is an object made up of any of the other properites listed below.
+                            const request = new Request('https://example.com/data', { <br>
+                                method: 'GET', <br>
+                                mode: 'cors', <br>
+                                redirect: 'follow', <br>
+                                cache: 'no-cache' <br>
+                            }); <br>
+                            <br>
+                            // Once the Request object is assigned to a variable, it can then be used as the parameter of the fetch() method <br>
+                            fetch(request) <br>
+                                .then( // do something with the response ) <br>
+                                .catch( // handle any errors)<br>
+                                <br>
+                            // Alternatively, you could do it this way <br>
+                            fetch('https://example.com/data', { <br>
+                                method: 'GET', <br>
+                                mode: 'cors',<br>
+                                redirect: 'follow',<br>
+                                cache: 'no-cache'<br>
+                            })<br>
+                            .then( // do something with the response )<br>
+                            .catch( // handle any errors)
+                        </li>
+                    </ul>
+                </ul>
+                <li>Receiving information</li>
+                <ul>
+                    <li>Demonstartion, <a href="receivinginfo_demo/index.html" target="_blank">Click here</a></li>
+                </ul>
+                <li>Sending Information</li>
+                <ul>
+                    <li>Demonstartion, <a href="receivinginfo_demo/index.html" target="_blank">Click here</a></li>
+                </ul>
+                <li>FormData</li>
+                <ul>
+                    <li>The Fetch API used the FormData interface, which makes it easier to submit information in forms using Ajax.</li>
+                </ul>
+                <li>Clients & Servers</li>
+                <ul>
+                    <li>The internet can be separated into 2 parts, clients & servers.</li>
+                </ul>
+                <li>Clients & Servers</li>
+                <ul>
+                    <li>The internet can be separated into 2 parts, clients & servers.</li>
+                </ul>
+                <li>Clients & Servers</li>
+                <ul>
+                    <li>The internet can be separated into 2 parts, clients & servers.</li>
+                </ul>
+        </div>
+
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>

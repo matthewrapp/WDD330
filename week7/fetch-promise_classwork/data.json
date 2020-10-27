@@ -1,0 +1,14 @@
+[
+    {
+        "name": "carrots",
+        "type": "vegetable"
+    },
+    {
+        "name": "apples",
+        "type": "fruit"
+    },
+    {
+        "name": "chocolate",
+        "type": "snack"
+    }
+]
