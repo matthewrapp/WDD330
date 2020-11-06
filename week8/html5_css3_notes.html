@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Novice To Ninja Notes</title>
+<script src="canvas.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>HTML5 & CSS3 for the Real World: 2nd Edition</h2>
+
+        <!-- Chapter 8 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 8 Notes</h4>
+                <li>Transforms</li>
+                <ul>
+                    <li>lets you translate, rotate, scale, and/or skew any element on the page</li>
+                    <li>We can manipulate an element's appearance using transform functions.</li>
+                </ul>
+                <li>Translation</li>
+                <ul>
+                    <li>Allows you to move elements left, right, up or down.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>transform: translate(45px, -45px)</li>
+                        <li>this function moves an element x from the left and y from the top</li>
+                    </ul>
+                </ul>
+                <li>Skew</li>
+                <ul>
+                    <li>The Skew function specifics a skew along the x & y axis.</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>transform: skew(15 deg, 4 deg);</li>
+                    </ul>
+                </ul>
+                <li>Transitions</li>
+                <ul>
+                    <li>Transitions allow the values of CSS properties to change over time, providing simple animations.</li>
+                    <li>Here are the steps to create a simple transition using only CSS:</li>
+                    <ol>
+                        <li>Declare the original state of the element in the defualt declation.</li>
+                        <li>Declare the final state of your transitioned element</li>
+                        <ul>
+                            <li>:hover (state), etc.</li>
+                        </ul>
+                        <li>In the transition functions in your default style declaration using the transition properties, including:</li>
+                        <ul>
+                            <li>transition-property</li>
+                            <li>transition duration</li>
+                            <li>transition-timing-function</li>
+                            <li>transition-delay</li>
+                        </ul>
+                    </ol>
+                    <li>Important to include a pre-state and a post-state</li>
+                </ul>
+                <li>Keyframes</li>
+                <ul>
+                    <li>To animate an element in CSS, you first create a named animation, then attach it to an element in that element's property declaration block.</li>
+                    <li>To create am animation, use the keyframs rule</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>@-webkit-keyframes myAnimation {<br>
+                            put animation keyframes here
+                        } <br>
+                            @keyframes myAnimation {<br>
+                            put animation keyframes here <br>
+                            }
+                        </li>
+                    </ul>
+                    <li>Here are a few simple animations:</li>
+                    <ul>
+                        <li><br>
+                            @keyframes moveRight { <br>
+                                from { <br>
+                                    transform: translateX(-50%);
+                                <br>} <br>
+                                to {<br>
+                                    transform: translateX(50%);
+                                <br>}
+                            <br>} 
+                            <br>
+                            <br>
+                            @keyframes appearDisappear { <br>
+                                0%, 100% { <br>
+                                   opacity: 0;
+                                <br>} <br>
+                                20%, 80% {<br>
+                                    opacity: 1;
+                                <br>}
+                            <br>}
+                            <br>
+                            <br>
+                            @keyframes bgMove { <br>
+                                100% { <br>
+                                    background-position: 120% 0; <br>
+                                } <br>
+                            }
+                        <br></li>
+                        <li>The second animation is worth paying extra attention to: we’ve applied the same styles to 0% and 100%, and to 20% and 80%. In this case, it means the element will start out invisible ( opacity: 0; ), fade in to visible by 20% of the way through the duration, remain visible until 80%, then fade out.</li>
+                    </ul>
+
+                </ul>
+        </div>
+
+         <!-- Chapter 12 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 12 Notes</h4>
+                <li>Canvas</li>
+                <ul>
+                    <li>With HTML5's Canvas API, we can draw anything we can image, all through JavaScript.</li>
+                    <li>Can improve the performance of our websites by avoiding the need to download images off the network.</li>
+                    <li>With Canvas, we can draw:</li>
+                    <ul>
+                        <li>shapes</li>
+                        <li>lines</li>
+                        <li>arcs and text</li>
+                        <li>gradients</li>
+                        <li>patterns</li>
+                    </ul>
+                    <li>Creating a Canvas Element</li>
+                    <ul>
+                        <li>First step, add a canvas element to the page:</li>
+                        <ul>
+                            <li>
+                                .canvas. <br>
+                                Sorry! Your browswer doesn't support Canvas <br>
+                                ./canvas. 
+                            </li>
+                            <li>The text between the canvas tags will only be shown if the canvas element is not support by the visitor's browswer.</li>
+                        </ul>
+                    </ul>
+                    <li>Below, we will create a canvas.</li>
+                    <li>Refer to canvas.js on notes for creating this.</li>
+                    <li>
+                    <canvas id="myCanvas" class="myCanvas" width="200" height="200" style="border: dotted 2px black;">
+                        Sorry! Your browser doesn’t support Canvas.
+                    </canvas>
+                    </li>
+                </ul>
+        </div>
+
+        
+
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>

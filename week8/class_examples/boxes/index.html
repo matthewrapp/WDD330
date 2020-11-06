@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        height: 100px;
+        width: 100px;
+      }
+
+      .red {
+        background-color: red;
+        /* base state
+        1st: what should I transition?
+        2nd: time of transition
+        2nd(b): If i add another time, it's tranisiton delay
+        3rd: behavior
+        */
+        transition: all 1s ease-in-out;
+      }
+
+      .slide {
+        transform: translateX(500px);
+        opacity: 0.2;
+      }
+
+      .yellow {
+        background-color: yellow;
+      }
+
+      .blue {
+        background-color: blue;
+      }
+
+      .green {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box red"></div>
+    <div class="box yellow"></div>
+    <div class="box blue"></div>
+    <div class="box green"></div>
+
+    <script>
+      // Slide & Fade Function
+      function slideAndFade(event) {
+        event.target.classList.toggle("slide");
+      }
+      document.querySelector(".red").addEventListener("click", slideAndFade);
+    </script>
+  </body>
+</html>
