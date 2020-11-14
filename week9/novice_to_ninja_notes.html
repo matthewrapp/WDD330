@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Novice To Ninja Notes</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>Novice To Ninja Notes</h2>
+
+        <!-- Chapter 9 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 9 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>The browswer object method</li>
+                    <li>Fidning out browswer information</li>
+                    <li>Broswer history</li>
+                    <li>Controlling windows</li>
+                    <li>Cookies</li>
+                    <li>Timing functions</li>
+                    <li><a href="#" target="_blank">Example Problem / Project </a></li>
+                </ul>
+                <li>The Broswer Object Model</li>
+                <ul>
+                    <li>BOM, A collection of properties and methods that contain info about the browser and comput screen.</li>
+                    <li>All the properties and methods are available through the window object.</li>
+                </ul>
+                <li>Dialogs</li>
+                <ul>
+                    <li>window.alert</li>
+                    <ul>
+                        <li>This method will pause the execution of the program and display a message in a dialog box.</li>
+                    </ul>
+                    <li>window.confirm</li>
+                    <ul>
+                        <li>This method will stop the execution of the program and display a confirmation dialog that shows the message provided as an argument, and giving the options of OK or cancel.</li>
+                        <li>Returns true if the user clicks ok, and false is the user clicks cancel.</li>
+                        <li>Example:</li>
+                        <ul>
+                            <li>window.confirm('Do you wish to continue')</li>
+                            <li>Returns: <br>
+                                a window with 'cancel' and 'ok' is the bottom right
+                            </li>
+                        </ul>
+                    </ul>
+                    <li>window.prompt</li>
+                    <ul>
+                        <li>This method will stop the execution of the program and display a message provided as an argument, as well as an input field that allows the user to enter text.</li>
+                    </ul>
+                </ul>
+                <li>Cookies</li>
+                <ul>
+                    <li>Small files that are saved locally on a user's computer.</li>
+                    <li>Can only be read by a web page from the same domain that set them.</li>
+                    <li>Limited to storing up to 4kb of data, 20 cookies per domain</li>
+                    <li>Take the form of a text file that contains a list of name/value pairs separated by semicolons.</li>
+                    <li>Example:</li>
+                    <ul>
+                        "name=Superman; hero=true; city=Metropolis"
+                    </ul>
+                </ul>
+                <li>Creating Cookies</li>
+                <ul>
+                    <li>Assign it to JavaScripts "cookie jar" using document.cookie property</li>
+                    <li>Example:</li>
+                    <ul>
+                        <li>document.cookie = 'name = Superman';</li>
+                    </ul>
+                    <li>Assigning another cookie to it won't override the entire property, it will just appened to the end of the string. So you add more cookies by assigning them to document.cookie</li>
+                </ul>
+                <li>Changing Cookie Values</li>
+                <ul>
+                    <li>Reassigning it to document.cookie using the same name, but a different value.</li>
+                </ul>
+                <li>Cookie Expiry Dates</li>
+                <ul>
+                    <li>Cookies can be made persistent by adding "; expires=date" to the end of the cookie when set.</li>
+                    <li>Date is a date value in the UTC String format</li>
+                    <li>An alternative is to set the max-age value (seconds). This takes a value in seconds, but it wasn't supported in IE before v10.</li>
+                </ul>
+                <li>The Path and Domain of Cookies</li>
+                <ul>
+                    <li>By default, cookies can only be read by pages inside the same directory and comain as the file was set.</li>
+                    <li>The path can be changed so that any page in the root directory can read the cookie.</li>
+                    <li>It's done by adding the string "; path=/" to the end of the cookie when it is set</li>
+                    <li>Also, it's possible to set the doamin by adding "; domain = domainName" to the end of the cookie</li>
+                </ul>
+                <li>Timing Functions</li>
+                <ul>
+                    <li>setTimeout()</li>
+                    <ul>
+                        <li>The window object provides used methods for scheduling the execution of a function, and for repeatedly executing functions at regular intervals.</li>
+                        <li>The window.setTimeout() method accepts a callback as first paramenter and a number of milliseconds as a second parameter.</li>
+                    </ul>
+                    <li>setInterval()</li>
+                    <ul>
+                        <li>This method works in a similar way, except that it will repeatedly invoke the callback function after every given number of milliseconds.</li>
+                    </ul>
+                    <li>Both of these methods can be used to animate elements on a web page.</li>
+                    <li><a href="#" target="_blank">Example File</a></li>
+                </ul>
+        </div>
+
+         <!-- Chapter 14 Notes -->
+        <div class="container_90 notes_container">
+            <h4>Chapter 14 Notes</h4>
+                <li>This chapter covers:</li>
+                <ul>
+                    <li>The development of HTML5 and the JavaScript APIs</li>
+                    <li>The data- attribute</li>
+                    <li>HTML5 APIs―local storage, geolocation, web workers, and multimedia</li>
+                    <li>Drawing shapes with canvas</li>
+                    <li>Shims and polyfills ― how to make the most of HTML5 APIs, even when they’re without browser support</li>
+                </ul>
+                <li>The data- attribute</li>
+                <ul>
+                    <li>a way of embedding data in a web page using custom attributes that are ignored by the browswer. They're also private to a page..</li>
+                </ul>
+                <li>The Broswer Object Model</li>
+                <ul>
+                    <li>All the properties and methods are available through the window object.</li>
+                </ul>
+                <li>The Broswer Object Model</li>
+                <ul>
+                    <li>All the properties and methods are available through the window object.</li>
+                </ul>
+                <li>The Broswer Object Model</li>
+                <ul>
+                    <li>All the properties and methods are available through the window object.</li>
+                </ul>
+        </div>
+
+
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>
