@@ -31,6 +31,10 @@ let links = [{
         label: "Week 8 Notes",
         url: "week8/index.html",
     },
+    {
+        label: "Week 9 Notes",
+        url: "week9/index.html",
+    },
 ];
 
 function generateTOC(list, id) {
