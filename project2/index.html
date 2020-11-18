@@ -10,7 +10,18 @@
   </head>
   <body>
     <header></header>
-    <main></main>
+    <main>
+      <form id="addLinkForm">
+        <!-- Name of URL / Link -->
+        <label for="linkName">Title of link:</label> <br />
+        <input id="linkName" type="text" /> <br />
+        <!-- Link URL-->
+        <label for="linkName">Link url:</label> <br />
+        <input id="linkUrl" type="url" pattern="https?://.+" required /> <br />
+        <button id="buttonAdd" type="button">Add Link</button>
+      </form>
+      <ul id="displayLinks"></ul>
+    </main>
     <footer></footer>
   </body>
 </html>

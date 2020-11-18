@@ -12,13 +12,17 @@
 // remove tasks from data store
 //
 // display to-do list  
-    // get list element
-    // retrieve tasks from data store
-    // for each task, build out the html
-    // add task to list
+// get list element
+// retrieve tasks from data store
+// for each task, build out the html
+// add task to list
 
 // import named export from 'utilities.js'   
-import { qs, saveToLocalStorage, getFromLocalStorage } from './utilities.js';
+import {
+    qs,
+    saveToLocalStorage,
+    getFromLocalStorage
+} from './utilities.js';
 
 export function saveTodos(key, data) {
     saveToLocalStorage(key, data);
@@ -40,11 +44,11 @@ class todoItem {
 class Todo {
     // constructor special func that will automatically get called when you do 'new' (const myTody) = new Todo();
     constructor(parentId, key) {
-         this.listElement = qs(parentId);
-         this.key = key;
-         this.removedKey = key + 'removed';
-         this.todoItems = [];
-         this.removedTodoItems = [];
+        this.listElement = qs(parentId);
+        this.key = key;
+        this.removedKey = key + 'removed';
+        this.todoItems = [];
+        this.removedTodoItems = [];
     }
 
     // funciton in a class is a 'method' & you do NOT add function keyword
@@ -62,7 +66,7 @@ class Todo {
         let removeBtn = document.createElement('button');
         removeBtn.classList.add('remove');
         removeBtn.innerHTML = removeSVG;
-        removeBtn.setAttribute("data-todoItemId", newTodo.id); 
+        removeBtn.setAttribute("data-todoItemId", newTodo.id);
         // create complete task button
         let completeBtn = document.createElement('button');
         completeBtn.classList.add('complete');
@@ -87,23 +91,23 @@ class Todo {
     }
 
     // remove todo items and put into another array
-    removeTodo(id, elementToDelete) {
-        let notDeletedItemsList = [];
-        this.todoItems.forEach(item => {
-            if (item.id != id) {
-                notDeletedItemsList.push(item);
-            } else {
-                this.removedTodoItems.push(item);
-            }
-        })
+    // removeTodo(id, elementToDelete) {
+    //     let notDeletedItemsList = [];
+    //     this.todoItems.forEach(item => {
+    //         if (item.id != id) {
+    //             notDeletedItemsList.push(item);
+    //         } else {
+    //             this.removedTodoItems.push(item);
+    //         }
+    //     })
 
-        elementToDelete.remove();
-        this.todoItems = notDeletedItemsList;
+    //     elementToDelete.remove();
+    //     this.todoItems = notDeletedItemsList;
 
-        // reset local storage
-        saveTodos(this.key, this.todoItems);
-        saveTodos(this.removedKey, this.removedTodoItems);
-    }
+    //     // reset local storage
+    //     saveTodos(this.key, this.todoItems);
+    //     saveTodos(this.removedKey, this.removedTodoItems);
+    // }
 
     completeTodo(id, elementToComplete) {
         let changedItem;
@@ -114,7 +118,7 @@ class Todo {
                 changedItem = item;
             }
         })
-    
+
         let removeSVG = `<i class="fa fa-trash"></i>`;
         let removeBtn = document.createElement('button');
         removeBtn.classList.add('remove');
@@ -193,11 +197,11 @@ class Todo {
                     buttons.appendChild(removeBtn);
 
                     let todoList = document.getElementById("completedTodos");
-                    todoList.innerHTML += `<li class="task completed-task" id=${item.id} data-id=${item.id}><span class="text">`  + item.text + `</span><div class="buttons">` + buttons.innerHTML + `</div></li>`;
+                    todoList.innerHTML += `<li class="task completed-task" id=${item.id} data-id=${item.id}><span class="text">` + item.text + `</span><div class="buttons">` + buttons.innerHTML + `</div></li>`;
                 }
-                
-            }) 
-            
+
+            })
+
         }
     }
 
