@@ -3,16 +3,29 @@ import {
 } from './link.js';
 
 import {
-    formatUrl
+    formatUrl,
+    targetAction,
+    qs
 } from './utilities.js';
 
 
 // create instance of class AllLinks
-const myLink = new AllLinks("#displayLinks", 'links');
+export const myLink = new AllLinks("#displayLinks", 'links');
 
+
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+mobileMenuBtn.addEventListener('click', () => {
+    let mobileMenu = document.getElementById('sidebar');
+    mobileMenu.classList.toggle('shownavigation');
+    console.log(window)
+    window.addEventListener("resize", () => {
+        if (window.outerWidth >= '660') {
+            mobileMenu.classList.remove('shownavigation');
+        }
+    })
+})
 // get button and store in variable
 const buttonAdd = document.getElementById('buttonAdd');
-
 // add eventlistener to button
 buttonAdd.addEventListener('click', () => {
     // get form
@@ -26,8 +39,6 @@ buttonAdd.addEventListener('click', () => {
     if (linkNameValue == "" || linkNameValue == null && linkUrlValue == "" || linkUrlValue == null) {
         alert('Must input something');
     } else {
-        // validate that url is a url
-        console.log(formatUrl(linkUrlValue));
         // create an instance of AllLinks class and add a new link
         myLink.addNewLink(linkNameValue, formatUrl(linkUrlValue));
         // reset whole form
@@ -35,16 +46,12 @@ buttonAdd.addEventListener('click', () => {
     }
 });
 
+// get trash button and store in variable
+// add event listener to delete button
+const trashBtn = qs('body');
+trashBtn.addEventListener('click', targetAction);
+
 // load the links alraedy stored in local storage
 window.onload = (event) => {
     myLink.loadLinks();
 }
-
-// function displayLinks(link) {
-//     const displayLinksList = document.getElementById('displayLinks');
-//     displayLinksList.innerHTML = results.map((link) => {
-//         // map is create when you want to convert something
-//         return `<li>${link.name}</li>
-//         <li>${link.url}`;
-//     }).join('');
-// }

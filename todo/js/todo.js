@@ -91,23 +91,23 @@ class Todo {
     }
 
     // remove todo items and put into another array
-    // removeTodo(id, elementToDelete) {
-    //     let notDeletedItemsList = [];
-    //     this.todoItems.forEach(item => {
-    //         if (item.id != id) {
-    //             notDeletedItemsList.push(item);
-    //         } else {
-    //             this.removedTodoItems.push(item);
-    //         }
-    //     })
+    removeTodo(id, elementToDelete) {
+        let notDeletedItemsList = [];
+        this.todoItems.forEach(item => {
+            if (item.id != id) {
+                notDeletedItemsList.push(item);
+            } else {
+                this.removedTodoItems.push(item);
+            }
+        })
 
-    //     elementToDelete.remove();
-    //     this.todoItems = notDeletedItemsList;
+        elementToDelete.remove();
+        this.todoItems = notDeletedItemsList;
 
-    //     // reset local storage
-    //     saveTodos(this.key, this.todoItems);
-    //     saveTodos(this.removedKey, this.removedTodoItems);
-    // }
+        // reset local storage
+        saveTodos(this.key, this.todoItems);
+        saveTodos(this.removedKey, this.removedTodoItems);
+    }
 
     completeTodo(id, elementToComplete) {
         let changedItem;
