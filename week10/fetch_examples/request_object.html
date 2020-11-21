@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>Look at the JavaScript code as an example for future use.</h4>
+    <script>
+      // Instead of passing a path to the resource you want to request into the fetch() call,
+      // you can create a request object using the Request() constructor, and pass that in as a fetch() method argument:
+      const myHeaders = new Headers();
+
+      const myRequest = new Request("flowers.jpg", {
+        method: "GET",
+        headers: myHeaders,
+        mode: "cors",
+        cache: "default",
+      });
+
+      fetch(myRequest)
+        .then((response) => response.blob())
+        .then((myBlob) => {
+          myImage.src = URL.createObjectURL(myBlob);
+        });
+
+      // Request() accepts exactly the same parameters as the fetch() method. You can even pass in an existing request object to create a copy of it:
+      const anotherRequest = new Request(myRequest, myInit);
+    </script>
+  </body>
+</html>

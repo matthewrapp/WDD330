@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Novice To Ninja Notes</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>MDN: Using Fetch</h2>
+        <!-- Chapter 9 Notes -->
+        <div class="container_90 notes_container">
+            <h4>MDN: Using Fetch</h4>
+                <li>The Fetch API provides a JavaScript interface for accessing and manipulating parts of the http pipeline, such as requests and responses.</li>
+                <li>The Fetch Specification vs jQuery.ajax</li>
+                <ul>
+                    <li>Differ in 3 ways:</li>
+                    <ul>
+                        <li>The Promise returned from fetch() wont' reject on HTTP error status</li>
+                        <li>fetch() can receive cross-site cookies</li>
+                        <li>fetch won't send cookies, unless you set the credentials init option</li>
+                    </ul>
+                    <li><a href="fetch_examples/fetch_example_one.html" target="_blank">Simple example of using fetch</a></li>
+                </ul>
+                <li>Supplying Request Options</li>
+                <ul>
+                    <li>The fetch() method can optionally accept a second parameter, an init object that allows you to control a number of different settings</li>
+                    <ul>
+                        <li><a href="fetch_examples/post_method_implementation.html" target="_blank">Example POST method implementaion</a></li>
+                        <li>Note:</li>
+                        <ul>
+                            <li>mode: "no-cors" only allows a limited set of headers in the request.</li>
+                            <li>Accept</li>
+                            <li>Accept-Language</li>
+                            <li>Content-Language</li>
+                            <li>Content-Type</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Sending a Request With Credentials Included</li>
+                <ul>
+                    <li>Add the code below to the init object you pass to the fetch method</li>
+                    <ul>
+                        <li>credentials: 'include'</li>
+                    </ul>
+                    <li><a href="fetch_examples/fetch_credentials.html" target="_blank">Example</a></li>
+                </ul>
+                <li>Uploading JSON data</li>
+                <ul>
+                    <li><a href="fetch_examples/post_json-encoded-data.html" target="_blank">Use fetch() to POST JSON-encoded data</a></li>
+                </ul>
+                <li>Uploading a File</li>
+                <ul>
+                    <li><a href="fetch_examples/uploading_file.html" target="_blank">Files can be uploaded using an HTML input type="file" input element, FormData() and fetch</a></li>
+                </ul>
+                <li>Uploading Mulitple File</li>
+                <ul>
+                    <li><a href="fetch_examples/uploading_file.html" target="_blank">Multiple files can be uploaded using an HTML input type="file" input element, FormData() and fetch</a></li>
+                </ul>
+                <li>Supplying Your Own Request Object</li>
+                <ul>
+                    <li>Instead of passing a path to the resource you want to request into the fetch() call, you can create a request object using the Request() constructor, and pass that in as a fetch() method argument: <a href="fetch_examples/request_object.html" target="_blank">Example</a></li>
+                </ul>
+                <li>Headers</li>
+                <ul>
+                    <li>The Headers interface allows you to create your own headers object via the Headers() constructor.</li>
+                    <li>Headers object is a simple multi-map of names to values.</li>
+                    <li><a href="fetch_examples/headers_html" target="_blank">Example</a></li>
+                </ul>
+                <li>Response Objects</li>
+                <ul>
+                    <li>Response instances are returned when fetch() promises are resolved.</li>
+                    <li>Most common response properties you'll use are:</li>
+                    <ul>
+                        <li>Response.status</li>
+                        <ul>
+                            <li>An integer (default value 200) containing the response status code.</li>
+                        </ul>
+                        <li>Response.statusText</li>
+                        <ul>
+                            <li>A string (default value "OK"), which corresponds to the HTTP status code message.</li>
+                        </ul>
+                        <li>Response.ok</li>
+                        <ul>
+                            <li>Seen in use above, this is a shorthand for checking that status is in the range 200-299 inclusive. This returns a Boolean.</li>
+                        </ul>
+                    </ul>
+                </ul>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>

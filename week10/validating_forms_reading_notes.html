@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Novice To Ninja Notes</title>
+</head>
+<body>
+    <header>
+        <div class="container_100">
+            <h1><a href="../index.html">WDD 330 Portfolio</a></h1>
+        </div>
+    </header>
+    <main>
+        <h2>MDN: Validating Forms Notes</h2>
+        <!-- Chapter 9 Notes -->
+        <div class="container_90 notes_container">
+            <h4>MDN: Validating Forms Notes</h4>
+                <li>What is Form Validation?</li>
+                <ul>
+                    <li>When you enter data, the browswer and/or web server will check to see that the data is in the correct format and within the constraints set by the application.</li>
+                </ul>
+                <li>Client-Side Validation</li>
+                <ul>
+                    <li>Two different types:</li>
+                    <ul>
+                        <li>Built-in form validation</li>
+                        <ul>
+                            <li>Uses HTML5 form validation features</li>
+                            <li>Has better performance thatn JavaScript, but it is not as customizable.</li>
+                        </ul>
+                        <li>JavaScript validation</li>
+                        <ul>
+                            <li>Coded in JavaScript</li>
+                            <li>You need to create it all, but completely customizable.</li>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>Using Built-In Form Validation</li>
+                <ul>
+                    <li>Form Elements</li>
+                    <ul>
+                        <li>required</li>
+                        <li>minlength and maxlength</li>
+                        <ul>
+                            <li>Specifies the min and max length of textual data (strings)</li>
+                        </ul>
+                        <li>min and max</li>
+                        <ul>
+                            <li>Specifies the min and max values of numerical input types</li>
+                        </ul>
+                        <li>type</li>
+                        <li>pattern</li>
+                    </ul>
+                </ul>
+                <li>Using JavaScript Validation</li>
+                <ul>
+                    <li>Methods & Properties</li>
+                    <ul>
+                        <li>HTMLButtonElement</li>
+                        <li>HTMLFieldSetElement</li>
+                        <li>HTMLInputElement</li>
+                        <li>HTMLOutputElement</li>
+                        <li>HTMLSelectElement</li>
+                        <li>HTMLTextAreaElement</li>
+                    </ul>
+                    <li> The constaint validation API makes the following properites available on the above elements.</li>
+                    <ul>
+                        <li>validationMessage</li>
+                        <ul>
+                            <li>Returns a localized message describing the validation constraints that the control doesn't satisfy (if any).</li>
+                        </ul>
+                        <li>validity</li>
+                        <ul>
+                            <li>Returns ValidityState object that constains several properites describing the validity state of the element.</li>
+                            <ul>
+                                <li>patternMismatch</li>
+                                <li>tooLong</li>
+                                <li>tooShort</li>
+                                <li>rangeOverflow</li>
+                                <li>rangeUnderflow</li>
+                                <li>typeMismatch</li>
+                                <li>valid</li>
+                                <li>valueMissing</li>
+                            </ul>
+                        </ul>
+                        <li>willValidate</li>
+                        <li>checkValidity</li>
+                        <li>setCustomValidity(message)</li>
+                    </ul>
+                    <li>Implementing a Customized Error Message</li>
+                    <ul>
+                        <li><a href="form_validation_examples/custom_error_message.html" target="_blank">Example Here</a></li>
+                    </ul>
+                </ul>
+                <li>Validating Forms Without a Built-In</li>
+                <ul>
+                    <li><a href="form_validation_examples/no_constraint_validation_api.html" target="_blank">Example that doesn't use the constraint validation API</a></li>
+                    <li>There are many libraries available to perform form validation, such as Validate.js</li>
+                </ul>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="../css/styles.css"></link>
+</body>
+</html>

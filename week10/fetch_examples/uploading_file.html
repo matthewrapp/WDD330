@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>Look at the JavaScript code as an example for future use.</h4>
+    <script>
+      // Files can be uploaded using an HTML <input type="file" /> input element, FormData() and fetch().
+      const formData = new FormData();
+      const fileField = document.querySelector('input[type="file"]');
+
+      formData.append("username", "abc123");
+      formData.append("avatar", fileField.files[0]);
+
+      fetch("https://example.com/profile/avatar", {
+        method: "PUT",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+      // Multiple Files can be uploaded using an HTML <input type="file" /> input element, FormData() and fetch().
+      const formDataNew = new FormData();
+      const photos = document.querySelector('input[type="file"][multiple]');
+
+      formDataNew.append("title", "My Vegas Vacation");
+      for (let i = 0; i < photos.files.length; i++) {
+        formDataNew.append("photos", photos.files[i]);
+      }
+
+      fetch("https://example.com/posts", {
+        method: "POST",
+        body: formDataNew,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    </script>
+  </body>
+</html>

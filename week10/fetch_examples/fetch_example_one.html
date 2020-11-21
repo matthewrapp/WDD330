@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>Open up console to view.</h4>
+    <p>Simple way to set up</p>
+    <p>
+      This fetch url has been blocked by CORS policy: 'No
+      Access-Control-Allow-Origin' header.
+    </p>
+    <script>
+      fetch("http://example.com/movies.json")
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    </script>
+  </body>
+</html>

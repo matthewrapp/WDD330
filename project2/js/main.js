@@ -48,8 +48,8 @@ buttonAdd.addEventListener('click', () => {
 
 // get trash button and store in variable
 // add event listener to delete button
-const trashBtn = qs('body');
-trashBtn.addEventListener('click', targetAction);
+const globalBtn = qs('body');
+globalBtn.addEventListener('click', targetAction);
 
 // load the links alraedy stored in local storage
 window.onload = (event) => {

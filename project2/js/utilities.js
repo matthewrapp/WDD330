@@ -39,9 +39,18 @@ export function targetAction(event) {
     if (event.target.className == "edit") {
         console.log(event);
         console.log(event.target);
+        // console.log(myLink.editLink());
         let idToEdit = event.target.getAttribute('data-id');
         // this targets the li element ... maybe try targeting only the first parentElement but a sibling
-        console.log(event.target.parentElement.previousElementSibling);
-        console.log(idToEdit);
+        let listElement = event.target.parentElement.parentElement;
+        console.log(listElement);
+        console.log(listElement.children);
+        let hyperlink = listElement.children.forEach((child) => {
+            if (child.localName == 'a') {
+                console.log(child);
+            }
+        });
+        console.log(hyperlink);
+
     }
 }

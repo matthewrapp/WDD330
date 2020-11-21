@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>Look at the JavaScript code as an example for future use.</h4>
+    <script>
+      // The Headers interface allows you to create your own headers object via the Headers() constructor. A headers object is a simple multi-map of names to values:
+      const content = "Hello World";
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "text/plain");
+      myHeaders.append("Content-Length", content.length.toString());
+      myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+
+      // The same can be achieved by passing an array of arrays or an object literal to the constructor:
+      const myHeaders = new Headers({
+        "Content-Type": "text/plain",
+        "Content-Length": content.length.toString(),
+        "X-Custom-Header": "ProcessThisImmediately",
+      });
+
+      // The contents can be queried and retrieved:
+      console.log(myHeaders.has("Content-Type")); // true
+      console.log(myHeaders.has("Set-Cookie")); // false
+      myHeaders.set("Content-Type", "text/html");
+      myHeaders.append("X-Custom-Header", "AnotherValue");
+
+      console.log(myHeaders.get("Content-Length")); // 11
+      console.log(myHeaders.get("X-Custom-Header")); // ['ProcessThisImmediately', 'AnotherValue']
+
+      myHeaders.delete("X-Custom-Header");
+      console.log(myHeaders.get("X-Custom-Header")); // [ ]
+
+      // A good use case for headers is checking whether the content type is correct before you process it further. For example:
+      fetch(myRequest)
+        .then((response) => {
+          const contentType = response.headers.get("content-type");
+          if (!contentType || !contentType.includes("application/json")) {
+            throw new TypeError("Oops, we haven't got JSON!");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          /* process your data further */
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>
