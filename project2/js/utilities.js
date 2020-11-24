@@ -37,20 +37,50 @@ export function targetAction(event) {
     }
 
     if (event.target.className == "edit") {
-        console.log(event);
-        console.log(event.target);
-        // console.log(myLink.editLink());
+
         let idToEdit = event.target.getAttribute('data-id');
         // this targets the li element ... maybe try targeting only the first parentElement but a sibling
         let listElement = event.target.parentElement.parentElement;
-        console.log(listElement);
-        console.log(listElement.children);
-        let hyperlink = listElement.children.forEach((child) => {
-            if (child.localName == 'a') {
-                console.log(child);
-            }
-        });
-        console.log(hyperlink);
+        let listElemenetChildren = listElement.children;
+        for (let i = 0; i < listElemenetChildren.length; i++) {
+            if (listElemenetChildren[i].localName == 'a') {
+                // store the 'a' element in a variable
+                let hyperlink = listElemenetChildren[i];
 
+                // create div to store the new input boxes and buttons in
+                let modal = document.createElement('div');
+
+                // create input box
+                let inputBox = document.createElement('input');
+                inputBox.setAttribute("type", "url");
+                inputBox.setAttribute("pattern", "https?://.+");
+                inputBox.setAttribute("id", "linkUrl");
+                inputBox.setAttribute("placeholder", hyperlink);
+
+                // create button to finalize the edit
+                let finalizeBtn = document.createElement('button');
+                finalizeBtn.setAttribute("id", "buttonFinalize");
+                finalizeBtn.setAttribute("type", "button");
+                finalizeBtn.innerHTML = "Save";
+
+                // append children to modal
+                modal.appendChild(inputBox);
+                modal.appendChild(finalizeBtn);
+
+                // append modal to listElement
+                listElement.appendChild(modal);
+
+                // create an event listener for the finalizeBtn to save it into the original spot
+                // finalizeBtn.addEventListener('click', myLink.editLink);
+                finalizeBtn.addEventListener('click', () => {
+                    console.log('hello');
+                    let urlElement = document.getElementById('linkUrl');
+                    let urlValue = urlElement.value;
+                    let newInputValue = inputBox.value;
+                    urlValue = newInputValue;
+                    console.log(urlValue);
+                });
+            }
+        }
     }
 }

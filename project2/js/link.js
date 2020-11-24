@@ -92,10 +92,9 @@ export class AllLinks {
         saveToLocalStorage(this.removedKey, this.archivedLinksList);
     }
 
-    editLink(id, elementToEdit) {
-        // get the element
+    editLink(element) {
+        //
 
-        // create an input box with data-id = link.id
     }
 
     loadLinks() {
