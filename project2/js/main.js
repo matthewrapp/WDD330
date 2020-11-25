@@ -10,7 +10,11 @@ import {
 
 
 // create instance of class AllLinks
+// consider changing the key to a dynamic variable that the user wants the page name to be (ex. VVRN or Lipp)
 export const myLink = new AllLinks("#displayLinks", 'links');
+// Create page attach links to that page
+// export const vvrnPage = new Page(userInputVar);
+// const vvrnPage = new Page(userInputVar);
 
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');

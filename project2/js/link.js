@@ -1,7 +1,8 @@
 import {
     qs,
     saveToLocalStorage,
-    getFromLocalStorage
+    getFromLocalStorage,
+    formatUrl
 } from './utilities.js';
 
 // Need to do
@@ -92,13 +93,212 @@ export class AllLinks {
         saveToLocalStorage(this.removedKey, this.archivedLinksList);
     }
 
-    editLink(element) {
-        //
+    // editLink(listElement, hyperlink, title) {
+    //     // create div to store the new input boxes and buttons in
+    //     let editSection = document.createElement('div');
+    //     editSection.setAttribute("id", "editSection");
 
+    //     // create urlInput box
+    //     let urlInputBox = document.createElement('input');
+    //     urlInputBox.setAttribute("type", "url");
+    //     urlInputBox.setAttribute("pattern", "https?://.+");
+    //     urlInputBox.setAttribute("id", "linkUrl");
+    //     urlInputBox.setAttribute("placeholder", hyperlink);
+    //     // make the inputbox value == to the hyperlink
+    //     urlInputBox.value = hyperlink.href;
+    //     // now delete the hyperlink because it's turning into a inputbox
+    //     hyperlink.remove();
+
+    //     // create titleInput box
+    //     let titleInputBox = document.createElement('input');
+    //     titleInputBox.setAttribute("type", "text");
+    //     titleInputBox.setAttribute("id", "linkName");
+    //     titleInputBox.setAttribute("placeholder", title);
+    //     // make the inputbox value == to the hyperlink
+    //     titleInputBox.value = title.innerText;
+    //     // now delete the hyperlink because it's turning into a inputbox
+    //     title.remove();
+
+    //     //////////
+    //     // create button to finalize the edit
+    //     let finalizeBtn = document.createElement('button');
+    //     finalizeBtn.setAttribute("id", "buttonFinalize");
+    //     finalizeBtn.setAttribute("type", "button");
+    //     finalizeBtn.innerHTML = "Save";
+
+    //     // append children to modal
+    //     editSection.appendChild(urlInputBox);
+    //     editSection.appendChild(finalizeBtn);
+
+    //     // append modal to listElement
+    //     listElement.insertBefore(editSection, listElement.children[1]);
+
+    //     // create an event listener for the finalizeBtn to save it into the original spot
+    //     // finalizeBtn.addEventListener('click', myLink.editLink);
+    //     finalizeBtn.addEventListener('click', () => {
+    //         // get the input box and store it in a varable
+    //         let urlElement = document.getElementById('linkUrl');
+    //         let urlValue = urlElement.value;
+    //         let newInputValue = urlInputBox.value;
+    //         urlValue = formatUrl(newInputValue);
+
+    //         // create a ne hyperlink when saving it
+    //         let newHyperlink = document.createElement('a');
+    //         let newElement = document.createElement('p');
+    //         newElement.classList.add('link-url');
+    //         newElement.innerText = urlValue;
+    //         newHyperlink.href = urlValue;
+    //         newHyperlink.setAttribute("target", "_blank");
+    //         // newHyperlink.innerHTML = newElement;
+    //         newHyperlink.appendChild(newElement);
+
+    //         finalizeBtn.remove();
+    //         urlInputBox.remove();
+    //         listElement.insertBefore(newHyperlink, listElement.children[1]);
+
+    //         let idToEdit = listElement.getAttribute("id");
+    //         console.log(idToEdit);
+    //         this.links.forEach((link) => {
+    //             if (link.id == idToEdit) {
+    //                 link.url = urlValue;
+    //                 // console.log(link.url);
+    //                 console.log(link);
+    //             }
+    //         })
+    //         saveToLocalStorage(this.key, this.links);
+    //     });
+    // }
+
+    editLink(listElement, hyperlink) {
+        // create div to store the new input boxes and buttons in
+        let editSection = document.createElement('div');
+        editSection.setAttribute("id", "editSection");
+
+        // create input box
+        let inputBox = document.createElement('input');
+        inputBox.setAttribute("type", "url");
+        inputBox.setAttribute("pattern", "https?://.+");
+        inputBox.setAttribute("id", "linkUrl");
+        inputBox.setAttribute("placeholder", hyperlink);
+        // make the inputbox value == to the hyperlink
+        inputBox.value = hyperlink.href;
+        // now delete the hyperlink because it's turning into a inputbox
+        hyperlink.remove();
+
+        // create button to finalize the edit
+        let finalizeBtn = document.createElement('button');
+        finalizeBtn.setAttribute("id", "buttonFinalize");
+        finalizeBtn.setAttribute("type", "button");
+        finalizeBtn.innerHTML = "Save";
+
+        // append children to modal
+        editSection.appendChild(inputBox);
+        editSection.appendChild(finalizeBtn);
+
+        // append modal to listElement
+        // listElement.appendChild(modal);
+        listElement.insertBefore(editSection, listElement.children[1]);
+
+        // create an event listener for the finalizeBtn to save it into the original spot
+        // finalizeBtn.addEventListener('click', myLink.editLink);
+        finalizeBtn.addEventListener('click', () => {
+            // get the input box and store it in a varable
+            let urlElement = document.getElementById('linkUrl');
+            let urlValue = urlElement.value;
+            let newInputValue = inputBox.value;
+            urlValue = formatUrl(newInputValue);
+
+            // create a ne hyperlink when saving it
+            let newHyperlink = document.createElement('a');
+            let newElement = document.createElement('p');
+            newElement.classList.add('link-url');
+            newElement.innerText = urlValue;
+            newHyperlink.href = urlValue;
+            newHyperlink.setAttribute("target", "_blank");
+            // newHyperlink.innerHTML = newElement;
+            newHyperlink.appendChild(newElement);
+
+            finalizeBtn.remove();
+            inputBox.remove();
+            listElement.insertBefore(newHyperlink, listElement.children[1]);
+
+            let idToEdit = listElement.getAttribute("id");
+            console.log(idToEdit);
+            this.links.forEach((link) => {
+                if (link.id == idToEdit) {
+                    link.url = urlValue;
+                    // console.log(link.url);
+                    console.log(link);
+                }
+            })
+            saveToLocalStorage(this.key, this.links);
+            saveToLocalStorage(this.removedKey, this.archivedLinksList);
+        });
     }
 
+    // editName(listElement, title) {
+
+    //     // // create div to store the new input boxes and buttons in
+    //     // let editSection = document.createElement('div');
+    //     // editSection.setAttribute("id", "editSection");
+
+    //     // // create input box
+    //     // let inputBox = document.createElement('input');
+    //     // inputBox.setAttribute("type", "text");
+    //     // inputBox.setAttribute("id", "linkName");
+    //     // // make the inputbox value == to the original title
+    //     // inputBox.value = title.innerText;
+    //     // // now delete the title because it's turning into a inputbox
+    //     // title.remove();
+
+    //     // // create button to finalize the edit
+    //     // let finalizeBtn = document.createElement('button');
+    //     // finalizeBtn.setAttribute("id", "buttonFinalize");
+    //     // finalizeBtn.setAttribute("type", "button");
+    //     // finalizeBtn.innerHTML = "Save";
+
+    //     // // append children to modal
+    //     // editSection.appendChild(inputBox);
+    //     // editSection.appendChild(finalizeBtn);
+
+    //     // // append modal to listElement
+    //     // // listElement.appendChild(modal);
+    //     // listElement.insertBefore(editSection, listElement.children[1]);
+
+    //     // // create an event listener for the finalizeBtn to save it into the original spot
+    //     // // finalizeBtn.addEventListener('click', myLink.editLink);
+    //     // finalizeBtn.addEventListener('click', () => {
+    //     //     // get the input box and store it in a varable
+    //     //     let titleElement = document.getElementById('linkName');
+    //     //     let titleValue = titleElement.value;
+    //     //     let newInputValue = inputBox.value;
+    //     //     titleValue = newInputValue;
+
+    //     //     // create a ne hyperlink when saving it
+    //     //     let newElement = document.createElement('p');
+    //     //     newElement.classList.add('link-name');
+    //     //     newElement.innerText = titleValue;
+
+    //     //     finalizeBtn.remove();
+    //     //     inputBox.remove();
+    //     //     listElement.insertBefore(newHyperlink, listElement.children[1]);
+
+    //     //     let idToEdit = listElement.getAttribute("id");
+    //     //     console.log(idToEdit);
+    //     //     this.links.forEach((link) => {
+    //     //         if (link.id == idToEdit) {
+    //     //             link.url = urlValue;
+    //     //             // console.log(link.url);
+    //     //             console.log(link);
+    //     //         }
+    //     //     })
+    //     //     saveToLocalStorage(this.key, this.links);
+    //     // });
+
+    // }
+
     loadLinks() {
-        let jsonList = getFromLocalStorage(this.key)
+        let jsonList = getFromLocalStorage(this.key);
         let linkList = JSON.parse(jsonList || "[]");
         this.parentElement.childNodes.forEach((child) => {
             child.remove();
