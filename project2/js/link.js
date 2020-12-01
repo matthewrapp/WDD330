@@ -2,7 +2,9 @@ import {
     qs,
     saveToLocalStorage,
     getFromLocalStorage,
-    formatUrl
+    formatUrl,
+    getRandomColor,
+    setRandomColor
 } from './utilities.js';
 
 // Need to do
@@ -14,9 +16,10 @@ import {
 // column of buttons with hrefs behind it
 
 class Link {
-    constructor(name, url) {
+    constructor(name, url, color) {
         this.name = name;
         this.url = url;
+        this.color = color;
         this.id = new Date();
     }
 }
@@ -31,12 +34,11 @@ export class AllLinks {
     }
 
     addNewLink(name, url) {
-        const newLink = new Link(name, url);
+        const newLink = new Link(name, url, getRandomColor());
         this.links.push(newLink);
 
         let buttonWrapper = document.createElement('div');
         buttonWrapper.classList.add('button-wrapper');
-
         let buttonsDiv = document.createElement('div');
         buttonsDiv.classList.add("buttons");
 
@@ -59,8 +61,9 @@ export class AllLinks {
 
         buttonsDiv.appendChild(trashBtn);
         buttonsDiv.appendChild(editBtn);
-
         buttonWrapper.appendChild(buttonsDiv);
+
+        setRandomColor(listItem, newLink.color);
 
         listItem.innerHTML = `
         <p class="link-name">${name}</p>
@@ -174,6 +177,10 @@ export class AllLinks {
         let editSection = document.createElement('div');
         editSection.setAttribute("id", "editSection");
 
+        // declare
+        let title = listElement.querySelector('.link-name');
+        title.setAttribute('contenteditable', true);
+
         // create input box
         let inputBox = document.createElement('input');
         inputBox.setAttribute("type", "url");
@@ -197,6 +204,7 @@ export class AllLinks {
 
         // append modal to listElement
         // listElement.appendChild(modal);
+        console.log(listElement);
         listElement.insertBefore(editSection, listElement.children[1]);
 
         // create an event listener for the finalizeBtn to save it into the original spot
@@ -220,6 +228,7 @@ export class AllLinks {
 
             finalizeBtn.remove();
             inputBox.remove();
+            title.setAttribute('contenteditable', false);
             listElement.insertBefore(newHyperlink, listElement.children[1]);
 
             let idToEdit = listElement.getAttribute("id");
@@ -227,8 +236,8 @@ export class AllLinks {
             this.links.forEach((link) => {
                 if (link.id == idToEdit) {
                     link.url = urlValue;
+                    link.name = title.innerText;
                     // console.log(link.url);
-                    console.log(link);
                 }
             })
             saveToLocalStorage(this.key, this.links);
@@ -335,6 +344,8 @@ export class AllLinks {
 
                 buttonWrapper.append(buttonsDiv);
                 buttonWrapper.appendChild(buttonsDiv);
+
+                setRandomColor(listItem, link.color);
 
                 listItem.innerHTML = `
                 <p class="link-name">${link.name}</p>

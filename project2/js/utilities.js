@@ -25,6 +25,20 @@ export function formatUrl(url) {
     return url;
 }
 
+export function getRandomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let a = 0.2;
+
+    let backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+    return backgroundColor;
+}
+
+export function setRandomColor(element, color) {
+    element.style.backgroundColor = color;
+}
+
 export function targetAction(event) {
     // delete the links from the list
     // if pressed on button outside of the trashcan icon
