@@ -40,6 +40,7 @@ export function setRandomColor(element, color) {
 }
 
 export function targetAction(event) {
+    console.log(event);
     // delete the links from the list
     // if pressed on button outside of the trashcan icon
     if (event.target.className == "trash") {
@@ -61,12 +62,20 @@ export function targetAction(event) {
             if (listElemenetChildren[i].localName == 'a') {
                 // store the 'a' element in a variable
                 let hyperlink = listElemenetChildren[i];
-                myLink.editLink(listElement, hyperlink);
+                myLink.links.editLink(listElement, hyperlink);
+
             }
             // if (listElemenetChildren[i].localName == 'p') {
             //     let title = listElemenetChildren[i];
             //     myLink.editName(listElement, title);
             // }
         }
+    }
+
+    if (event.target.id == "previewBtn") {
+        let adminPage = document.getElementById("adminContent");
+        adminPage.style.display = "none";
+
+        myLink.displayPage();
     }
 }

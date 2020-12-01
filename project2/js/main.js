@@ -1,6 +1,6 @@
 import {
-    AllLinks
-} from './link.js';
+    Page
+} from './page.js';
 
 import {
     formatUrl,
@@ -11,10 +11,9 @@ import {
 
 // create instance of class AllLinks
 // consider changing the key to a dynamic variable that the user wants the page name to be (ex. VVRN or Lipp)
-export const myLink = new AllLinks("#displayLinks", 'links');
+// export const myLink = new AllLinks("#displayLinks", 'links');
 // Create page attach links to that page
-// export const vvrnPage = new Page(userInputVar);
-// const vvrnPage = new Page(userInputVar);
+export const myLink = new Page("Matthew Rapp");
 
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -44,7 +43,7 @@ buttonAdd.addEventListener('click', () => {
         alert('Must input something');
     } else {
         // create an instance of AllLinks class and add a new link
-        myLink.addNewLink(linkNameValue, formatUrl(linkUrlValue));
+        myLink.links.addNewLink(linkNameValue, formatUrl(linkUrlValue));
         // reset whole form
         form.reset();
     }
@@ -57,5 +56,6 @@ globalBtn.addEventListener('click', targetAction);
 
 // load the links alraedy stored in local storage
 window.onload = (event) => {
-    myLink.loadLinks();
+    myLink.links.loadLinks();
+    console.log(myLink.links);
 }

@@ -48,20 +48,20 @@ header {
     display: none;
 }
 
-#mainContent {
+#adminContent {
     width: 80%;
     float: right;
     position: relative;
     top: 68px;
 }
 
-#mainContent > * {
+#adminContent > * {
     padding-top: 40px;
     padding-left: 40px;
     padding-right: 40px;
 }
 
-#mainContent li {
+#adminContent li {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -131,7 +131,7 @@ header {
         font-size: 34px;
     }
 
-    #mainContent {
+    #adminContent {
         width: 100%;
         position: relative;
         top: 68px;
