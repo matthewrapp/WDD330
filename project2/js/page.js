@@ -2,14 +2,46 @@ import {
     AllLinks
 } from './link.js';
 
+import {
+    saveToLocalStorage,
+    getFromLocalStorage
+} from './utilities.js';
+
 export class Page {
     constructor(pageName) {
         this.pageName = pageName;
-        this.thumbnailImg = null;
         this.backgroundImg = null;
-        this.key = pageName + 'details';
+        this.key = pageName + ' details';
         this.links = new AllLinks('#displayLinks', pageName + ' links');
+        this.thumbnailImgArray = [];
+        this.pageData = {
+            'pageName': this.pageName,
+            'images': this.thumbnailImgArray,
+            'socialMedia': null
+        };
     }
+
+    // uploadProfileImg(event) {
+    //     let imgPreview = document.getElementById("thumbnailImgPreview");
+    //     console.log(event.target.files[0]);
+    //     let imgSrc = URL.createObjectURL(event.target.files[0]);
+    //     imgPreview.setAttribute('src', imgSrc);
+    //     this.thumbnailImgArray.push(imgSrc);
+
+    //     saveToLocalStorage(this.key, this.pageData);
+    // }
+
+    // loadProfileDetails() {
+    //     this.rawPage = getFromLocalStorage(this.key);
+    //     if (this.rawPage != null) {
+    //         this.pageData = JSON.parse(this.rawPage);
+    //         console.log(this.pageData.pageName);
+    //         console.log(this.pageData.images[0]);
+    //         let imgPreview = document.getElementById("thumbnailImgPreview");
+    //         imgPreview.setAttribute('src', this.pageData.images[0]);
+    //     }
+    // }
+
 
     displayPage() {
         let landingPage = document.getElementById("viewContent");

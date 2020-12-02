@@ -16,7 +16,7 @@
     <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
+    <header id="header">
       <h2><a href="#">Title</a></h2>
       <div class="profile-div">
         <h4>Profile Name</h4>
@@ -35,6 +35,33 @@
         <div id="callToAction">
           <button class="preview-btn" id="previewBtn">Preview Page</button>
         </div>
+        <div id="profileSection">
+          <input id="thumbnailImgUpload" type="file" name="thumbnailimg" />
+          <div id="imageDiv" class="image-div">
+            <img id="thumbnailImgPreview" accept="image/*" />
+          </div>
+          <div id="profileColorPreview" class="profile-color-preview"></div>
+          
+          <div class="custom-select-wrapper">
+            <div class="custom-select">
+              <div class="custom-select__trigger">
+                <span id="profileBackgroundColor">Change Background Color</span>
+                <div class="arrow"></div>
+              </div>
+              <div class="custom-options">
+                <span class="custom-option selected black-bg" data-value="tesla"
+                  >Black</span
+                >
+                <span class="custom-option blue-bg" data-value="volvo"
+                  ></i>Blue</span
+                >
+                <span class="custom-option red-bg" data-value="mercedes"
+                  >Red</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
         <form id="addLinkForm">
           <!-- Name of URL / Link -->
           <label for="linkName">Title of link:</label> <br />
@@ -50,5 +77,12 @@
       <section id="viewContent"></section>
     </main>
     <footer></footer>
+    <script>
+      document
+        .querySelector(".custom-select-wrapper")
+        .addEventListener("click", function () {
+          this.querySelector(".custom-select").classList.toggle("open");
+        });
+    </script>
   </body>
 </html>

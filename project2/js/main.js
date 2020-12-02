@@ -54,8 +54,13 @@ buttonAdd.addEventListener('click', () => {
 const globalBtn = qs('body');
 globalBtn.addEventListener('click', targetAction);
 
+// upload image
+// let imgUploadBtn = document.getElementById("thumbnailImgUpload");
+// imgUploadBtn.addEventListener('change', targetAction);
+
 // load the links alraedy stored in local storage
 window.onload = (event) => {
     myLink.links.loadLinks();
-    console.log(myLink.links);
+    // myLink.loadProfileDetails();
+    // console.log(myLink.key);
 }

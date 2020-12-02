@@ -40,7 +40,6 @@ export function setRandomColor(element, color) {
 }
 
 export function targetAction(event) {
-    console.log(event);
     // delete the links from the list
     // if pressed on button outside of the trashcan icon
     if (event.target.className == "trash") {
@@ -65,17 +64,25 @@ export function targetAction(event) {
                 myLink.links.editLink(listElement, hyperlink);
 
             }
-            // if (listElemenetChildren[i].localName == 'p') {
-            //     let title = listElemenetChildren[i];
-            //     myLink.editName(listElement, title);
-            // }
         }
     }
 
     if (event.target.id == "previewBtn") {
-        let adminPage = document.getElementById("adminContent");
-        adminPage.style.display = "none";
+        let adminSection = document.getElementById("adminContent");
+        let sidebarSection = document.getElementById("sidebar");
+        let headerSection = document.getElementById("header");
+        adminSection.style.display = "none";
+        sidebarSection.style.display = "none";
+        headerSection.style.display = "none";
+
 
         myLink.displayPage();
     }
+
+    // upload img
+    // if (event.target.id == "thumbnailImgUpload" && event.target.files.length > 0) {
+    //     console.log(event.target);
+    //     console.log(event);
+    //     myLink.uploadProfileImg(event);
+    // }
 }
