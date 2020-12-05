@@ -29,7 +29,7 @@ export function getRandomColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
-    let a = 0.2;
+    let a = 1;
 
     let backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
     return backgroundColor;
@@ -39,13 +39,20 @@ export function setRandomColor(element, color) {
     element.style.backgroundColor = color;
 }
 
+export function setImg(id, img) {
+    let element = document.getElementById(id);
+    element.style.background = `url(data:image/png;base64,${img})`;
+    element.style.backgroundSize = 'cover';
+    element.style.backgroundRepeat = 'no-repeat';
+}
+
 export function targetAction(event) {
     // delete the links from the list
     // if pressed on button outside of the trashcan icon
     if (event.target.className == "trash") {
         let idToRemove = event.target.getAttribute('data-id');
-        let elementToDelete = event.target.parentElement.parentElement;
-        myLink.deleteLink(idToRemove, elementToDelete);
+        let elementToDelete = event.target.parentElement.parentElement.parentElement;
+        myLink.links.deleteLink(idToRemove, elementToDelete);
     }
 
     if (event.target.className == "edit") {
@@ -79,10 +86,21 @@ export function targetAction(event) {
         myLink.displayPage();
     }
 
-    // upload img
-    // if (event.target.id == "thumbnailImgUpload" && event.target.files.length > 0) {
-    //     console.log(event.target);
-    //     console.log(event);
-    //     myLink.uploadProfileImg(event);
-    // }
+    // upload profile img
+    if (event.target.id == "thumbnailImgUpload" && event.target.files.length > 0) {
+        myLink.uploadProfileImg(event);
+    }
+
+    // upload header img
+    if (event.target.id == "headerImgUpload" && event.target.files.length > 0) {
+        myLink.uploadHeaderImg(event);
+    }
+}
+
+export function onchangeAction(event) {
+    if (event.target.id == "inputColor") {
+        myLink.selectProfileColor(event);
+    }
+
+
 }

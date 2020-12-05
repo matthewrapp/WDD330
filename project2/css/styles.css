@@ -87,6 +87,56 @@ header {
     box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+#adminContent li .link-name {
+    margin-top: 0px;
+}
+
+#adminContent li .show-color {
+    width: 12px;
+    height: 100%;
+    margin-right: 20px;
+}
+
+/* Admin Links */
+#displayLinks .link-name {
+    color: #000;
+    text-transform: capitalize;
+}
+
+#displayLinks li {
+    background-color: #fff!important;
+}
+
+/* Display Page */
+#bodyDiv {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.profile-image-div {
+    margin: 0px auto;
+}
+
+#linksDiv {
+    max-width: 50%;
+    margin: 0px auto;
+}
+
+.displayed-link {
+    display: block;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* The side navigation menu */
@@ -109,12 +159,22 @@ header {
     text-decoration: none;
 }
 
-.profile-color-preview {
+.header-img-div {
+    width: 100%;
+    height: 100px;
+}
+
+.profile-color-preview, .profile-image-div {
     height: 100px;
     width: 100px;
     background-color: grey;
     border-radius: 50%;
 }
+/* 
+.header-img-div, .profile-image-div {
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
 
 /* Drop down select styling */
 .custom-select-wrapper {
@@ -243,6 +303,10 @@ header {
 
 .red-bg {
     background-color: red;
+}
+
+.green-bg {
+    background-color: green;
 }
 
 .sm-box {

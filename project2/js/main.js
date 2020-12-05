@@ -5,7 +5,8 @@ import {
 import {
     formatUrl,
     targetAction,
-    qs
+    qs,
+    onchangeAction
 } from './utilities.js';
 
 
@@ -54,13 +55,20 @@ buttonAdd.addEventListener('click', () => {
 const globalBtn = qs('body');
 globalBtn.addEventListener('click', targetAction);
 
-// upload image
-// let imgUploadBtn = document.getElementById("thumbnailImgUpload");
-// imgUploadBtn.addEventListener('change', targetAction);
+// let colorSelectorBtn = document.getElementById('inputColor');
+// colorSelectorBtn.addEventListener('change', onchangeAction);
+
+// upload profile image
+let imgProfileUploadBtn = document.getElementById("thumbnailImgUpload");
+imgProfileUploadBtn.addEventListener('change', targetAction);
+
+// upload header image
+let imgHeaderUploadBtn = document.getElementById("headerImgUpload");
+imgHeaderUploadBtn.addEventListener('change', targetAction);
 
 // load the links alraedy stored in local storage
 window.onload = (event) => {
     myLink.links.loadLinks();
-    // myLink.loadProfileDetails();
+    myLink.loadProfileDetails();
     // console.log(myLink.key);
 }
