@@ -62,13 +62,22 @@ globalBtn.addEventListener('click', targetAction);
 let imgProfileUploadBtn = document.getElementById("thumbnailImgUpload");
 imgProfileUploadBtn.addEventListener('change', targetAction);
 
-// upload header image
-let imgHeaderUploadBtn = document.getElementById("headerImgUpload");
-imgHeaderUploadBtn.addEventListener('change', targetAction);
+// // upload header image
+// let imgHeaderUploadBtn = document.getElementById("headerImgUpload");
+// imgHeaderUploadBtn.addEventListener('change', targetAction);
+
+// upload background image
+let imgBackgroundUploadBtn = document.getElementById("backgroundImgUpload");
+imgBackgroundUploadBtn.addEventListener('change', targetAction);
 
 // load the links alraedy stored in local storage
 window.onload = (event) => {
     myLink.links.loadLinks();
-    myLink.loadProfileDetails();
+    setTimeout(() => {
+        myLink.loadProfileImage();
+        myLink.loadBackgroundImage();
+    }, 1000);
+    console.log(myLink.pageData);
+    // myLink.loadProfileDetails();
     // console.log(myLink.key);
 }

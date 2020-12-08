@@ -7,6 +7,8 @@ export function qs(selector) {
     return document.querySelector(selector);
 }
 
+// ready data
+
 // retreive tasks from data store
 export function getFromLocalStorage(key) {
     return localStorage.getItem(key);
@@ -39,10 +41,17 @@ export function setRandomColor(element, color) {
     element.style.backgroundColor = color;
 }
 
+// export function setImg(id, img) {
+//     let element = document.getElementById(id);
+//     element.style.background = `url(data:image/png;base64,${img})`;
+//     element.style.backgroundSize = 'cover';
+//     element.style.backgroundRepeat = 'no-repeat';
+// }
+
 export function setImg(id, img) {
     let element = document.getElementById(id);
-    element.style.background = `url(data:image/png;base64,${img})`;
-    element.style.backgroundSize = 'cover';
+    element.style.backgroundImage = `url('${img}')`;
+    element.style.backgroundSize = 'contain';
     element.style.backgroundRepeat = 'no-repeat';
 }
 
@@ -91,9 +100,13 @@ export function targetAction(event) {
         myLink.uploadProfileImg(event);
     }
 
-    // upload header img
-    if (event.target.id == "headerImgUpload" && event.target.files.length > 0) {
-        myLink.uploadHeaderImg(event);
+    // // upload header img
+    // if (event.target.id == "headerImgUpload" && event.target.files.length > 0) {
+    //     myLink.uploadHeaderImg(event);
+    // }
+    // upload background img
+    if (event.target.id == "backgroundImgUpload" && event.target.files.length > 0) {
+        myLink.uploadBackgroundImg(event);
     }
 }
 

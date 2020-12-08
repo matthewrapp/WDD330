@@ -37,9 +37,14 @@
         </div>
         <div id="profileSection">
           <!-- Header Image Upload and display -->
-          <h4>Upload Header Img here</h4>
+          <!-- <h4>Upload Header Img here</h4>
           <input id="headerImgUpload" type="file" name="headerImg" />
-          <div id="headerImgPreview" class="header-img-div"></div>
+          <div id="headerImgPreview" class="header-img-div"></div> -->
+
+          <!-- Header Image Upload and display -->
+          <h4>Upload Background Img here</h4>
+          <input id="backgroundImgUpload" type="file" name="headerImg" />
+          <div id="backgroundImgPreview" class="background-img-div"></div>
 
           <!-- Profile Image Upload and display -->
           <h4>Upload Profile Img here</h4>
@@ -68,12 +73,11 @@
       <section id="viewContent"></section>
     </main>
     <footer></footer>
-    <script>
-      // document
-      //   .querySelector(".custom-select-wrapper")
-      //   .addEventListener("click", function () {
-      //     this.querySelector(".custom-select").classList.toggle("open");
-      //   });
-    </script>
+
+    <!--------------------------FIRBASE LIBRARIES-------------------------------------------------->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
   </body>
 </html>

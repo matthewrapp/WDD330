@@ -9,8 +9,10 @@ import {
 import {
     saveToLocalStorage,
     getFromLocalStorage,
-    setImg
+    setImg,
 } from './utilities.js';
+
+import firebaseApp from './firebaseApp.js';
 
 export class Page {
     constructor(pageName) {
@@ -18,6 +20,8 @@ export class Page {
         this.links = new AllLinks('#displayLinks', pageName + ' links');
         this.pageData = {
             'pageName': pageName,
+            'profileImgURL': null,
+            'bgImgURL': null,
             'profileImages': [],
             'headerImages': [],
             'colorValue': null,
@@ -37,77 +41,173 @@ export class Page {
 
     }
 
-    async uploadProfileImg(event) {
-        let imgProfileImgPreview = document.getElementById("thumbnailImgPreview");
-        let imgProfileSrc = event.target.files[0];
+    // async uploadProfileImg(event) {
+    //     let imgProfileImgPreview = document.getElementById("thumbnailImgPreview");
+    //     let imgProfileSrc = event.target.files[0];
 
-        // alert if image is too big
-        if (imgProfileSrc.size > 4096) {
-            alert('file size too big');
-            document.getElementById("thumbnailImgUpload").value = '';
-            return;
-        }
+    //     // alert if image is too big
+    //     if (imgProfileSrc.size > 4096) {
+    //         alert('file size too big');
+    //         document.getElementById("thumbnailImgUpload").value = '';
+    //         return;
+    //     }
 
-        const reader = new FileReader();
+    //     const reader = new FileReader();
 
+    //     reader.onloadend = () => {
+    //         // convert file to base64 String
+    //         const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+    //         // store file
+    //         this.pageData.profileImages.splice(0, 1, base64String);
+    //         saveToLocalStorage(this.key, this.pageData);
+    //         // display image
+    //         imgProfileImgPreview.style.background = `url(data:image/png;base64,${base64String})`;
+    //         imgProfileImgPreview.style.backgroundSize = 'cover';
+    //         imgProfileImgPreview.style.backgroundRepeat = 'no-repeat';
+    //     };
+    //     reader.readAsDataURL(imgProfileSrc);
+    // }
+
+    uploadProfileImg(event) {
+        // variables
+        let imgName, imgUrl;
+        let files;
+        let reader;
+
+        firebaseApp;
+
+        // selection process
+        files = event.target.files;
+        console.log(files);
+        reader = new FileReader();
+        console.log(reader);
         reader.onloadend = () => {
-            // convert file to base64 String
-            const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-            // store file
-            this.pageData.profileImages.splice(0, 1, base64String);
-            saveToLocalStorage(this.key, this.pageData);
-            // display image
-            imgProfileImgPreview.style.background = `url(data:image/png;base64,${base64String})`;
-            imgProfileImgPreview.style.backgroundSize = 'cover';
-            imgProfileImgPreview.style.backgroundRepeat = 'no-repeat';
+            setImg("thumbnailImgPreview", reader.result);
+            imgName = files[0].name;
+            imgName = imgName.substring(0, imgName.lastIndexOf('.'));
+            // store to firebase
+            let uploadTask = firebase.storage().ref("ProfileImages/" + imgName + '.jpg').put(files[0]);
+            console.log(imgName);
+
+            uploadTask.on("state_changed", () => {
+                    // submitting image link to database
+                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                        imgUrl = url;
+                        this.pageData.profileImgURL = imgUrl;
+                        firebase.database().ref("ProfileImages/" + imgName).set({
+                            Name: imgName,
+                            Link: imgUrl,
+                        });
+                        saveToLocalStorage(this.key, this.pageData);
+                        // alert("image added success!");
+                    })
+                },
+                (error) => {
+                    alert("error in saving img");
+                })
+            console.log(this.pageData);
         };
-        reader.readAsDataURL(imgProfileSrc);
+
+        reader.readAsDataURL(event.target.files[0]);
     }
 
-    async uploadHeaderImg(event) {
-        let imgPreview = document.getElementById("headerImgPreview");
-        let imgSrc = event.target.files[0];
+    // async uploadHeaderImg(event) {
+    //     let imgPreview = document.getElementById("headerImgPreview");
+    //     let imgSrc = event.target.files[0];
 
-        // alert if image is too big
-        if (imgPreview.size > 4096) {
-            alert('file size too big');
-            document.getElementById("thumbnailImgUpload").value = '';
-            return;
-        }
+    //     // alert if image is too big
+    //     if (imgPreview.size > 4096) {
+    //         alert('file size too big');
+    //         document.getElementById("thumbnailImgUpload").value = '';
+    //         return;
+    //     }
 
-        const reader = new FileReader();
+    //     const reader = new FileReader();
 
-        console.log(imgSrc.type);
+    //     console.log(imgSrc.type);
 
+    //     reader.onloadend = () => {
+    //         // convert file to base64 String
+    //         const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+    //         // store file
+    //         this.pageData.headerImages.splice(0, 1, base64String);
+    //         saveToLocalStorage(this.key, this.pageData);
+    //         // display image
+    //         imgPreview.style.background = `url(data:image/png;base64,${base64String})`;
+    //         imgPreview.style.backgroundSize = 'cover';
+    //         imgPreview.style.backgroundRepeat = 'no-repeat';
+    //     };
+    //     reader.readAsDataURL(imgSrc);
+    // }
+
+    uploadBackgroundImg(event) {
+        // variables
+        let imgName, imgUrl;
+        let files;
+        let reader;
+
+        firebaseApp;
+
+        // selection process
+        files = event.target.files;
+        console.log(files);
+        reader = new FileReader();
+        console.log(reader);
         reader.onloadend = () => {
-            // convert file to base64 String
-            const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-            // store file
-            this.pageData.headerImages.splice(0, 1, base64String);
-            saveToLocalStorage(this.key, this.pageData);
-            // display image
-            imgPreview.style.background = `url(data:image/png;base64,${base64String})`;
-            imgPreview.style.backgroundSize = 'cover';
-            imgPreview.style.backgroundRepeat = 'no-repeat';
+            console.log(imgName);
+            setImg("backgroundImgPreview", reader.result);
+            imgName = files[0].name;
+            imgName = imgName.substring(0, imgName.lastIndexOf('.'));
+            // store to firebase
+            let uploadTask = firebase.storage().ref("BackgroundImages/" + imgName + '.jpg').put(files[0]);
+
+            uploadTask.on("state_changed", () => {
+                    // submitting image link to database
+                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                        imgUrl = url;
+                        this.pageData.bgImgURL = imgUrl;
+                        firebase.database().ref("BackgroundImages/" + imgName).set({
+                            Name: imgName,
+                            Link: imgUrl,
+                        });
+                        saveToLocalStorage(this.key, this.pageData);
+                        // alert("image added success!");
+                    })
+                },
+                (error) => {
+                    alert("error in saving img");
+                })
         };
-        reader.readAsDataURL(imgSrc);
+
+        reader.readAsDataURL(event.target.files[0]);
     }
 
-    loadProfileDetails() {
-        this.rawPage = getFromLocalStorage(this.key);
-        if (this.rawPage != null) {
-            this.pageData = JSON.parse(this.rawPage);
+    // loadProfileDetails() {
+    //     this.rawPage = getFromLocalStorage(this.key);
+    //     if (this.rawPage != null) {
+    //         this.pageData = JSON.parse(this.rawPage);
 
-            // load header img
-            setImg("headerImgPreview", this.pageData.headerImages[0]);
+    //         // load header img
+    //         setImg("headerImgPreview", this.pageData.headerImages[0]);
 
-            // load profile img
-            setImg("thumbnailImgPreview", this.pageData.profileImages[0]);
+    //         // load profile img
+    //         setImg("thumbnailImgPreview", this.pageData.profileImages[0]);
 
-            // load profile color
-            // let profileColor = document.getElementById("profileColorPreview");
-            // profileColor.style.backgroundColor = this.pageData.colorValue;
-        }
+    //         // load profile color
+    //         // let profileColor = document.getElementById("profileColorPreview");
+    //         // profileColor.style.backgroundColor = this.pageData.colorValue;
+    //     }
+    // }
+
+    loadProfileImage() {
+        let data = getFromLocalStorage(this.key);
+        this.pageData = JSON.parse(data);
+        setImg("thumbnailImgPreview", this.pageData.profileImgURL);
+    }
+    loadBackgroundImage() {
+        let data = getFromLocalStorage(this.key);
+        this.pageData = JSON.parse(data);
+        setImg("backgroundImgPreview", this.pageData.bgImgURL);
     }
 
 
