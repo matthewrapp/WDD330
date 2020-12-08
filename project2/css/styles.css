@@ -159,9 +159,15 @@ header {
     text-decoration: none;
 }
 
-.header-img-div, .background-img-div {
+.background-img-div {
     width: 100%;
     height: 100px;
+    background-size: contain!important;
+}
+
+#backgroundImgDiv {
+    width: 100%;
+    height: 100%;
 }
 
 .profile-color-preview, .profile-image-div {

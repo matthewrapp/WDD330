@@ -22,51 +22,35 @@ export class Page {
             'pageName': pageName,
             'profileImgURL': null,
             'bgImgURL': null,
-            'profileImages': [],
-            'headerImages': [],
             'colorValue': null,
             'socialMedia': null,
         };
     }
 
-    selectProfileColor(event) {
-        let profileColor = document.getElementById("profileColorPreview");
-        profileColor.style.backgroundColor = event.target.value;
-        this.colorValue = event.target.value;
-        this.pageData.colorValue = this.colorValue;
-        console.log(this.colorValue);
+    // selectProfileColor(event) {
+    //     let profileColor = document.getElementById("profileColorPreview");
+    //     profileColor.style.backgroundColor = event.target.value;
+    //     this.colorValue = event.target.value;
+    //     this.pageData.colorValue = this.colorValue;
+    //     console.log(this.colorValue);
 
-        saveToLocalStorage(this.key, this.pageData);
-        console.log(this.pageData.colorValue);
+    //     saveToLocalStorage(this.key, this.pageData);
+    //     console.log(this.pageData.colorValue);
+    // }
 
+    navigateToLinksPage(event) {
+        let linksSection = document.getElementById('linksSection');
+        let profileSection = document.getElementById('profileSection');
+        linksSection.style.display = 'block';
+        profileSection.style.display = 'none';
     }
 
-    // async uploadProfileImg(event) {
-    //     let imgProfileImgPreview = document.getElementById("thumbnailImgPreview");
-    //     let imgProfileSrc = event.target.files[0];
-
-    //     // alert if image is too big
-    //     if (imgProfileSrc.size > 4096) {
-    //         alert('file size too big');
-    //         document.getElementById("thumbnailImgUpload").value = '';
-    //         return;
-    //     }
-
-    //     const reader = new FileReader();
-
-    //     reader.onloadend = () => {
-    //         // convert file to base64 String
-    //         const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-    //         // store file
-    //         this.pageData.profileImages.splice(0, 1, base64String);
-    //         saveToLocalStorage(this.key, this.pageData);
-    //         // display image
-    //         imgProfileImgPreview.style.background = `url(data:image/png;base64,${base64String})`;
-    //         imgProfileImgPreview.style.backgroundSize = 'cover';
-    //         imgProfileImgPreview.style.backgroundRepeat = 'no-repeat';
-    //     };
-    //     reader.readAsDataURL(imgProfileSrc);
-    // }
+    navigateToProfilePage(event) {
+        let linksSection = document.getElementById('linksSection');
+        let profileSection = document.getElementById('profileSection');
+        profileSection.style.display = 'block';
+        linksSection.style.display = 'none';
+    }
 
     uploadProfileImg(event) {
         // variables
@@ -111,35 +95,6 @@ export class Page {
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    // async uploadHeaderImg(event) {
-    //     let imgPreview = document.getElementById("headerImgPreview");
-    //     let imgSrc = event.target.files[0];
-
-    //     // alert if image is too big
-    //     if (imgPreview.size > 4096) {
-    //         alert('file size too big');
-    //         document.getElementById("thumbnailImgUpload").value = '';
-    //         return;
-    //     }
-
-    //     const reader = new FileReader();
-
-    //     console.log(imgSrc.type);
-
-    //     reader.onloadend = () => {
-    //         // convert file to base64 String
-    //         const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-    //         // store file
-    //         this.pageData.headerImages.splice(0, 1, base64String);
-    //         saveToLocalStorage(this.key, this.pageData);
-    //         // display image
-    //         imgPreview.style.background = `url(data:image/png;base64,${base64String})`;
-    //         imgPreview.style.backgroundSize = 'cover';
-    //         imgPreview.style.backgroundRepeat = 'no-repeat';
-    //     };
-    //     reader.readAsDataURL(imgSrc);
-    // }
-
     uploadBackgroundImg(event) {
         // variables
         let imgName, imgUrl;
@@ -182,26 +137,27 @@ export class Page {
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    // loadProfileDetails() {
-    //     this.rawPage = getFromLocalStorage(this.key);
-    //     if (this.rawPage != null) {
-    //         this.pageData = JSON.parse(this.rawPage);
+    loadProfileDetails() {
+        this.rawPage = getFromLocalStorage(this.key);
+        if (this.rawPage != null) {
+            this.pageData = JSON.parse(this.rawPage);
 
-    //         // load header img
-    //         setImg("headerImgPreview", this.pageData.headerImages[0]);
+            // load header img
+            setImg("headerImgPreview", this.pageData.headerImgURL[0]);
 
-    //         // load profile img
-    //         setImg("thumbnailImgPreview", this.pageData.profileImages[0]);
+            // load profile img
+            setImg("thumbnailImgPreview", this.pageData.profileImages[0]);
 
-    //         // load profile color
-    //         // let profileColor = document.getElementById("profileColorPreview");
-    //         // profileColor.style.backgroundColor = this.pageData.colorValue;
-    //     }
-    // }
+            // load profile color
+            // let profileColor = document.getElementById("profileColorPreview");
+            // profileColor.style.backgroundColor = this.pageData.colorValue;
+        }
+    }
 
     loadProfileImage() {
         let data = getFromLocalStorage(this.key);
         this.pageData = JSON.parse(data);
+        console.log(this.pageData.profileImgURL);
         setImg("thumbnailImgPreview", this.pageData.profileImgURL);
     }
     loadBackgroundImage() {
@@ -211,34 +167,30 @@ export class Page {
     }
 
 
-    displayPage() {
+    displayLandingPage() {
         let landingPage = document.getElementById("viewContent");
         landingPage.style.display = "block";
 
         // create elements within the viewContent section
-        // create header section
-        let headerDiv = document.createElement('div');
-        headerDiv.setAttribute('id', 'headerDiv');
-        // append headerDiv to viewContent Section
-        landingPage.appendChild(headerDiv);
-        // layout the headerDiv
 
-        // load header img
-        let headerImg = document.getElementById("headerImgPreview");
-        setImg("headerImgPreview", this.pageData.headerImages[0]);
-        //layout the header
-        headerDiv.appendChild(headerImg);
+        // create backgroundDiv section
+        let backgroundDiv = document.createElement('div');
+        backgroundDiv.setAttribute('id', 'backgroundImgDiv');
+        landingPage.appendChild(backgroundDiv);
+        setImg("backgroundImgDiv", this.pageData.bgImgURL);
 
         // create body section
         let bodyDiv = document.createElement('div');
         bodyDiv.setAttribute('id', 'bodyDiv');
-        // append headerDiv to viewContent Section
         landingPage.appendChild(bodyDiv);
 
-
         // load profile img
-        let profileImg = document.getElementById("thumbnailImgPreview");
-        setImg("thumbnailImgPreview", this.pageData.profileImages[0]);
+        let profileDiv = document.createElement('div');
+        profileDiv.setAttribute('id', 'profileImgDiv');
+        bodyDiv.appendChild(profileDiv);
+        setImg("profileImgDiv", this.pageData.profileImgURL);
+
+
         // set up a div to display the links
         let linksDiv = document.createElement('div');
         linksDiv.setAttribute('id', 'linksDiv');
@@ -249,17 +201,12 @@ export class Page {
             <a class="displayed-link" href="${link.url}" style="background-color: ${link.color};" target="_blank">${link.name}</a>
             </p>`
         })
-        // linksDiv.innerText(this.links.loadLinks());
-        // layout the bodyDiv
-        bodyDiv.appendChild(profileImg);
         bodyDiv.appendChild(linksDiv);
 
         // create footer section (for social media, etc.)
         let footerDiv = document.createElement('div');
         footerDiv.setAttribute('id', 'footerDiv');
-        // append headerDiv to viewContent Section
         landingPage.appendChild(footerDiv);
-        // layout the footerDiv
         footerDiv.innerHTML = `<h4>Hello, this is footer</h4>`;
     }
 }

@@ -51,7 +51,7 @@ export function setRandomColor(element, color) {
 export function setImg(id, img) {
     let element = document.getElementById(id);
     element.style.backgroundImage = `url('${img}')`;
-    element.style.backgroundSize = 'contain';
+    element.style.backgroundSize = 'cover';
     element.style.backgroundRepeat = 'no-repeat';
 }
 
@@ -91,8 +91,7 @@ export function targetAction(event) {
         sidebarSection.style.display = "none";
         headerSection.style.display = "none";
 
-
-        myLink.displayPage();
+        myLink.displayLandingPage();
     }
 
     // upload profile img
@@ -100,13 +99,17 @@ export function targetAction(event) {
         myLink.uploadProfileImg(event);
     }
 
-    // // upload header img
-    // if (event.target.id == "headerImgUpload" && event.target.files.length > 0) {
-    //     myLink.uploadHeaderImg(event);
-    // }
     // upload background img
     if (event.target.id == "backgroundImgUpload" && event.target.files.length > 0) {
         myLink.uploadBackgroundImg(event);
+    }
+
+    if (event.target.id == "linksNavItem") {
+        myLink.navigateToLinksPage();
+    }
+
+    if (event.target.id == "profileNavItem") {
+        myLink.navigateToProfilePage();
     }
 }
 

@@ -16,6 +16,26 @@ import {
 // Create page attach links to that page
 export const myLink = new Page("Matthew Rapp");
 
+// load the links alraedy stored in local storage
+window.onload = (event) => {
+
+    console.log(myLink.pageData);
+    myLink.links.loadLinks();
+    myLink.loadProfileImage();
+    myLink.loadBackgroundImage();
+
+    let linksSection = document.getElementById('linksSection');
+    let profileSection = document.getElementById('profileSection');
+    if (linksSection.style.display == 'none') {
+        myLink.navigateToLinksPage();
+    }
+    // myLink.loadProfileDetails();
+    // console.log(myLink.key);
+}
+
+document.getElementById('profileSection').style.display = 'none';
+document.getElementById('linksSection').style.display = 'none';
+
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 mobileMenuBtn.addEventListener('click', () => {
@@ -27,7 +47,8 @@ mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('shownavigation');
         }
     })
-})
+});
+
 // get button and store in variable
 const buttonAdd = document.getElementById('buttonAdd');
 // add eventlistener to button
@@ -55,29 +76,17 @@ buttonAdd.addEventListener('click', () => {
 const globalBtn = qs('body');
 globalBtn.addEventListener('click', targetAction);
 
-// let colorSelectorBtn = document.getElementById('inputColor');
-// colorSelectorBtn.addEventListener('change', onchangeAction);
-
-// upload profile image
 let imgProfileUploadBtn = document.getElementById("thumbnailImgUpload");
 imgProfileUploadBtn.addEventListener('change', targetAction);
 
-// // upload header image
-// let imgHeaderUploadBtn = document.getElementById("headerImgUpload");
-// imgHeaderUploadBtn.addEventListener('change', targetAction);
-
-// upload background image
 let imgBackgroundUploadBtn = document.getElementById("backgroundImgUpload");
 imgBackgroundUploadBtn.addEventListener('change', targetAction);
 
-// load the links alraedy stored in local storage
-window.onload = (event) => {
-    myLink.links.loadLinks();
-    setTimeout(() => {
-        myLink.loadProfileImage();
-        myLink.loadBackgroundImage();
-    }, 1000);
-    console.log(myLink.pageData);
-    // myLink.loadProfileDetails();
-    // console.log(myLink.key);
-}
+// let linksTab = document.getElementById("linksNavItem");
+// linksTab.addEventListener('click', targetAction);
+
+// let profileTab = document.getElementById("profileNavItem");
+// profileTab.addEventListener('click', targetAction);
+
+// let previewPageBtn = document.getElementById("previewBtn");
+// previewPageBtn.addEventListener('click', targetAction);

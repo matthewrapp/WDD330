@@ -26,49 +26,55 @@
     <main>
       <!-- The sidebar -->
       <section id="sidebar" class="sidebar">
-        <a class="nav-item sidebar-nav-item" href="#home">Home</a>
-        <a class="nav-item sidebar-nav-item" href="#news">News</a>
-        <a class="nav-item sidebar-nav-item" href="#contact">Contact</a>
-        <a class="nav-item sidebar-nav-item" href="#about">About</a>
+        <a
+          id="linksNavItem"
+          class="nav-item sidebar-nav-item"
+          href="#linksSection"
+          >Links</a
+        >
+        <a
+          id="profileNavItem"
+          class="nav-item sidebar-nav-item"
+          href="#profileSection"
+          >Profile</a
+        >
       </section>
       <section id="adminContent">
-        <div id="callToAction">
-          <button class="preview-btn" id="previewBtn">Preview Page</button>
+        <div id="linksSection">
+          <div id="callToAction">
+            <button class="preview-btn" id="previewBtn">Preview Page</button>
+          </div>
+          <form id="addLinkForm">
+            <label for="linkName">Title of link:</label> <br />
+            <input id="linkName" type="text" /> <br />
+
+            <label for="linkUrl">Link url:</label> <br />
+            <input id="linkUrl" type="url" pattern="https?://.+" required />
+            <br />
+            <button id="buttonAdd" type="button">Add Link</button>
+          </form>
+          <ul id="displayLinks"></ul>
         </div>
         <div id="profileSection">
-          <!-- Header Image Upload and display -->
-          <!-- <h4>Upload Header Img here</h4>
-          <input id="headerImgUpload" type="file" name="headerImg" />
-          <div id="headerImgPreview" class="header-img-div"></div> -->
+          <div id="profileSection">
+            <!-- Header Image Upload and display -->
+            <h4>Upload Background Img here</h4>
+            <input id="backgroundImgUpload" type="file" name="headerImg" />
+            <div id="backgroundImgPreview" class="background-img-div"></div>
 
-          <!-- Header Image Upload and display -->
-          <h4>Upload Background Img here</h4>
-          <input id="backgroundImgUpload" type="file" name="headerImg" />
-          <div id="backgroundImgPreview" class="background-img-div"></div>
+            <!-- Profile Image Upload and display -->
+            <h4>Upload Profile Img here</h4>
+            <input id="thumbnailImgUpload" type="file" name="thumbnailimg" />
+            <div id="thumbnailImgPreview" class="profile-image-div"></div>
 
-          <!-- Profile Image Upload and display -->
-          <h4>Upload Profile Img here</h4>
-          <input id="thumbnailImgUpload" type="file" name="thumbnailimg" />
-          <div id="thumbnailImgPreview" class="profile-image-div"></div>
-
-          <!-- Color Upload and display-->
-          <!-- <h4>Choose color here</h4>
+            <!-- Color Upload and display-->
+            <!-- <h4>Choose color here</h4>
           <div id="profileColorPreview" class="profile-color-preview"></div>
           <div id="colorSelector" class="color-selector">
             <input type="color" id="inputColor" name="inputColor" />
           </div> -->
+          </div>
         </div>
-        <form id="addLinkForm">
-          <!-- Name of URL / Link -->
-          <label for="linkName">Title of link:</label> <br />
-          <input id="linkName" type="text" /> <br />
-          <!-- Link URL-->
-          <label for="linkName">Link url:</label> <br />
-          <input id="linkUrl" type="url" pattern="https?://.+" required />
-          <br />
-          <button id="buttonAdd" type="button">Add Link</button>
-        </form>
-        <ul id="displayLinks"></ul>
       </section>
       <section id="viewContent"></section>
     </main>
