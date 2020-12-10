@@ -5,8 +5,7 @@ import {
 import {
     formatUrl,
     targetAction,
-    qs,
-    onchangeAction
+    qs
 } from './utilities.js';
 
 
@@ -18,30 +17,22 @@ export const myLink = new Page("Matthew Rapp");
 
 // load the links alraedy stored in local storage
 window.onload = (event) => {
-
-    console.log(myLink.pageData);
     myLink.links.loadLinks();
     myLink.loadProfileImage();
     myLink.loadBackgroundImage();
-
-    let linksSection = document.getElementById('linksSection');
-    let profileSection = document.getElementById('profileSection');
-    if (linksSection.style.display == 'none') {
-        myLink.navigateToLinksPage();
-    }
-    // myLink.loadProfileDetails();
-    // console.log(myLink.key);
+    myLink.loadCurrentPage();
+    myLink.loadPageName();
 }
 
 document.getElementById('profileSection').style.display = 'none';
 document.getElementById('linksSection').style.display = 'none';
+document.getElementById('socialMediaSection').style.display = 'none';
 
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 mobileMenuBtn.addEventListener('click', () => {
     let mobileMenu = document.getElementById('sidebar');
     mobileMenu.classList.toggle('shownavigation');
-    console.log(window)
     window.addEventListener("resize", () => {
         if (window.outerWidth >= '660') {
             mobileMenu.classList.remove('shownavigation');
@@ -81,12 +72,3 @@ imgProfileUploadBtn.addEventListener('change', targetAction);
 
 let imgBackgroundUploadBtn = document.getElementById("backgroundImgUpload");
 imgBackgroundUploadBtn.addEventListener('change', targetAction);
-
-// let linksTab = document.getElementById("linksNavItem");
-// linksTab.addEventListener('click', targetAction);
-
-// let profileTab = document.getElementById("profileNavItem");
-// profileTab.addEventListener('click', targetAction);
-
-// let previewPageBtn = document.getElementById("previewBtn");
-// previewPageBtn.addEventListener('click', targetAction);

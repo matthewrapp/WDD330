@@ -19,6 +19,18 @@ li {
     list-style-type: none;
 }
 
+.active {
+    color: #fff!important;
+    background-color: red;
+}
+
+#siteLogo {
+    font-size: 22px;
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+
 .nav-item {
     color: #000;
 }
@@ -34,14 +46,38 @@ li {
 
 header {
     position: fixed;
-    z-index: 100;
     display: flex;
     justify-content: space-between;
+    z-index: 100;
     max-width: 100%;
     width: 100%;
     margin: 0 auto;
     align-items: center;
     background-color: #fff;
+    padding-left: 14px;
+    padding-right: 14px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 76%;
+    width: 100%;
+}
+
+.btn {
+    background-color: red;
+    padding: 12px 18px;
+    font-size: 14px;
+    color: #fff;
+    height: 100%;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
 }
 
 /* Avatar preview styling */
@@ -78,6 +114,7 @@ header {
     padding-top: 40px;
     padding-left: 40px;
     padding-right: 40px;
+    padding-bottom: 40px;
 }
 
 #adminContent li {
@@ -87,13 +124,18 @@ header {
     box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 100px;
     display: flex;
     align-items: center;
+    display: block;
 }
 
 #adminContent li .link-name {
     margin-top: 0px;
+}
+
+#adminContent li .link-url {
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 #adminContent li .show-color {
@@ -103,28 +145,136 @@ header {
 }
 
 /* Admin Links */
-#displayLinks .link-name {
+#displayLinks .link-name, #linksDiv .displayed-link {
     color: #000;
     text-transform: capitalize;
 }
 
-#displayLinks li {
-    background-color: #fff!important;
+#displayLinks li, #displayLinks li .link-content-div {
+    width: 500px;
+    overflow-x: auto;
+}
+
+#displayLinks .link-name[contenteditable="true"], .edit-contentable{
+    border: 1px solid #000;
+    border-radius: 2px;
+    width: 494px;
+    padding: 2px;
+    font-size: 14px;
+    margin: 0;
+}
+
+.edit-contentable {
+    margin: 12px 0px;
+}
+
+.buttons button {
+    background: none;
+    border: none;
+    font-size: 18px;
+}
+
+.buttons .trash {
+    color: red;
+}
+
+.buttons .edit {
+    color: gray;
+}
+
+.buttons #buttonFinalize {
+    font-size: 14px;
+    float: right;
+    color: #fff;
+    background: green;
+    border-radius: 3px;
+    padding: 4px 10px;
+}
+
+#editSection #linkUrl {
+    border: 1px solid #000;
+    border-radius: 2px;
+    width: 400px;
+    padding: 3px;
+    font-size: 16px;
+}
+
+.link-input-div {
+    display: grid;
+    grid-template-columns: 1fr 18fr;
+    align-items: center;
+    margin-bottom: 26px;;
+}
+
+#inputProfileName, .link-input {
+    border: none;
+    border-bottom: .25px solid #888;
+    background: transparent;
+    padding: 12px 60px 12px 4px;
+}
+
+.adminSocialMediaDiv .link-input {
+    min-width: 400px;
+}
+
+
+
+#addLinkForm {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.addLink-inputBox-div {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    max-width: 600px;
+}
+
+.addLink-inputBox {
+    border: none;
+    border-bottom: .25px solid #888;
+    background: transparent;
+    margin: 10px 0;
+    padding: 12px 18px;
+    min-width: 100px;
+    max-width: 300px;
+    width: 38%;
 }
 
 /* Display Page */
+
+#viewContent {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
 #bodyDiv {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 40px;
 }
 
-.profile-image-div {
+#bodyDiv .profile-image-div {
     margin: 0px auto;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+#bodyDiv .username-heading {
+        color: #fff;
+        margin-bottom: 40px;
+        font-size: 22px;
 }
 
 #linksDiv {
-    max-width: 50%;
+    max-width: 70%;
+    margin: 0px auto;
+}
+
+#linksDiv .link-wrapper {
+    max-width: 700px;
     margin: 0px auto;
 }
 
@@ -135,8 +285,21 @@ header {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
     margin-bottom: 10px;
-    color: #fff;
+    color: #000;
     text-decoration: none;
+}
+
+#socialMediaDisplayDiv {
+        text-align: center;
+        max-width: 300px;
+        margin: 0 auto;
+}
+
+#socialMediaDisplayDiv a {
+    font-size: 32px;
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /* The side navigation menu */
@@ -159,28 +322,43 @@ header {
     text-decoration: none;
 }
 
-.background-img-div {
-    width: 100%;
-    height: 100px;
-    background-size: contain!important;
+.adminBackgroundDiv, .adminProfileDiv {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
 }
 
-#backgroundImgDiv {
+.adminBackgroundDiv .background-img-div,
+.adminProfileDiv .profile-image-div {
     width: 100%;
-    height: 100%;
+    height: 200px;
+    background-position: right center;
+    width: 60%;
+    border-radius: 6px;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
-.profile-color-preview, .profile-image-div {
-    height: 100px;
-    width: 100px;
-    background-color: grey;
-    border-radius: 50%;
+#triggerProfileUpload:hover, #triggerBgUpload:hover {
+    cursor: pointer;
 }
-/* 
-.header-img-div, .profile-image-div {
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
+
+#backgroundOverlayDiv {
+    background-color: rgba(0, 0, 0, .4);
+    z-index: -99;
+}
+
+#backgroundImgDiv, #backgroundOverlayDiv {
+    width: 100%;
+    min-width: 770px;
+    min-height: 100%;
+    position: fixed;
+    z-index: -100;
+    transform: scale(2);
+}
+
+#profileImgDiv {
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, .4);
+}
 
 /* Drop down select styling */
 .custom-select-wrapper {
@@ -256,11 +434,6 @@ header {
     color: #444;
 }
 
-.custom-option.selected {
-    /* color: #ffffff; */
-    /* background-color: #305c91; */
-}
-
 .arrow {
     position: relative;
     height: 15px;
@@ -320,18 +493,35 @@ header {
     width: 20px;
 }
 
+
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 780px) {
     .sidebar {
         display: none;
         width: 100%;
         height: auto;
-        position: relative;
     }
+
+    .adminBackgroundDiv, .adminProfileDiv {
+        flex-flow: column;
+    }
+
+    .adminBackgroundDiv #triggerBgUpload, .adminProfileDiv #triggerProfileUpload {
+        width: 200px;
+        margin: 0px auto;
+    }
+     .adminBackgroundDiv #backgroundImgPreview, .adminProfileDiv #thumbnailImgPreview {
+         margin: 20px auto 20px auto;
+     }
 
     /* toggle navigation */
     .shownavigation {
         display: block;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 60px;
+        z-index: 200;
     }
 
     #mobileMenuBtn {
@@ -369,8 +559,122 @@ header {
 
 }
 
+@media screen and (max-width: 624px) {
+
+    #displayLinks li, #displayLinks li .link-content-div, #displayLinks li .link-content-div .buttons {
+        width: 400px;
+    }
+
+    #displayLinks .link-name[contenteditable="true"],
+    .edit-contentable {
+        width: 394px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .adminBackgroundDiv #backgroundImgPreview,
+    .adminProfileDiv #thumbnailImgPreview {
+        width: 100%;
+    }
+
+    header {
+        display: block;
+    }
+
+    header > h2 {
+        display: none;
+    }
+
+    .flex-header {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #siteLogo {
+        display: none;
+    }
+
+    .addLink-inputBox-div {
+        flex-flow: column;
+        margin-bottom: 20px;
+    }
+
+    .addLink-inputBox {
+        margin: 0px;
+        width: 200px;
+    }
+    .adminSocialMediaDiv .link-input {
+        min-width: 300px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+
+    #viewContent {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .adminSocialMediaDiv .link-input {
+        max-width: 240px;
+        min-width: 200px;
+        float: right;
+    }
+
+    .link-input-div {
+        grid-template-columns: 1fr 8fr;
+    }
+
+    #backgroundImgDiv,
+    #backgroundOverlayDiv {
+        transform: scale(1);
+        background-position: center;
+    }
+
+    #displayLinks li, #displayLinks li .link-content-div, #displayLinks li .link-content-div .buttons {
+        width: 300px;
+    }
+
+    #displayLinks .link-name[contenteditable="true"],
+    .edit-contentable {
+        width: 294px;
+    }
+}
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-     
+@media screen and (max-width: 414px) {
+     .adminSocialMediaDiv .link-input {
+         max-width: 180px;
+         min-width: 140px;
+     }
+
+     .link-input-div {
+         grid-template-columns: 1fr 3fr;
+     }
+}
+
+@media screen and (max-width: 396px) {
+    #displayLinks li,
+    #displayLinks li .link-content-div,
+    #displayLinks li .link-content-div .buttons {
+        width: 260px;
+    }
+
+    #displayLinks .link-name[contenteditable="true"],
+    .edit-contentable {
+        width: 254px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    #displayLinks li,
+    #displayLinks li .link-content-div,
+    #displayLinks li .link-content-div .buttons {
+        width: 200px;
+    }
+
+    #displayLinks .link-name[contenteditable="true"],
+    .edit-contentable {
+        width: 194px;
+    }
 }

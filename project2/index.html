@@ -17,10 +17,15 @@
   </head>
   <body>
     <header id="header">
-      <h2><a href="#">Logo Here</a></h2>
-      <div class="profile-div">
-        <h4 id="userName">Username Here</h4>
-        <i id="mobileMenuBtn" class="fa fa-bars"></i>
+      <h2><a id="siteLogo" href="#">Ur Links</a></h2>
+      <div class="flex-header">
+        <div id="callToAction">
+          <button class="preview-btn btn" id="previewBtn">Preview Page</button>
+        </div>
+        <div class="profile-div">
+          <h4 id="userName">Username Here</h4>
+          <i id="mobileMenuBtn" class="fa fa-bars"></i>
+        </div>
       </div>
     </header>
     <main>
@@ -38,34 +43,89 @@
           href="#profileSection"
           >Profile</a
         >
+        <a
+          id="socialMediaNavItem"
+          class="nav-item sidebar-nav-item"
+          href="#socialMediaSection"
+          >Social Media</a
+        >
       </section>
       <section id="adminContent">
         <div id="linksSection">
-          <div id="callToAction">
+          <!-- <div id="callToAction">
             <button class="preview-btn" id="previewBtn">Preview Page</button>
-          </div>
+          </div> -->
+          <h4>Insert External Links Here</h4>
           <form id="addLinkForm">
-            <label for="linkName">Title of link:</label> <br />
-            <input id="linkName" type="text" /> <br />
+            <!-- <label for="linkName">Title of link:</label> <br /> -->
+            <div class="addLink-inputBox-div">
+              <input
+                id="linkName"
+                class="addLink-inputBox"
+                type="text"
+                placeholder="Enter Title"
+              />
+              <br />
 
-            <label for="linkUrl">Link url:</label> <br />
-            <input id="linkUrl" type="url" pattern="https?://.+" required />
-            <br />
-            <button id="buttonAdd" type="button">Add Link</button>
+              <!-- <label for="linkUrl">Link url:</label> <br /> -->
+              <input
+                id="linkUrl"
+                class="addLink-inputBox"
+                type="url"
+                pattern="https?://.+"
+                placeholder="Enter Url (https://)"
+                required
+              />
+            </div>
+            <button id="buttonAdd" type="button" class="btn">Add Link</button>
           </form>
           <ul id="displayLinks"></ul>
         </div>
         <div id="profileSection">
           <div id="profileSection">
             <!-- Header Image Upload and display -->
-            <h4>Upload Background Img here</h4>
-            <input id="backgroundImgUpload" type="file" name="headerImg" />
-            <div id="backgroundImgPreview" class="background-img-div"></div>
+            <h4>Enter Profile Name Here</h4>
+            <input
+              type="text"
+              id="inputProfileName"
+              value=""
+              placeholder="Enter Profile Name Here"
+            />
+            <button id="buttonAddProfileName" type="button" class="btn">
+              Save
+            </button>
+            <!-- Header Image Upload and display -->
+            <h4>Upload Background Img Here</h4>
+            <div class="adminBackgroundDiv">
+              <input
+                id="backgroundImgUpload"
+                type="file"
+                name="headerImg"
+                hidden
+              />
+              <label class="btn" for="backgroundImgUpload" id="triggerBgUpload"
+                >Upload Background Image</label
+              >
+              <div id="backgroundImgPreview" class="background-img-div"></div>
+            </div>
 
             <!-- Profile Image Upload and display -->
-            <h4>Upload Profile Img here</h4>
-            <input id="thumbnailImgUpload" type="file" name="thumbnailimg" />
-            <div id="thumbnailImgPreview" class="profile-image-div"></div>
+            <h4>Upload Profile Img Here</h4>
+            <div class="adminProfileDiv">
+              <input
+                id="thumbnailImgUpload"
+                type="file"
+                name="thumbnailimg"
+                hidden
+              />
+              <label
+                class="btn"
+                for="thumbnailImgUpload"
+                id="triggerProfileUpload"
+                >Upload Profile Image</label
+              >
+              <div id="thumbnailImgPreview" class="profile-image-div"></div>
+            </div>
 
             <!-- Color Upload and display-->
             <!-- <h4>Choose color here</h4>
@@ -73,6 +133,74 @@
           <div id="colorSelector" class="color-selector">
             <input type="color" id="inputColor" name="inputColor" />
           </div> -->
+          </div>
+        </div>
+        <div id="socialMediaSection">
+          <h4>Insert Social Media Links Here</h4>
+          <div class="adminSocialMediaDiv">
+            <div id="facebookLinkInputDiv" class="link-input-div">
+              <i class="fab fa-facebook-square"></i>
+              <input
+                type="url"
+                id="facebookLinkInput"
+                class="link-input"
+                placeholder="Enter Url (Ex. https://facebook.com/)"
+                pattern="https?://.+ | .+.com"
+              />
+            </div>
+            <div id="instagramLinkInputDiv" class="link-input-div">
+              <i class="fab fa-instagram-square"></i>
+              <input
+                type="url"
+                id="instagramLinkInput"
+                class="link-input"
+                placeholder="Enter Url (Ex. https://instagram.com/)"
+                pattern="https://.*"
+              />
+            </div>
+            <div id="YoutubeLinkInputDiv" class="link-input-div">
+              <i class="fab fa-youtube-square"></i>
+              <input
+                type="url"
+                id="youtubeLinkInput"
+                class="link-input"
+                placeholder="Enter Url (Ex. https://youtube.com/)"
+                pattern="https://.*"
+              />
+            </div>
+            <div id="twitterLinkInputDiv" class="link-input-div">
+              <i class="fab fa-twitter-square"></i>
+              <input
+                type="url"
+                id="twitterLinkInput"
+                class="link-input"
+                placeholder="Enter Url (Ex.https://twitter.com/)"
+                pattern="https://.*"
+              />
+            </div>
+            <div id="linkedinLinkInputDiv" class="link-input-div">
+              <i class="fab fa-linkedin"></i>
+              <input
+                type="url"
+                id="linkedinLinkInput"
+                class="link-input"
+                placeholder="Enter Url (Ex. https://linkedin.com/)"
+                pattern="https://.*"
+              />
+            </div>
+            <div id="soundcloudLinkInputDiv" class="link-input-div">
+              <i class="fab fa-soundcloud"></i>
+              <input
+                type="url"
+                id="soundcloudLinkInput"
+                class="link-input"
+                placeholder="Enter Url (Ex. https://soundcloud.com/)"
+                pattern="https://.*"
+              />
+            </div>
+            <button id="addSocialMediaBtn" class="social-media-add-btn btn">
+              Add Links
+            </button>
           </div>
         </div>
       </section>

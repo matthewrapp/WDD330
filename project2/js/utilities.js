@@ -41,19 +41,57 @@ export function setRandomColor(element, color) {
     element.style.backgroundColor = color;
 }
 
-// export function setImg(id, img) {
-//     let element = document.getElementById(id);
-//     element.style.background = `url(data:image/png;base64,${img})`;
-//     element.style.backgroundSize = 'cover';
-//     element.style.backgroundRepeat = 'no-repeat';
-// }
-
 export function setImg(id, img) {
     let element = document.getElementById(id);
     element.style.backgroundImage = `url('${img}')`;
     element.style.backgroundSize = 'cover';
     element.style.backgroundRepeat = 'no-repeat';
 }
+
+export function createIcon(iconClass, linkHref, div) {
+    // create icon
+    let icon = document.createElement('i');
+    icon.setAttribute('class', iconClass);
+    // create href/link
+    let showIcon = document.createElement('a');
+    showIcon.setAttribute('href', linkHref);
+    showIcon.setAttribute('target', '_blank');
+    // append icon into the link
+    showIcon.appendChild(icon);
+    // append link into the social media div
+    div.appendChild(showIcon);
+}
+
+export function createRange(node, chars, range) {
+    if (!range) {
+        range = document.createRange()
+        range.selectNode(node);
+        range.setStart(node, 0);
+    }
+
+    if (chars.count === 0) {
+        range.setEnd(node, chars.count);
+    } else if (node && chars.count > 0) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            if (node.textContent.length < chars.count) {
+                chars.count -= node.textContent.length;
+            } else {
+                range.setEnd(node, chars.count);
+                chars.count = 0;
+            }
+        } else {
+            for (var lp = 0; lp < node.childNodes.length; lp++) {
+                range = createRange(node.childNodes[lp], chars, range);
+
+                if (chars.count === 0) {
+                    break;
+                }
+            }
+        }
+    }
+
+    return range;
+};
 
 export function targetAction(event) {
     // delete the links from the list
@@ -89,20 +127,22 @@ export function targetAction(event) {
         let headerSection = document.getElementById("header");
         adminSection.style.display = "none";
         sidebarSection.style.display = "none";
-        headerSection.style.display = "none";
+        // headerSection.style.display = "none";
 
         myLink.displayLandingPage();
     }
 
     // upload profile img
     if (event.target.id == "thumbnailImgUpload" && event.target.files.length > 0) {
-        myLink.uploadProfileImg(event);
+        myLink.uploadImg(event, "thumbnailImgPreview", "ProfileImages", true);
     }
 
     // upload background img
     if (event.target.id == "backgroundImgUpload" && event.target.files.length > 0) {
-        myLink.uploadBackgroundImg(event);
+        myLink.uploadImg(event, "backgroundImgPreview", "BackgroundImages", false);
     }
+
+
 
     if (event.target.id == "linksNavItem") {
         myLink.navigateToLinksPage();
@@ -110,6 +150,18 @@ export function targetAction(event) {
 
     if (event.target.id == "profileNavItem") {
         myLink.navigateToProfilePage();
+    }
+
+    if (event.target.id == "socialMediaNavItem") {
+        myLink.navigateToSocialMediaPage();
+    }
+
+    if (event.target.id == "buttonAddProfileName") {
+        myLink.setPageName();
+    }
+
+    if (event.target.id == "addSocialMediaBtn") {
+        myLink.setSocialMediaLinks();
     }
 }
 
