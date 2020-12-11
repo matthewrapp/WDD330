@@ -21,6 +21,9 @@
       <div class="flex-header">
         <div id="callToAction">
           <button class="preview-btn btn" id="previewBtn">Preview Page</button>
+          <button class="back-to-panel-btn btn" id="backToPanelBtn">
+            Back to Admin Panel
+          </button>
         </div>
         <div class="profile-div">
           <h4 id="userName">Username Here</h4>
@@ -147,6 +150,9 @@
                 placeholder="Enter Url (Ex. https://facebook.com/)"
                 pattern="https?://.+ | .+.com"
               />
+              <button id="facebookTrashBtn" class="social-media-trash-btn hide">
+                <i class="fas fa-trash btn"></i>
+              </button>
             </div>
             <div id="instagramLinkInputDiv" class="link-input-div">
               <i class="fab fa-instagram-square"></i>
@@ -157,8 +163,14 @@
                 placeholder="Enter Url (Ex. https://instagram.com/)"
                 pattern="https://.*"
               />
+              <button
+                id="instagramTrashBtn"
+                class="social-media-trash-btn hide"
+              >
+                <i class="fas fa-trash btn"></i>
+              </button>
             </div>
-            <div id="YoutubeLinkInputDiv" class="link-input-div">
+            <div id="youtubeLinkInputDiv" class="link-input-div">
               <i class="fab fa-youtube-square"></i>
               <input
                 type="url"
@@ -167,6 +179,9 @@
                 placeholder="Enter Url (Ex. https://youtube.com/)"
                 pattern="https://.*"
               />
+              <button id="youtubeTrashBtn" class="social-media-trash-btn hide">
+                <i class="fas fa-trash btn"></i>
+              </button>
             </div>
             <div id="twitterLinkInputDiv" class="link-input-div">
               <i class="fab fa-twitter-square"></i>
@@ -177,6 +192,9 @@
                 placeholder="Enter Url (Ex.https://twitter.com/)"
                 pattern="https://.*"
               />
+              <button id="twitterTrashBtn" class="social-media-trash-btn hide">
+                <i class="fas fa-trash btn"></i>
+              </button>
             </div>
             <div id="linkedinLinkInputDiv" class="link-input-div">
               <i class="fab fa-linkedin"></i>
@@ -187,6 +205,9 @@
                 placeholder="Enter Url (Ex. https://linkedin.com/)"
                 pattern="https://.*"
               />
+              <button id="linkedinTrashBtn" class="social-media-trash-btn hide">
+                <i class="fas fa-trash btn"></i>
+              </button>
             </div>
             <div id="soundcloudLinkInputDiv" class="link-input-div">
               <i class="fab fa-soundcloud"></i>
@@ -197,6 +218,12 @@
                 placeholder="Enter Url (Ex. https://soundcloud.com/)"
                 pattern="https://.*"
               />
+              <button
+                id="soundcloudTrashBtn"
+                class="social-media-trash-btn hide"
+              >
+                <i class="fas fa-trash btn"></i>
+              </button>
             </div>
             <button id="addSocialMediaBtn" class="social-media-add-btn btn">
               Add Links

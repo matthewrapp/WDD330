@@ -24,6 +24,14 @@ li {
     background-color: red;
 }
 
+.hide {
+    display: none;
+}
+
+#backToPanelBtn {
+    display: none;
+}
+
 #siteLogo {
     font-size: 22px;
     color: black;
@@ -201,14 +209,18 @@ header {
 
 .link-input-div {
     display: grid;
-    grid-template-columns: 1fr 18fr;
+    grid-template-columns: 1fr 18fr 3fr;
     align-items: center;
-    margin-bottom: 26px;;
+    margin-bottom: 26px;
+    border: none;
+    border-bottom: .25px solid #888;
+    background: transparent;
+    padding: 12px 4px 12px 4px;
 }
 
 #inputProfileName, .link-input {
     border: none;
-    border-bottom: .25px solid #888;
+    /* border-bottom: .25px solid #888; */
     background: transparent;
     padding: 12px 60px 12px 4px;
 }
@@ -216,6 +228,13 @@ header {
 .adminSocialMediaDiv .link-input {
     min-width: 400px;
 }
+
+.social-media-trash-btn {
+    border: none;
+    background: none;
+    text-align: right;
+}
+
 
 
 
@@ -608,6 +627,16 @@ header {
     }
 }
 
+@media screen and (max-width: 533px) {
+    .addLink-inputBox {
+        margin: 0px;
+        width: 100px;
+    }
+    .adminSocialMediaDiv .link-input {
+        min-width: 200px;
+    }
+}
+
 @media screen and (max-width: 520px) {
 
     #viewContent {
@@ -622,7 +651,7 @@ header {
     }
 
     .link-input-div {
-        grid-template-columns: 1fr 8fr;
+        grid-template-columns: 1fr 8fr 4fr;
     }
 
     #backgroundImgDiv,
@@ -649,7 +678,7 @@ header {
      }
 
      .link-input-div {
-         grid-template-columns: 1fr 3fr;
+         grid-template-columns: 1fr 3fr 1fr;
      }
 }
 
@@ -664,6 +693,10 @@ header {
     .edit-contentable {
         width: 254px;
     }
+
+    .adminSocialMediaDiv .link-input {
+        max-width: 140px;
+    }
 }
 
 @media screen and (max-width: 330px) {
@@ -676,5 +709,10 @@ header {
     #displayLinks .link-name[contenteditable="true"],
     .edit-contentable {
         width: 194px;
+    }
+
+    .adminSocialMediaDiv .link-input {
+        max-width: 100px;
+        padding-right: 0;
     }
 }

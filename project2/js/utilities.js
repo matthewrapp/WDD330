@@ -93,6 +93,7 @@ export function createRange(node, chars, range) {
     return range;
 };
 
+
 export function targetAction(event) {
     // delete the links from the list
     // if pressed on button outside of the trashcan icon
@@ -124,12 +125,27 @@ export function targetAction(event) {
     if (event.target.id == "previewBtn") {
         let adminSection = document.getElementById("adminContent");
         let sidebarSection = document.getElementById("sidebar");
-        let headerSection = document.getElementById("header");
         adminSection.style.display = "none";
         sidebarSection.style.display = "none";
-        // headerSection.style.display = "none";
 
         myLink.displayLandingPage();
+    }
+
+    if (event.target.id == "backToPanelBtn") {
+        // let viewContentSection = document.getElementById('viewContent');
+        // let adminSection = document.getElementById("adminContent");
+        // let sidebarSection = document.getElementById("sidebar");
+        // viewContentSection.style.display = 'none';
+        // adminSection.style.display = "block";
+        // sidebarSection.style.display = "block";
+
+        // let previewBtn = document.getElementById('previewBtn');
+        // previewBtn.style.display = 'block';
+        // let backToPanelBtn = document.getElementById('backToPanelBtn');
+        // backToPanelBtn.style.display = 'none';
+
+        // myLink.navigateToLinksPage();
+        window.location.reload();
     }
 
     // upload profile img
@@ -142,7 +158,24 @@ export function targetAction(event) {
         myLink.uploadImg(event, "backgroundImgPreview", "BackgroundImages", false);
     }
 
-
+    if (event.target.id == "facebookTrashBtn") {
+        myLink.deleteSocialMediaLink(event);
+    }
+    if (event.target.id == "instagramTrashBtn") {
+        myLink.deleteSocialMediaLink(event);
+    }
+    if (event.target.id == "youtubeTrashBtn") {
+        myLink.deleteSocialMediaLink(event);
+    }
+    if (event.target.id == "twitterTrashBtn") {
+        myLink.deleteSocialMediaLink(event);
+    }
+    if (event.target.id == "linkedinTrashBtn") {
+        myLink.deleteSocialMediaLink(event);
+    }
+    if (event.target.id == "soundcloudTrashBtn") {
+        myLink.deleteSocialMediaLink(event);
+    }
 
     if (event.target.id == "linksNavItem") {
         myLink.navigateToLinksPage();
