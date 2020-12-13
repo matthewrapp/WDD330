@@ -18,10 +18,16 @@ export function saveToLocalStorage(key, data) {
 
 // formatting url to have https
 export function formatUrl(url) {
-    var httpString = "http://";
-    var httpsString = "https://";
-    if (url.substr(0, httpString.length).toLowerCase() !== httpString && url.substr(0, httpsString.length).toLowerCase() !== httpsString)
-        url = httpsString + url;
+    let httpString = "http://";
+    let httpsString = "https://";
+    let com = '.com';
+    if (url.substr(0, httpString.length).toLowerCase() !== httpString && url.substr(0, httpsString.length).toLowerCase() !== httpsString) {
+        if (!url.includes('.com')) {
+            url = httpsString + url + com;
+        } else {
+            url = httpsString + url;
+        }
+    }
     return url;
 }
 
@@ -84,36 +90,36 @@ export function createIcon(iconClass, linkHref, div) {
     div.appendChild(showIcon);
 }
 
-export function createRange(node, chars, range) {
-    if (!range) {
-        range = document.createRange()
-        range.selectNode(node);
-        range.setStart(node, 0);
-    }
+// export function createRange(node, chars, range) {
+//     if (!range) {
+//         range = document.createRange()
+//         range.selectNode(node);
+//         range.setStart(node, 0);
+//     }
 
-    if (chars.count === 0) {
-        range.setEnd(node, chars.count);
-    } else if (node && chars.count > 0) {
-        if (node.nodeType === Node.TEXT_NODE) {
-            if (node.textContent.length < chars.count) {
-                chars.count -= node.textContent.length;
-            } else {
-                range.setEnd(node, chars.count);
-                chars.count = 0;
-            }
-        } else {
-            for (var lp = 0; lp < node.childNodes.length; lp++) {
-                range = createRange(node.childNodes[lp], chars, range);
+//     if (chars.count === 0) {
+//         range.setEnd(node, chars.count);
+//     } else if (node && chars.count > 0) {
+//         if (node.nodeType === Node.TEXT_NODE) {
+//             if (node.textContent.length < chars.count) {
+//                 chars.count -= node.textContent.length;
+//             } else {
+//                 range.setEnd(node, chars.count);
+//                 chars.count = 0;
+//             }
+//         } else {
+//             for (var lp = 0; lp < node.childNodes.length; lp++) {
+//                 range = createRange(node.childNodes[lp], chars, range);
 
-                if (chars.count === 0) {
-                    break;
-                }
-            }
-        }
-    }
+//                 if (chars.count === 0) {
+//                     break;
+//                 }
+//             }
+//         }
+//     }
 
-    return range;
-};
+//     return range;
+// };
 
 
 

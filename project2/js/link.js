@@ -2,8 +2,7 @@ import {
     qs,
     saveToLocalStorage,
     getFromLocalStorage,
-    formatUrl,
-    createRange
+    formatUrl
 } from './utilities.js';
 
 class Link {
