@@ -8,10 +8,7 @@ import {
     qs
 } from './utilities.js';
 
-
 // create instance of class AllLinks
-// consider changing the key to a dynamic variable that the user wants the page name to be (ex. VVRN or Lipp)
-// export const myLink = new AllLinks("#displayLinks", 'links');
 // Create page attach links to that page
 export const myLink = new Page("Username");
 
@@ -27,7 +24,6 @@ window.onload = (event) => {
 document.getElementById('profileSection').style.display = 'none';
 document.getElementById('linksSection').style.display = 'none';
 document.getElementById('socialMediaSection').style.display = 'none';
-
 
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 mobileMenuBtn.addEventListener('click', () => {

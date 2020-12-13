@@ -8,7 +8,9 @@ import {
     setImg,
     formatUrl,
     createIcon,
-    socialMediaPlaceholderConditonal
+    socialMediaPlaceholderConditonal,
+    display,
+    activeTab
 } from './utilities.js';
 
 import firebaseApp from './firebaseApp.js';
@@ -32,6 +34,16 @@ export class Page {
                 'soundcloud': null
             },
         };
+
+        // set global data members
+        // social media input boxes
+        this.facebookInputBox = document.getElementById('facebookLinkInput');
+        this.instagramInputBox = document.getElementById('instagramLinkInput');
+        this.youtubeInputBox = document.getElementById('youtubeLinkInput');
+        this.twitterInputBox = document.getElementById('twitterLinkInput');
+        this.linkedinInputBox = document.getElementById('linkedinLinkInput');
+        this.soundcloudInputBox = document.getElementById('soundcloudLinkInput');
+
         // load local storage info
         let data = getFromLocalStorage(this.key);
         if (data != null) {
@@ -59,20 +71,9 @@ export class Page {
         let mobileMenu = document.getElementById('sidebar');
         mobileMenu.classList.toggle('shownavigation');
 
-        let linksNavItem = document.getElementById('linksNavItem');
-        let profileNavItem = document.getElementById('profileNavItem');
-        let socialNavItem = document.getElementById('socialMediaNavItem');
-        linksNavItem.classList.add('active');
-        profileNavItem.classList.remove('active');
-        socialNavItem.classList.remove('active');
+        activeTab('linksNavItem', 'profileNavItem', 'socialMediaNavItem');
 
-        let linksSection = document.getElementById('linksSection');
-        let profileSection = document.getElementById('profileSection');
-        let socialMediaSection = document.getElementById('socialMediaSection');
-        linksSection.style.display = 'block';
-        profileSection.style.display = 'none';
-        socialMediaSection.style.display = 'none';
-        this.pageData.currentPage = linksSection.id;
+        display('linksSection', 'socialMediaSection', 'profileSection');
 
         saveToLocalStorage(this.key, this.pageData);
     }
@@ -81,22 +82,12 @@ export class Page {
         let mobileMenu = document.getElementById('sidebar');
         mobileMenu.classList.toggle('shownavigation');
 
-        let linksNavItem = document.getElementById('linksNavItem');
-        let profileNavItem = document.getElementById('profileNavItem');
-        let socialNavItem = document.getElementById('socialMediaNavItem');
-        profileNavItem.classList.add('active');
-        linksNavItem.classList.remove('active');
-        socialNavItem.classList.remove('active');
+        activeTab('profileNavItem', 'linksNavItem', 'socialMediaNavItem');
 
-        let linksSection = document.getElementById('linksSection');
-        let profileSection = document.getElementById('profileSection');
-        let socialMediaSection = document.getElementById('socialMediaSection');
-        let nameInputBox = document.getElementById('inputProfileName');
-        profileSection.style.display = 'block';
-        socialMediaSection.style.display = 'none';
-        linksSection.style.display = 'none';
-        nameInputBox.placeholder = this.pageData.pageName;
-        this.pageData.currentPage = profileSection.id;
+        // let nameInputBox = document.getElementById('inputProfileName');
+        // nameInputBox.placeholder = this.pageData.pageName;
+
+        display('profileSection', 'socialMediaSection', 'linksSection');
 
         saveToLocalStorage(this.key, this.pageData);
     }
@@ -105,20 +96,55 @@ export class Page {
         let mobileMenu = document.getElementById('sidebar');
         mobileMenu.classList.toggle('shownavigation');
 
-        let linksNavItem = document.getElementById('linksNavItem');
-        let profileNavItem = document.getElementById('profileNavItem');
-        let socialNavItem = document.getElementById('socialMediaNavItem');
-        socialNavItem.classList.add('active');
-        linksNavItem.classList.remove('active');
-        profileNavItem.classList.remove('active');
+        activeTab('socialMediaNavItem', 'linksNavItem', 'profileNavItem');
 
-        let linksSection = document.getElementById('linksSection');
-        let profileSection = document.getElementById('profileSection');
-        let socialMediaSection = document.getElementById('socialMediaSection');
-        socialMediaSection.style.display = 'block';
-        linksSection.style.display = 'none';
-        profileSection.style.display = 'none';
-        this.pageData.currentPage = socialMediaSection.id;
+        // display socialMediaSection, hide profileSection & linksSection
+        display('socialMediaSection', 'profileSection', 'linksSection');
+
+        if (this.pageData.socialMedia.facebook != null) {
+            let trashBtn = document.getElementById('facebookTrashBtn');
+            this.facebookInputBox.placeholder = this.pageData.socialMedia.facebook;
+            trashBtn.classList.remove('hide');
+        } else {
+            this.facebookInputBox.placeholder = 'Enter Your Facebook URL';
+        }
+        if (this.pageData.socialMedia.instagram != null) {
+            let trashBtn = document.getElementById('instagramTrashBtn');
+            this.instagramInputBox.placeholder = this.pageData.socialMedia.instagram;
+            trashBtn.classList.remove('hide');
+        } else {
+            this.instagramInputBox.placeholder = 'Enter Your Instagram URL';
+        }
+        if (this.pageData.socialMedia.youtube != null) {
+            let trashBtn = document.getElementById('youtubeTrashBtn');
+            this.youtubeInputBox.placeholder = this.pageData.socialMedia.youtube;
+            trashBtn.classList.remove('hide');
+        } else {
+            this.youtubeInputBox.placeholder = 'Enter Your Youtube URL';
+        }
+        if (this.pageData.socialMedia.twitter != null) {
+            let trashBtn = document.getElementById('twitterTrashBtn');
+            this.twitterInputBox.placeholder = this.pageData.socialMedia.twitter;
+            trashBtn.classList.remove('hide');
+        } else {
+            this.twitterInputBox.placeholder = 'Enter Your Twitter URL';
+        }
+        if (this.pageData.socialMedia.linkedin) {
+            let trashBtn = document.getElementById('linkedinTrashBtn');
+            this.linkedinInputBox.placeholder = this.pageData.socialMedia.linkedin;
+            trashBtn.classList.remove('hide');
+        } else {
+            this.linkedinInputBox.placeholder = 'Enter Your LinkedIn URL';
+        }
+        if (this.pageData.socialMedia.soundcloud) {
+            let trashBtn = document.getElementById('soundcloudTrashBtn');
+            this.soundcloudInputBox.placeholder = this.pageData.socialMedia.soundcloud;
+            trashBtn.classList.remove('hide');
+        } else {
+            this.soundcloudInputBox.placeholder = 'Enter Your Soundcloud URL';
+        }
+
+
 
         saveToLocalStorage(this.key, this.pageData);
     }
@@ -136,79 +162,56 @@ export class Page {
         socialNavItem.classList.remove('active');
 
         if (this.pageData.currentPage == 'linksSection') {
-            linksSection.style.display = 'block';
-            profileSection.style.display = 'none';
-            socialMediaSection.style.display = 'none';
-            this.pageData.currentPage = linksSection.id;
-            linksNavItem.classList.add('active');
-            profileNavItem.classList.remove('active');
-            socialNavItem.classList.remove('active');
+            display('linksSection', 'profileSection', 'socialMediaSection');
+            activeTab('linksNavItem', 'profileNavItem', 'socialMediaNavItem');
         } else if (this.pageData.currentPage == 'profileSection') {
-            linksSection.style.display = 'none';
-            profileSection.style.display = 'block';
-            socialMediaSection.style.display = 'none';
-            this.pageData.currentPage = profileSection.id;
-            linksNavItem.classList.remove('active');
-            profileNavItem.classList.add('active');
-            socialNavItem.classList.remove('active');
+            display('profileSection', 'linksSection', 'socialMediaSection');
+            activeTab('profileNavItem', 'linksNavItem', 'socialMediaNavItem');
         } else {
-            linksSection.style.display = 'none';
-            profileSection.style.display = 'none';
-            socialMediaSection.style.display = 'block';
-            this.pageData.currentPage = socialMediaSection.id;
-
-            linksNavItem.classList.remove('active');
-            profileNavItem.classList.remove('active');
-            socialNavItem.classList.add('active');
-
-            let facebookInputBox = document.getElementById('facebookLinkInput');
-            let instagramInputBox = document.getElementById('instagramLinkInput');
-            let youtubeInputBox = document.getElementById('youtubeLinkInput');
-            let twitterInputBox = document.getElementById('twitterLinkInput');
-            let linkedinInputBox = document.getElementById('linkedinLinkInput');
-            let soundcloudInputBox = document.getElementById('soundcloudLinkInput');
+            display('socialMediaSection', 'linksSection', 'profileSection');
+            activeTab('socialMediaNavItem', 'linksNavItem', 'profileNavItem');
 
             if (this.pageData.socialMedia.facebook != null) {
                 let trashBtn = document.getElementById('facebookTrashBtn');
-                facebookInputBox.placeholder = this.pageData.socialMedia.facebook;
+                this.facebookInputBox.placeholder = this.pageData.socialMedia.facebook;
                 trashBtn.classList.remove('hide');
             } else {
-                facebookInputBox.placeholder = 'Enter Your Facebook URL';
+                this.facebookInputBox.placeholder = 'Enter Your Facebook URL';
             }
             if (this.pageData.socialMedia.instagram != null) {
                 let trashBtn = document.getElementById('instagramTrashBtn');
-                instagramInputBox.placeholder = this.pageData.socialMedia.instagram;
+                this.instagramInputBox.placeholder = this.pageData.socialMedia.instagram;
                 trashBtn.classList.remove('hide');
             } else {
-                instagramInputBox.placeholder = 'Enter Your Instagram URL';
+                this.instagramInputBox.placeholder = 'Enter Your Instagram URL';
             }
             if (this.pageData.socialMedia.youtube != null) {
                 let trashBtn = document.getElementById('youtubeTrashBtn');
-                youtubeInputBox.placeholder = this.pageData.socialMedia.youtube;
+                this.youtubeInputBox.placeholder = this.pageData.socialMedia.youtube;
                 trashBtn.classList.remove('hide');
             } else {
-                youtubeInputBox.placeholder = 'Enter Your Youtube URL';
+                this.youtubeInputBox.placeholder = 'Enter Your Youtube URL';
             }
             if (this.pageData.socialMedia.twitter != null) {
                 let trashBtn = document.getElementById('twitterTrashBtn');
-                twitterInputBox.placeholder = this.pageData.socialMedia.twitter;
+                this.twitterInputBox.placeholder = this.pageData.socialMedia.twitter;
                 trashBtn.classList.remove('hide');
             } else {
-                twitterInputBox.placeholder = 'Enter Your Twitter URL';
+                this.twitterInputBox.placeholder = 'Enter Your Twitter URL';
             }
             if (this.pageData.socialMedia.linkedin) {
                 let trashBtn = document.getElementById('linkedinTrashBtn');
-                linkedinInputBox.placeholder = this.pageData.socialMedia.linkedin;
+                this.linkedinInputBox.placeholder = this.pageData.socialMedia.linkedin;
                 trashBtn.classList.remove('hide');
             } else {
-                linkedinInputBox.placeholder = 'Enter Your LinkedIn URL';
+                this.linkedinInputBox.placeholder = 'Enter Your LinkedIn URL';
             }
             if (this.pageData.socialMedia.soundcloud) {
                 let trashBtn = document.getElementById('soundcloudTrashBtn');
-                soundcloudInputBox.placeholder = this.pageData.socialMedia.soundcloud;
+                this.soundcloudInputBox.placeholder = this.pageData.socialMedia.soundcloud;
                 trashBtn.classList.remove('hide');
             } else {
-                soundcloudInputBox.placeholder = 'Enter Your Soundcloud URL';
+                this.soundcloudInputBox.placeholder = 'Enter Your Soundcloud URL';
             }
         }
     }
@@ -272,75 +275,68 @@ export class Page {
     }
 
     setSocialMediaLinks() {
-        let facebookInputBox = document.getElementById('facebookLinkInput');
-        let instagramInputBox = document.getElementById('instagramLinkInput');
-        let youtubeInputBox = document.getElementById('youtubeLinkInput');
-        let twitterInputBox = document.getElementById('twitterLinkInput');
-        let linkedinInputBox = document.getElementById('linkedinLinkInput');
-        let soundcloudInputBox = document.getElementById('soundcloudLinkInput');
 
-        if (facebookInputBox.value != "" && facebookInputBox.value.toLowerCase().includes('facebook.com')) {
+        if (this.facebookInputBox.value != "" && this.facebookInputBox.value.toLowerCase().includes('facebook.com')) {
             let trashBtn = document.getElementById('facebookTrashBtn');
-            this.pageData.socialMedia.facebook = formatUrl(facebookInputBox.value.toLowerCase());
+            this.pageData.socialMedia.facebook = formatUrl(this.facebookInputBox.value.toLowerCase());
             trashBtn.classList.remove('hide');
-        } else if (facebookInputBox.value != "") {
+        } else if (this.facebookInputBox.value != "") {
             alert('must be a Facebook proper url (Example: https://facebook.com)');
+            this.facebookInputBox.value = '';
         }
-        if (instagramInputBox.value != "" && instagramInputBox.value.toLowerCase().includes('instagram.com')) {
+        if (this.instagramInputBox.value != "" && this.instagramInputBox.value.toLowerCase().includes('instagram.com')) {
             let trashBtn = document.getElementById('instagramTrashBtn');
-            this.pageData.socialMedia.instagram = formatUrl(instagramInputBox.value.toLowerCase());
+            this.pageData.socialMedia.instagram = formatUrl(this.instagramInputBox.value.toLowerCase());
             trashBtn.classList.remove('hide');
-        } else if (instagramInputBox.value != "") {
+        } else if (this.instagramInputBox.value != "") {
             alert('must be a Instagram proper url (Example: https://instagram.com)');
+            this.instagramInputBox.value = '';
         }
-        if (youtubeInputBox.value != "" && youtubeInputBox.value.toLowerCase().includes('youtube.com')) {
+        if (this.youtubeInputBox.value != "" && this.youtubeInputBox.value.toLowerCase().includes('youtube.com')) {
             let trashBtn = document.getElementById('youtubeTrashBtn');
-            this.pageData.socialMedia.youtube = formatUrl(youtubeInputBox.value.toLowerCase());
+            this.pageData.socialMedia.youtube = formatUrl(this.youtubeInputBox.value.toLowerCase());
             trashBtn.classList.remove('hide');
-        } else if (youtubeInputBox.value != "") {
+        } else if (this.youtubeInputBox.value != "") {
             alert('must be a Youtube proper url (Example: https://youtube.com)');
+            this.youtubeInputBox.value = '';
         }
-        if (twitterInputBox.value != "" && twitterInputBox.value.toLowerCase().includes('twitter.com')) {
+        if (this.twitterInputBox.value != "" && this.twitterInputBox.value.toLowerCase().includes('twitter.com')) {
             let trashBtn = document.getElementById('twitterTrashBtn');
-            this.pageData.socialMedia.twitter = formatUrl(twitterInputBox.value.toLowerCase());
+            this.pageData.socialMedia.twitter = formatUrl(this.twitterInputBox.value.toLowerCase());
             trashBtn.classList.remove('hide');
-        } else if (twitterInputBox.value != "") {
+        } else if (this.twitterInputBox.value != "") {
             alert('must be a Twitter proper url (Example: https://twitter.com)');
+            this.twitterInputBox.value = '';
         }
-        if (linkedinInputBox.value != "" && linkedinInputBox.value.toLowerCase().includes('linkedin.com')) {
+        if (this.linkedinInputBox.value != "" && this.linkedinInputBox.value.toLowerCase().includes('linkedin.com')) {
             let trashBtn = document.getElementById('linkedinTrashBtn');
-            this.pageData.socialMedia.linkedin = formatUrl(linkedinInputBox.value.toLowerCase());
+            this.pageData.socialMedia.linkedin = formatUrl(this.linkedinInputBox.value.toLowerCase());
             trashBtn.classList.remove('hide');
-        } else if (linkedinInputBox.value != "") {
+        } else if (this.linkedinInputBox.value != "") {
             alert('must be a LinkedIn proper url (Example: https://linkedin.com)');
+            this.linkedinInputBox.value = '';
         }
-        if (soundcloudInputBox.value != "" && soundcloudInputBox.value.toLowerCase().includes('soundcloud.com')) {
+        if (this.soundcloudInputBox.value != "" && this.soundcloudInputBox.value.toLowerCase().includes('soundcloud.com')) {
             let trashBtn = document.getElementById('soundcloudTrashBtn');
-            this.pageData.socialMedia.soundcloud = formatUrl(soundcloudInputBox.value.toLowerCase());
+            this.pageData.socialMedia.soundcloud = formatUrl(this.soundcloudInputBox.value.toLowerCase());
             trashBtn.classList.remove('hide');
-        } else if (soundcloudInputBox.value != "") {
+        } else if (this.soundcloudInputBox.value != "") {
             alert('must be a Soundcloud proper url (Example: https://soundcloud.com)');
+            this.soundcloudInputBox.value = '';
         }
 
         saveToLocalStorage(this.key, this.pageData);
-        // facebookInputBox.value = '';
-        // instagramInputBox.value = null;
-        // youtubeInputBox.value = null;
-        // twitterInputBox.value = null;
-        // linkedinInputBox.value = null;
-        // soundcloudInputBox.value = null;
 
-        socialMediaPlaceholderConditonal(facebookInputBox, this.pageData.socialMedia.facebook, 'Facebook');
-        socialMediaPlaceholderConditonal(instagramInputBox, this.pageData.socialMedia.instagram, 'Instagram');
-        socialMediaPlaceholderConditonal(youtubeInputBox, this.pageData.socialMedia.youtube, 'Youtube');
-        socialMediaPlaceholderConditonal(twitterInputBox, this.pageData.socialMedia.twitter, 'Twitter');
-        socialMediaPlaceholderConditonal(linkedinInputBox, this.pageData.socialMedia.linkedin, 'LinkedIn');
-        socialMediaPlaceholderConditonal(soundcloudInputBox, this.pageData.socialMedia.soundcloud, 'Soundcloud');
+        socialMediaPlaceholderConditonal(this.facebookInputBox, this.pageData.socialMedia.facebook, 'Facebook');
+        socialMediaPlaceholderConditonal(this.instagramInputBox, this.pageData.socialMedia.instagram, 'Instagram');
+        socialMediaPlaceholderConditonal(this.youtubeInputBox, this.pageData.socialMedia.youtube, 'Youtube');
+        socialMediaPlaceholderConditonal(this.twitterInputBox, this.pageData.socialMedia.twitter, 'Twitter');
+        socialMediaPlaceholderConditonal(this.linkedinInputBox, this.pageData.socialMedia.linkedin, 'LinkedIn');
+        socialMediaPlaceholderConditonal(this.soundcloudInputBox, this.pageData.socialMedia.soundcloud, 'Soundcloud');
     }
 
     deleteSocialMediaLink(event) {
         if (event.target.parentNode.id == 'facebookLinkInputDiv') {
-            let facebookInputBox = document.getElementById('facebookLinkInput');
             let facebook = this.pageData.socialMedia.facebook;
             if (facebook != null) {
                 facebook = null;
@@ -348,7 +344,7 @@ export class Page {
 
                 saveToLocalStorage(this.key, this.pageData);
 
-                facebookInputBox.placeholder = 'Enter Your Facebook URL';
+                this.facebookInputBox.placeholder = 'Enter Your Facebook URL';
                 alert('Social Link Removed.');
                 let trashBtn = document.getElementById('facebookTrashBtn');
                 trashBtn.classList.add('hide');
@@ -356,7 +352,6 @@ export class Page {
         }
 
         if (event.target.parentNode.id == 'instagramLinkInputDiv') {
-            let instagramInputBox = document.getElementById('instagramLinkInput');
             let instagram = this.pageData.socialMedia.instagram;
             if (instagram != null) {
                 instagram = null;
@@ -364,7 +359,7 @@ export class Page {
 
                 saveToLocalStorage(this.key, this.pageData);
 
-                instagramInputBox.placeholder = 'Enter Your Instagram URL';
+                this.instagramInputBox.placeholder = 'Enter Your Instagram URL';
                 alert('Social Link Removed.');
                 let trashBtn = document.getElementById('instagramTrashBtn');
                 trashBtn.classList.add('hide');
@@ -372,7 +367,6 @@ export class Page {
         }
 
         if (event.target.parentNode.id == 'youtubeLinkInputDiv') {
-            let youtubeInputBox = document.getElementById('youtubeLinkInput');
             let youtube = this.pageData.socialMedia.youtube;
             if (youtube != null) {
                 youtube = null;
@@ -380,7 +374,7 @@ export class Page {
 
                 saveToLocalStorage(this.key, this.pageData);
 
-                youtubeInputBox.placeholder = 'Enter Your Youtube URL';
+                this.youtubeInputBox.placeholder = 'Enter Your Youtube URL';
                 alert('Social Link Removed.');
                 let trashBtn = document.getElementById('youtubeTrashBtn');
                 trashBtn.classList.add('hide');
@@ -388,7 +382,6 @@ export class Page {
         }
 
         if (event.target.parentNode.id == 'twitterLinkInputDiv') {
-            let twitterInputBox = document.getElementById('twitterLinkInput');
             let twitter = this.pageData.socialMedia.twitter;
             if (twitter != null) {
                 twitter = null;
@@ -396,7 +389,7 @@ export class Page {
 
                 saveToLocalStorage(this.key, this.pageData);
 
-                twitterInputBox.placeholder = 'Enter Your Twitter URL';
+                this.twitterInputBox.placeholder = 'Enter Your Twitter URL';
                 alert('Social Link Removed.');
                 let trashBtn = document.getElementById('twitterTrashBtn');
                 trashBtn.classList.add('hide');
@@ -404,7 +397,6 @@ export class Page {
         }
 
         if (event.target.parentNode.id == 'linkedinLinkInputDiv') {
-            let linkedinInputBox = document.getElementById('linkedinLinkInput');
             let linkedin = this.pageData.socialMedia.linkedin;
             if (linkedin != null) {
                 linkedin = null;
@@ -412,7 +404,7 @@ export class Page {
 
                 saveToLocalStorage(this.key, this.pageData);
 
-                linkedinInputBox.placeholder = 'Enter Your LinkedIn URL';
+                this.linkedinInputBox.placeholder = 'Enter Your LinkedIn URL';
                 alert('Social Link Removed.');
                 let trashBtn = document.getElementById('linkedinTrashBtn');
                 trashBtn.classList.add('hide');
@@ -420,7 +412,6 @@ export class Page {
         }
 
         if (event.target.parentNode.id == 'soundcloudLinkInputDiv') {
-            let soundcloudInputBox = document.getElementById('soundcloudLinkInput');
             let soundcloud = this.pageData.socialMedia.soundcloud;
             if (soundcloud != null) {
                 soundcloud = null;
@@ -428,7 +419,7 @@ export class Page {
 
                 saveToLocalStorage(this.key, this.pageData);
 
-                soundcloudInputBox.placeholder = 'Enter Your Soundcloud URL';
+                this.soundcloudInputBox.placeholder = 'Enter Your Soundcloud URL';
                 alert('Social Link Removed.');
                 let trashBtn = document.getElementById('soundcloudTrashBtn');
                 trashBtn.classList.add('hide');
@@ -437,7 +428,6 @@ export class Page {
         }
 
     }
-
 
     displayLandingPage() {
         let landingPage = document.getElementById("viewContent");

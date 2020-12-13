@@ -621,7 +621,7 @@ header {
 
     .addLink-inputBox {
         margin: 0px;
-        width: 200px;
+        width: 460px;
     }
     .adminSocialMediaDiv .link-input {
         min-width: 300px;
@@ -631,7 +631,7 @@ header {
 @media screen and (max-width: 533px) {
     .addLink-inputBox {
         margin: 0px;
-        width: 100px;
+        width: 240px;
     }
     .adminSocialMediaDiv .link-input {
         min-width: 200px;
@@ -673,6 +673,10 @@ header {
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 414px) {
+    .addLink-inputBox {
+        width: 220px;
+    }
+
      .adminSocialMediaDiv .link-input {
          max-width: 180px;
          min-width: 140px;

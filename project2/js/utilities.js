@@ -7,8 +7,6 @@ export function qs(selector) {
     return document.querySelector(selector);
 }
 
-// ready data
-
 // retreive tasks from data store
 export function getFromLocalStorage(key) {
     return localStorage.getItem(key);
@@ -27,31 +25,43 @@ export function formatUrl(url) {
     return url;
 }
 
-export function getRandomColor() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    let a = 1;
+// display/hide sections
+export function display(idToDisplay, idToHideOne, idToHideTwo) {
+    let show = document.getElementById(idToDisplay);
+    let hideOne = document.getElementById(idToHideOne);
+    let hideTwo = document.getElementById(idToHideTwo);
 
-    let backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-    return backgroundColor;
+    show.style.display = 'block';
+    hideOne.style.display = 'none';
+    hideTwo.style.display = 'none';
+
+    // save the current page
+    myLink.pageData.currentPage = idToDisplay;
 }
 
-export function setRandomColor(element, color) {
-    element.style.backgroundColor = color;
+export function activeTab(addActive, removeActiveOne, removeActiveTwo) {
+    let addActiveClass = document.getElementById(addActive);
+    let removeActiveClassOne = document.getElementById(removeActiveOne);
+    let removeActiveClassTwo = document.getElementById(removeActiveTwo);
+    addActiveClass.classList.add('active');
+    removeActiveClassOne.classList.remove('active');
+    removeActiveClassTwo.classList.remove('active');
 }
 
+// set the placeholder after adding social media depending on if there was a link inputted or not
 export function socialMediaPlaceholderConditonal(inputBox, socialMediaValue, socialMediaPlatform) {
-    if (inputBox.value != null || inputBox != "") {
-        inputBox.value = socialMediaValue;
+    if (inputBox.value != "") {
+        inputBox.value = '';
+        inputBox.placeholder = socialMediaValue;
+    } else if (socialMediaValue != null) {
+        inputBox.placeholder = socialMediaValue;
     } else {
-        inputBox.value = `Enter Your ${socialMediaPlatform} URL`;
+        inputBox.value = '';
+        inputBox.placeholder = `Enter Your ${socialMediaPlatform} URL`;
     }
-    // console.log(inputBox);
-    // inputBox = null;
-    // console.log(inputBox);
 }
 
+// set img helper function
 export function setImg(id, img) {
     let element = document.getElementById(id);
     element.style.backgroundImage = `url('${img}')`;
@@ -59,6 +69,7 @@ export function setImg(id, img) {
     element.style.backgroundRepeat = 'no-repeat';
 }
 
+// create icon
 export function createIcon(iconClass, linkHref, div) {
     // create icon
     let icon = document.createElement('i');
@@ -105,6 +116,10 @@ export function createRange(node, chars, range) {
 };
 
 
+
+
+// helper function
+// target differeent elements
 export function targetAction(event) {
     // delete the links from the list
     // if pressed on button outside of the trashcan icon
@@ -143,19 +158,6 @@ export function targetAction(event) {
     }
 
     if (event.target.id == "backToPanelBtn") {
-        // let viewContentSection = document.getElementById('viewContent');
-        // let adminSection = document.getElementById("adminContent");
-        // let sidebarSection = document.getElementById("sidebar");
-        // viewContentSection.style.display = 'none';
-        // adminSection.style.display = "block";
-        // sidebarSection.style.display = "block";
-
-        // let previewBtn = document.getElementById('previewBtn');
-        // previewBtn.style.display = 'block';
-        // let backToPanelBtn = document.getElementById('backToPanelBtn');
-        // backToPanelBtn.style.display = 'none';
-
-        // myLink.navigateToLinksPage();
         window.location.reload();
     }
 

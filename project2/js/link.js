@@ -3,18 +3,8 @@ import {
     saveToLocalStorage,
     getFromLocalStorage,
     formatUrl,
-    getRandomColor,
-    setRandomColor,
     createRange
 } from './utilities.js';
-
-// Need to do
-// Edit your links (keyup)
-// add header image for landing page
-// add profile image for landing page
-// add social media for landing page
-// Add button to display landing page
-// column of buttons with hrefs behind it
 
 class Link {
     constructor(name, url, color) {
@@ -35,7 +25,7 @@ export class AllLinks {
     }
 
     addNewLink(name, url) {
-        const newLink = new Link(name, url, getRandomColor());
+        const newLink = new Link(name, url);
         this.links.push(newLink);
 
         let buttonWrapper = document.createElement('div');
@@ -65,10 +55,7 @@ export class AllLinks {
         buttonsDiv.appendChild(editBtn);
         buttonWrapper.appendChild(buttonsDiv);
 
-        // setRandomColor(listItem, newLink.color);
-
         listItem.innerHTML = `
-        <!-- <div class="show-color" style="${listItem.style.cssText};"></div> -->
         <div class="link-content-div">
         <p class="link-name">${name}</p>
         <a href="${formatUrl(url)}" target="_blank">
@@ -102,10 +89,6 @@ export class AllLinks {
     }
 
     editLink(listElement, hyperlink) {
-        // create div to store the new input boxes and buttons in
-        // let editSection = document.createElement('div');
-        // editSection.setAttribute("id", "editSection");
-
         // declare
         let title = listElement.querySelector('.link-name');
         title.setAttribute('contenteditable', true);
@@ -140,10 +123,6 @@ export class AllLinks {
         finalizeBtn.setAttribute("type", "button");
         finalizeBtn.innerHTML = "Save";
 
-        // append children to modal
-        // editSection.appendChild(inputBox);
-        // editSection.appendChild(finalizeBtn);
-
         // append modal to listElement
         for (let i = 0; i < listElement.children.length; i++) {
             let leChildren = listElement.children[i];
@@ -153,10 +132,8 @@ export class AllLinks {
             }
         };
         listElement.insertBefore(inputBox, listElement.children[1]);
-        // listElement.insertBefore(finalizeBtn, listElement.children[1]);
 
         // create an event listener for the finalizeBtn to save it into the original spot
-        // finalizeBtn.addEventListener('click', myLink.editLink);
         finalizeBtn.addEventListener('click', () => {
             // get the input box and store it in a varable
             let urlElement = document.getElementById('linkUrl');
@@ -178,14 +155,14 @@ export class AllLinks {
             title.setAttribute('contenteditable', false);
             listElement.insertBefore(newHyperlink, listElement.children[1]);
 
-            let idToEdit = listElement.getAttribute("id");
+            let idToEdit = listElement.parentElement.getAttribute("id");
             this.links.forEach((link) => {
                 if (link.id == idToEdit) {
                     link.url = urlValue;
                     link.name = title.innerText;
-                    // console.log(link.url);
                 }
             })
+
             saveToLocalStorage(this.key, this.links);
             saveToLocalStorage(this.removedKey, this.archivedLinksList);
         });
@@ -231,10 +208,7 @@ export class AllLinks {
                 buttonWrapper.append(buttonsDiv);
                 buttonWrapper.appendChild(buttonsDiv);
 
-                // setRandomColor(listItem, link.color);
-
                 listItem.innerHTML = `
-                <!-- <div class="show-color" style="${listItem.style.cssText};"></div> -->
                 <div class="link-content-div">
                 <p class="link-name">${link.name}</p>
                 <a href="${formatUrl(link.url)}" target="_blank">
@@ -248,7 +222,4 @@ export class AllLinks {
         }
 
     }
-
-    // <p class="show-color" style="${listItem.style.cssText}; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; color: #fff; font-size: 12px; width: 200px;"> Background Color </p>
-
 }
