@@ -41,6 +41,17 @@ export function setRandomColor(element, color) {
     element.style.backgroundColor = color;
 }
 
+export function socialMediaPlaceholderConditonal(inputBox, socialMediaValue, socialMediaPlatform) {
+    if (inputBox.value != null || inputBox != "") {
+        inputBox.value = socialMediaValue;
+    } else {
+        inputBox.value = `Enter Your ${socialMediaPlatform} URL`;
+    }
+    // console.log(inputBox);
+    // inputBox = null;
+    // console.log(inputBox);
+}
+
 export function setImg(id, img) {
     let element = document.getElementById(id);
     element.style.backgroundImage = `url('${img}')`;

@@ -8,6 +8,7 @@ import {
     setImg,
     formatUrl,
     createIcon,
+    socialMediaPlaceholderConditonal
 } from './utilities.js';
 
 import firebaseApp from './firebaseApp.js';
@@ -18,7 +19,7 @@ export class Page {
         this.links = new AllLinks('#displayLinks', pageName + ' links');
         this.pageData = {
             'pageName': pageName,
-            'currentPage': null,
+            'currentPage': 'profileSection',
             'profileImgURL': null,
             'bgImgURL': null,
             'colorValue': null,
@@ -126,9 +127,11 @@ export class Page {
         let linksSection = document.getElementById('linksSection');
         let profileSection = document.getElementById('profileSection');
         let socialMediaSection = document.getElementById('socialMediaSection');
+
         let linksNavItem = document.getElementById('linksNavItem');
         let profileNavItem = document.getElementById('profileNavItem');
         let socialNavItem = document.getElementById('socialMediaNavItem');
+
         profileNavItem.classList.remove('active');
         socialNavItem.classList.remove('active');
 
@@ -320,19 +323,19 @@ export class Page {
         }
 
         saveToLocalStorage(this.key, this.pageData);
-        facebookInputBox.value = null;
-        instagramInputBox.value = null;
-        youtubeInputBox.value = null;
-        twitterInputBox.value = null;
-        linkedinInputBox.value = null;
-        soundcloudInputBox.value = null;
+        // facebookInputBox.value = '';
+        // instagramInputBox.value = null;
+        // youtubeInputBox.value = null;
+        // twitterInputBox.value = null;
+        // linkedinInputBox.value = null;
+        // soundcloudInputBox.value = null;
 
-        facebookInputBox.placeholder = this.pageData.socialMedia.facebook;
-        instagramInputBox.placeholder = this.pageData.socialMedia.instagram;
-        youtubeInputBox.placeholder = this.pageData.socialMedia.youtube;
-        twitterInputBox.placeholder = this.pageData.socialMedia.twitter;
-        linkedinInputBox.placeholder = this.pageData.socialMedia.linkedin;
-        soundcloudInputBox.placeholder = this.pageData.socialMedia.soundcloud;
+        socialMediaPlaceholderConditonal(facebookInputBox, this.pageData.socialMedia.facebook, 'Facebook');
+        socialMediaPlaceholderConditonal(instagramInputBox, this.pageData.socialMedia.instagram, 'Instagram');
+        socialMediaPlaceholderConditonal(youtubeInputBox, this.pageData.socialMedia.youtube, 'Youtube');
+        socialMediaPlaceholderConditonal(twitterInputBox, this.pageData.socialMedia.twitter, 'Twitter');
+        socialMediaPlaceholderConditonal(linkedinInputBox, this.pageData.socialMedia.linkedin, 'LinkedIn');
+        socialMediaPlaceholderConditonal(soundcloudInputBox, this.pageData.socialMedia.soundcloud, 'Soundcloud');
     }
 
     deleteSocialMediaLink(event) {
@@ -440,6 +443,10 @@ export class Page {
         let landingPage = document.getElementById("viewContent");
         landingPage.style.display = "block";
 
+        // hide header elements
+        let menuBtn = document.getElementById('mobileMenuBtn');
+        menuBtn.style.display = 'none';
+
         let previewBtn = document.getElementById('previewBtn');
         previewBtn.style.display = 'none';
         let backToPanelBtn = document.getElementById('backToPanelBtn');
@@ -516,190 +523,5 @@ export class Page {
         }
 
         footerDiv.appendChild(socialMediaDisplayDiv);
-
-
-
-
-
-
-
-
-
-
-        // let viewContent = document.getElementById('viewContent');
-
-        // if (viewContent.innerHTML != null) {
-        //     viewContent.remove();
-
-        //     let landingPage = document.getElementById("viewContent");
-        //     landingPage.style.display = "block";
-
-        //     let previewBtn = document.getElementById('previewBtn');
-        //     previewBtn.style.display = 'none';
-        //     let backToPanelBtn = document.getElementById('backToPanelBtn');
-        //     backToPanelBtn.style.display = 'block';
-
-
-        //     // let flexHeader = header.children
-
-        //     // create elements within the viewContent section
-        //     // create backgroundDiv section
-        //     let backgroundDiv = document.createElement('div');
-        //     backgroundDiv.setAttribute('id', 'backgroundImgDiv');
-        //     landingPage.appendChild(backgroundDiv);
-        //     setImg("backgroundImgDiv", this.pageData.bgImgURL);
-
-        //     // create overlay div
-        //     let overlayDiv = document.createElement('div');
-        //     overlayDiv.setAttribute('id', 'backgroundOverlayDiv');
-        //     backgroundDiv.appendChild(overlayDiv);
-
-        //     // create body section
-        //     let bodyDiv = document.createElement('div');
-        //     bodyDiv.setAttribute('id', 'bodyDiv');
-        //     landingPage.appendChild(bodyDiv);
-
-        //     // load profile img
-        //     let profileDiv = document.createElement('div');
-        //     profileDiv.setAttribute('id', 'profileImgDiv');
-        //     profileDiv.classList.add('profile-image-div');
-        //     bodyDiv.appendChild(profileDiv);
-        //     setImg("profileImgDiv", this.pageData.profileImgURL);
-
-        //     // load profile name
-        //     let profileNameDiv = document.createElement('div');
-        //     profileNameDiv.setAttribute('id', 'profileNameDiv');
-        //     bodyDiv.appendChild(profileNameDiv);
-        //     profileNameDiv.innerHTML = `<h4 class="username-heading">${this.pageData.pageName}</h4>`;
-
-
-        //     // set up a div to display the links
-        //     let linksDiv = document.createElement('div');
-        //     linksDiv.setAttribute('id', 'linksDiv');
-        //     this.links.links.map((link) => {
-        //         console.log(link);
-        //         linksDiv.innerHTML += `
-        //         <p class="link-wrapper">
-        //         <a class="displayed-link" href="${link.url}" style="background-color:#fff;" target="_blank">${link.name}</a>
-        //         </p>`
-        //     })
-        //     bodyDiv.appendChild(linksDiv);
-
-        //     // create footer section (for social media, etc.)
-        //     let footerDiv = document.createElement('div');
-        //     footerDiv.setAttribute('id', 'footerDiv');
-        //     landingPage.appendChild(footerDiv);
-
-        //     let socialMediaDisplayDiv = document.createElement('div');
-        //     socialMediaDisplayDiv.setAttribute('id', 'socialMediaDisplayDiv');
-
-        //     if (this.pageData.socialMedia.facebook != null) {
-        //         createIcon('fab fa-facebook-square', this.pageData.socialMedia.facebook, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.instagram != null) {
-        //         createIcon('fab fa-instagram-square', this.pageData.socialMedia.instagram, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.youtube != null) {
-        //         createIcon('fab fa-youtube-square', this.pageData.socialMedia.youtube, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.twitter != null) {
-        //         createIcon('fab fa-twitter-square', this.pageData.socialMedia.twitter, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.linkedin != null) {
-        //         createIcon('fab fa-linkedin', this.pageData.socialMedia.linkedin, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.soundcloud != null) {
-        //         createIcon('fab fa-soundcloud', this.pageData.socialMedia.soundcloud, socialMediaDisplayDiv);
-        //     }
-
-        //     footerDiv.appendChild(socialMediaDisplayDiv);
-
-
-        // } else {
-
-        //     let landingPage = document.getElementById("viewContent");
-        //     landingPage.style.display = "block";
-
-        //     let previewBtn = document.getElementById('previewBtn');
-        //     previewBtn.style.display = 'none';
-        //     let backToPanelBtn = document.getElementById('backToPanelBtn');
-        //     backToPanelBtn.style.display = 'block';
-
-
-        //     // let flexHeader = header.children
-
-        //     // create elements within the viewContent section
-        //     // create backgroundDiv section
-        //     let backgroundDiv = document.createElement('div');
-        //     backgroundDiv.setAttribute('id', 'backgroundImgDiv');
-        //     landingPage.appendChild(backgroundDiv);
-        //     setImg("backgroundImgDiv", this.pageData.bgImgURL);
-
-        //     // create overlay div
-        //     let overlayDiv = document.createElement('div');
-        //     overlayDiv.setAttribute('id', 'backgroundOverlayDiv');
-        //     backgroundDiv.appendChild(overlayDiv);
-
-        //     // create body section
-        //     let bodyDiv = document.createElement('div');
-        //     bodyDiv.setAttribute('id', 'bodyDiv');
-        //     landingPage.appendChild(bodyDiv);
-
-        //     // load profile img
-        //     let profileDiv = document.createElement('div');
-        //     profileDiv.setAttribute('id', 'profileImgDiv');
-        //     profileDiv.classList.add('profile-image-div');
-        //     bodyDiv.appendChild(profileDiv);
-        //     setImg("profileImgDiv", this.pageData.profileImgURL);
-
-        //     // load profile name
-        //     let profileNameDiv = document.createElement('div');
-        //     profileNameDiv.setAttribute('id', 'profileNameDiv');
-        //     bodyDiv.appendChild(profileNameDiv);
-        //     profileNameDiv.innerHTML = `<h4 class="username-heading">${this.pageData.pageName}</h4>`;
-
-
-        //     // set up a div to display the links
-        //     let linksDiv = document.createElement('div');
-        //     linksDiv.setAttribute('id', 'linksDiv');
-        //     this.links.links.map((link) => {
-        //         console.log(link);
-        //         linksDiv.innerHTML += `
-        //         <p class="link-wrapper">
-        //         <a class="displayed-link" href="${link.url}" style="background-color:#fff;" target="_blank">${link.name}</a>
-        //         </p>`
-        //     })
-        //     bodyDiv.appendChild(linksDiv);
-
-        //     // create footer section (for social media, etc.)
-        //     let footerDiv = document.createElement('div');
-        //     footerDiv.setAttribute('id', 'footerDiv');
-        //     landingPage.appendChild(footerDiv);
-
-        //     let socialMediaDisplayDiv = document.createElement('div');
-        //     socialMediaDisplayDiv.setAttribute('id', 'socialMediaDisplayDiv');
-
-        //     if (this.pageData.socialMedia.facebook != null) {
-        //         createIcon('fab fa-facebook-square', this.pageData.socialMedia.facebook, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.instagram != null) {
-        //         createIcon('fab fa-instagram-square', this.pageData.socialMedia.instagram, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.youtube != null) {
-        //         createIcon('fab fa-youtube-square', this.pageData.socialMedia.youtube, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.twitter != null) {
-        //         createIcon('fab fa-twitter-square', this.pageData.socialMedia.twitter, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.linkedin != null) {
-        //         createIcon('fab fa-linkedin', this.pageData.socialMedia.linkedin, socialMediaDisplayDiv);
-        //     }
-        //     if (this.pageData.socialMedia.soundcloud != null) {
-        //         createIcon('fab fa-soundcloud', this.pageData.socialMedia.soundcloud, socialMediaDisplayDiv);
-        //     }
-
-        //     footerDiv.appendChild(socialMediaDisplayDiv);
-
-        // }
     }
 }

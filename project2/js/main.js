@@ -13,7 +13,7 @@ import {
 // consider changing the key to a dynamic variable that the user wants the page name to be (ex. VVRN or Lipp)
 // export const myLink = new AllLinks("#displayLinks", 'links');
 // Create page attach links to that page
-export const myLink = new Page("Matthew Rapp");
+export const myLink = new Page("Username");
 
 // load the links alraedy stored in local storage
 window.onload = (event) => {
