@@ -121,9 +121,6 @@ export function createIcon(iconClass, linkHref, div) {
 //     return range;
 // };
 
-
-
-
 // helper function
 // target differeent elements
 export function targetAction(event) {
